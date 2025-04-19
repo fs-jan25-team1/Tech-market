@@ -1,5 +1,5 @@
-import { HomePage } from "./modules/HomePage"
+import { HomePage } from './modules/HomePage';
 
 export const App = () => {
-  return (<HomePage />)
-}
+  return <HomePage />;
+};

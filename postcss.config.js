@@ -4,8 +4,8 @@ import autoprefixer from 'autoprefixer';
 export default {
   plugins: [
     tailwindcssPostcss({
-      config: './tailwind.config.js'
+      config: './tailwind.config.js',
     }),
-    autoprefixer()
-  ]
-}
+    autoprefixer(),
+  ],
+};

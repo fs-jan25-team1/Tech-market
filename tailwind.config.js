@@ -3,7 +3,7 @@ module.exports = {
   content: [
     './index.html',
     './src/**/*.{js,ts,jsx,tsx}',
-    './src/styles/index.css'
+    './src/styles/index.css',
   ],
   theme: {
     extend: {
@@ -12,7 +12,5 @@ module.exports = {
       },
     },
   },
-  plugins: [
-    require('tw-animate-css')
-  ],
-}
+  plugins: [require('tw-animate-css')],
+};

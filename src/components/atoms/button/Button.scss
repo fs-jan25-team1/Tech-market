@@ -1,0 +1,98 @@
+@use '../../../styles/config/variables' as v;
+
+$height-primary: 40px;
+$width-primary: 176px;
+
+$square-size-regular: 32px;
+$square-size-large: 40px;
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  vertical-align: middle;
+  justify-content: center;
+  font-family: v.$font-family-base;
+  font-weight: v.$button-weight;
+  border: none;
+  cursor: pointer;
+  font-size: v.$button-text-size;
+  line-height: v.$button-line-height;
+  color: v.$color-white;
+
+  &--disabled {
+    color: v.$color-icons;
+    background-color: v.$color-elements;
+  }
+
+  &--primary {
+    background-color: v.$color-accent-alt;
+    width: $width-primary;
+    height: $height-primary;
+
+    &:hover {
+      background-color: v.$color-accent-alt-light;
+    }
+
+    &:active {
+      background-color: v.$color-surface-2;
+    }
+  }
+
+  &--numbered {
+    background-color: v.$color-surface-1;
+    width: $square-size-regular;
+    height: $square-size-regular;
+
+    &:hover {
+      background-color: v.$color-surface-2;
+    }
+
+    &:active {
+      background-color: v.$color-accent-alt;
+    }
+  }
+
+  &--arrow {
+    background-color: v.$color-surface-2;
+    width: $square-size-regular;
+    height: $square-size-regular;
+
+    &:hover:not(.button--disabled) {
+      background-color: v.$color-icons;
+    }
+  }
+
+  // Need to make possible inserting any color in, will do later
+  &--selector {
+    background-color: v.$color-accent-alt;
+
+    width: $square-size-regular;
+    height: $square-size-regular;
+    border-radius: 50%;
+    border: 2px solid v.$color-elements;
+
+    &:hover {
+      background-color: v.$color-accent-alt-light;
+    }
+
+    &:active {
+      border: 2px solid v.$color-white;
+    }
+  }
+
+  // Need to add heart icon
+  &--favourite {
+    background-color: v.$color-surface-2;
+    width: $square-size-large;
+    height: $square-size-large;
+
+    &:hover {
+      background-color: v.$color-icons;
+    }
+
+    &:active {
+      background-color: v.$color-black;
+      border: 1px solid v.$color-elements;
+    }
+  }
+}

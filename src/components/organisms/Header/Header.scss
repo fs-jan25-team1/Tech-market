@@ -1,0 +1,49 @@
+@use '../../../styles/config/variables' as v;
+
+.header {
+font-family: v.$font-family-base;
+width: 100%;
+background-color: v.$color-black;
+box-shadow: 0 1px 0 0 v.$color-elements;
+
+  &__container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo img {
+    height: 24px;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 32px;
+  }
+
+  &__link {
+    font-size: 14px;
+    font-weight: 600;
+    color: v.$color-secondary;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    &--active {
+      color: v.$color-accent;
+      border-bottom: 2px solid v.$color-accent;
+      padding-bottom: 4px;
+    }
+
+    &:hover {
+      color: v.$color-accent;
+    }
+  }
+
+  &__auth {
+    display: flex;
+    align-items: center;
+  }
+}

@@ -1,10 +1,10 @@
 @use '../../../styles/config/variables' as v;
 
 .header {
-font-family: v.$font-family-base;
-width: 100%;
-background-color: v.$color-black;
-box-shadow: 0 1px 0 0 v.$color-elements;
+  font-family: v.$font-family-base;
+  width: 100%;
+  background-color: v.$color-black;
+  box-shadow: 0 1px 0 0 v.$color-elements;
 
   &__container {
     max-width: 1200px;

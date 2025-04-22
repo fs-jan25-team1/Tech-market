@@ -5,5 +5,5 @@ export enum ButtonTypes {
   selector = 'selector',
   favourite = 'favourite',
   back = 'back',
-  cart = "cart",
+  cart = 'cart',
 }

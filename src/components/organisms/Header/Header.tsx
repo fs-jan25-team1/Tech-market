@@ -59,7 +59,7 @@ const Header = () => {
             variant="ghost"
             size="icon"
             className="header__mobile-toggle"
-            onClick={() => setIsMenuOpen(prev => !prev)}
+            onClick={() => setIsMenuOpen((prev) => !prev)}
             aria-label="Toggle menu"
           >
             <Menu className="w-6 h-6" />

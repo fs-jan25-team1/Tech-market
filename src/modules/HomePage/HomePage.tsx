@@ -1,5 +1,6 @@
 import Button from '@/components/atoms/button/Button';
 import { CustomDropdown } from '@/components/atoms/dropdown/Dropdown';
+import { ImageSlider } from '@/components/organisms/BannerSlider/ImageSlider';
 import { ButtonTypes } from '@/types/ButtonTypes';
 
 const DropdownSortBy = [
@@ -27,6 +28,7 @@ export const HomePage = () => {
         onValueChange={(value) => console.log('DropdownSortBy:', value)}
         size="medium"
       />
+      <ImageSlider />
     </>
   );
 };

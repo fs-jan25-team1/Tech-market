@@ -1,4 +1,3 @@
-// src/components/organisms/Header/Header.tsx
 import { Link, NavLink } from 'react-router-dom';
 import Button from '@/components/atoms/button/Button';
 import { ButtonTypes } from '@/types/ButtonTypes';

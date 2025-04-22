@@ -33,11 +33,7 @@ export const CustomDropdown: React.FC<Props> = ({
       </SelectTrigger>
       <SelectContent className={`content ${size}`}>
         {options.map((option) => (
-          <SelectItem
-            key={option.value}
-            value={option.value}
-            className='item'
-          >
+          <SelectItem key={option.value} value={option.value} className="item">
             {option.label}
           </SelectItem>
         ))}

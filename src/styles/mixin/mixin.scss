@@ -35,9 +35,7 @@
     @include on-desktop {
       width: 128px;
     }
-  }
-
-  @else if $size == medium {
+  } @else if $size == medium {
     width: 136px;
 
     @if $with-height {
@@ -54,9 +52,7 @@
     @include on-desktop {
       width: 187px;
     }
-  }
-
-  @else if $size == large {
+  } @else if $size == large {
     width: 180px;
 
     @if $with-height {

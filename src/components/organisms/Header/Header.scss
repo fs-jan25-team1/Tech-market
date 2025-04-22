@@ -15,21 +15,29 @@
     justify-content: space-between;
   }
 
-  &__logo img {
-    height: 24px;
-  }
-
-  &__nav {
+  &__left {
     display: flex;
+    align-items: center;
     gap: 32px;
   }
 
+  &__nav {
+    display: none;
+
+    @media (min-width: 640px) {
+      display: flex;
+      gap: 32px;
+    }
+  }
+
   &__link {
+    display: inline-block;
     font-size: 14px;
     font-weight: 600;
+    text-transform: uppercase;
     color: v.$color-secondary;
     text-decoration: none;
-    text-transform: uppercase;
+    transition: color 0.2s;
 
     &--active {
       color: v.$color-accent;
@@ -39,11 +47,86 @@
 
     &:hover {
       color: v.$color-accent;
+      text-decoration: underline;
     }
   }
 
-  &__auth {
+  &__right {
     display: flex;
     align-items: center;
+    gap: 8px;
+  }
+
+  &__icons {
+    display: none;
+
+    @media (min-width: 640px) {
+      display: flex;
+      gap: 12px;
+    }
+  }
+
+  &__mobile-toggle {
+    display: block;
+
+    @media (min-width: 640px) {
+      display: none;
+    }
+  }
+
+  &__sidebar {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: v.$color-black;
+    padding: 24px;
+
+    @media (min-width: 640px) {
+      display: none;
+    }
+  }
+
+  &__sidebar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  &__sidebar-nav {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__sidebar-bottom {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 16px;
+    border-top: 1px solid v.$color-elements;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    color: v.$color-secondary;
+  }
+
+  &__mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 24px;
+    background-color: v.$color-black;
+
+    @media (min-width: 640px) {
+      display: none;
+    }
   }
 }

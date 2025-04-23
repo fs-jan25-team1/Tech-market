@@ -1,0 +1,66 @@
+@use '../../../styles/config/variables' as v;
+@use '../../../styles/mixin/mixin' as m;
+
+.footer {
+  font-family: v.$font-family-base;
+  width: 100%;
+  background-color: v.$color-black;
+  border-top: 1px solid v.$color-elements;
+
+  &__container {
+    padding: 32px 0;
+    @include m.content-padding-inline;
+    @include m.page-grid;
+
+    row-gap: 32px;
+  }
+
+  &__logo {
+    width: 89px;
+    height: 32px;
+
+    grid-column: 1 / -1;
+
+    @include m.on-tablet {
+      grid-column: 1 / span 3;
+      align-self: center;
+    }
+  }
+
+  &__links {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    @include m.on-tablet {
+      grid-column: 6 / span 2;
+      flex-direction: row;
+      justify-content: center;
+      align-self: center;
+      gap: 107px;
+    }
+
+    @include m.on-desktop {
+      grid-column: 11 / span 4;
+    }
+  }
+
+  &__back-to-top {
+    grid-column: 1 / -1;
+    justify-self: center;
+    text-align: center;
+
+    display: flex;
+    align-items: center;
+    gap: 16px;
+
+    cursor: pointer;
+
+    @include m.on-tablet {
+      grid-column: -4 / -1;
+      justify-self: end;
+      align-self: center;
+    }
+  }
+}

@@ -1,3 +1,5 @@
+@use '../config/variables.scss' as v;
+
 @mixin on-tablet() {
   @media (min-width: 640px) {
     @content;
@@ -10,11 +12,40 @@
   }
 }
 
+@mixin content-padding-inline() {
+  padding-inline: v.$padding-inline-mobile;
+
+  @include on-tablet {
+    padding-inline: v.$padding-inline-tablet;
+  }
+
+  @include on-desktop {
+    margin-inline: auto;
+  }
+}
+
+@mixin page-grid() {
+  --columns: 4;
+
+  display: grid;
+  column-gap: 16px;
+  grid-template-columns: repeat(var(--columns), 1fr);
+  grid-auto-rows: min-content;
+
+  @include on-tablet {
+    --columns: 12;
+  }
+
+  @include on-desktop {
+    --columns: 24;
+  }
+}
+
 @mixin text-style-dropdown {
-  font-family: $font-family-base;
-  font-weight: $uppercase-weight;
-  font-size: $body-text-size;
-  line-height: $body-line-height;
+  font-family: v.$font-family-base;
+  font-weight: v.$uppercase-weight;
+  font-size: v.$body-text-size;
+  line-height: v.$body-line-height;
   letter-spacing: 0%;
 }
 

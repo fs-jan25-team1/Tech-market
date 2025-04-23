@@ -28,10 +28,10 @@ export const CustomDropdown: React.FC<Props> = ({
 }) => {
   return (
     <Select onValueChange={onValueChange}>
-      <SelectTrigger className={`trigger ${size}`}>
+      <SelectTrigger className={`dropdownTrigger ${size}`}>
         <SelectValue placeholder={placeholder} />
       </SelectTrigger>
-      <SelectContent className={`content ${size}`}>
+      <SelectContent className={`dropdownContent  ${size}`}>
         {options.map((option) => (
           <SelectItem key={option.value} value={option.value} className="item">
             {option.label}

@@ -1,0 +1,88 @@
+@import '../../../styles/config/variables';
+@import '../../../styles/mixin/mixin';
+
+.trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $color-surface-2;
+  color: $color-white;
+  padding: 12px 10px;
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 1px solid transparent;
+  @include text-style-dropdown;
+  stroke: $color-secondary;
+
+  &.small {
+    @include dropdown-size(small);
+  }
+
+  &.medium {
+    @include dropdown-size(medium);
+  }
+
+  &.large {
+    @include dropdown-size(large);
+  }
+
+  &:hover {
+    border: 1px solid $color-icons;
+  }
+
+  &:focus {
+    outline: none;
+    border: 1px solid $color-accent-alt;
+  }
+
+  &:focus,
+  &[data-state='open'] {
+    outline: none;
+    border: 1px solid $color-accent-alt;
+  }
+
+  & svg {
+    color: $color-secondary;
+  }
+}
+
+.content {
+  background-color: $color-black;
+  color: $color-secondary;
+  border: 1px solid $color-elements;
+  width: 136px;
+  box-sizing: border-box;
+  margin-top: 4px;
+  margin-left: -9.5px;
+  max-height: 300px;
+  overflow-y: auto;
+  padding: 8px 0;
+  display: flex;
+
+  &.small {
+    @include dropdown-size(small, false);
+  }
+
+  &.medium {
+    @include dropdown-size(medium, false);
+  }
+
+  &.large {
+    @include dropdown-size(large, false);
+  }
+}
+
+.item {
+  padding: 6px 12px;
+  cursor: pointer;
+  @include text-style-dropdown;
+  font-weight: $h4-weight;
+  height: 32px;
+  outline: none;
+
+  &:focus {
+    background-color: $color-surface-2;
+    color: $color-white;
+  }
+}

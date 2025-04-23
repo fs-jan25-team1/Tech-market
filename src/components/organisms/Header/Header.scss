@@ -1,0 +1,144 @@
+@use '../../../styles/config/variables' as v;
+
+.header {
+  font-family: v.$font-family-base;
+  width: 100%;
+  background-color: v.$color-black;
+  box-shadow: 0 1px 0 0 v.$color-elements;
+
+  &__container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @media (min-width: 1200px) {
+      padding-left: 48px;
+      padding-right: 48px;
+    }
+  }
+
+  &__left {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+
+    @media (min-width: 1200px) {
+      margin-right: auto;
+    }
+  }
+
+  &__nav {
+    display: none;
+
+    @media (min-width: 640px) {
+      display: flex;
+      gap: 32px;
+    }
+  }
+
+  &__link {
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: v.$color-secondary;
+    text-decoration: none;
+    transition: color 0.2s;
+
+    &--active {
+      color: v.$color-accent;
+      border-bottom: 2px solid v.$color-accent;
+      padding-bottom: 4px;
+    }
+
+    &:hover {
+      color: v.$color-accent;
+    }
+  }
+
+  &__right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    @media (min-width: 1200px) {
+      margin-left: auto;
+    }
+  }
+
+  &__icons {
+    display: none;
+
+    @media (min-width: 640px) {
+      display: flex;
+      gap: 12px;
+    }
+  }
+
+  &__mobile-toggle {
+    display: block;
+
+    @media (min-width: 640px) {
+      display: none;
+    }
+  }
+
+  &__sidebar {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: v.$color-black;
+    padding: 24px;
+
+    @media (min-width: 640px) {
+      display: none;
+    }
+  }
+
+  &__sidebar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+  }
+
+  &__sidebar-nav {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: center;
+    text-align: center;
+  }
+
+  &__sidebar-bottom {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 16px;
+    border-top: 1px solid v.$color-elements;
+  }
+
+  &__close {
+    background: none;
+    border: none;
+    color: v.$color-secondary;
+  }
+
+  &__mobile-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px 24px;
+    background-color: v.$color-black;
+
+    @media (min-width: 640px) {
+      display: none;
+    }
+  }
+}

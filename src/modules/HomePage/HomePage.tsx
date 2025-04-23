@@ -1,11 +1,21 @@
 import Button from '@/components/atoms/button/Button';
+import { CustomDropdown } from '@/components/atoms/dropdown/Dropdown';
+import { ImageSlider } from '@/components/organisms/BannerSlider/ImageSlider';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { ProductColor } from '@/types/ProductColor';
 import { Heart, ChevronRight, ChevronLeft } from 'lucide-react';
 
+const DropdownSortBy = [
+  { value: 'newest', label: 'Newest' },
+  { value: 'oldest', label: 'Oldest' },
+  { value: 'cheapest', label: 'Cheapest' },
+  { value: 'most-expensive', label: 'Most expensive' },
+];
+
 export const HomePage = () => {
   return (
     <>
+      <h1 className="text-red-500 text-4xl">Tailwind check!</h1>
       <div>Home page!</div>
       <Button content={'Button'} variant={ButtonTypes.primary} />
       <Button content={'1'} variant={ButtonTypes.numbered} />
@@ -14,6 +24,15 @@ export const HomePage = () => {
       <Button variant={ButtonTypes.selector} bgColor={ProductColor.cream} />
       <Button variant={ButtonTypes.favourite} icon={Heart} iconSize={15} />
       <Button content={'Back'} variant={ButtonTypes.back} icon={ChevronLeft} />
+      <br />
+      <br />
+      <CustomDropdown
+        placeholder="Newest"
+        options={DropdownSortBy}
+        onValueChange={(value) => console.log('DropdownSortBy:', value)}
+        size="medium"
+      />
+      <ImageSlider />
     </>
   );
 };

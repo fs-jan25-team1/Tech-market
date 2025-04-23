@@ -28,14 +28,18 @@ export const MobileSidebar = ({
   if (!isOpen) return null;
 
   return (
-    <aside className="fixed inset-0 z-50 flex flex-col justify-between bg-black px-6 py-6 sm:hidden">
+    <aside className="fixed inset-0 z-50 flex flex-col justify-between bg-black sm:hidden">
       {/* Top */}
       <div>
         <div className="flex items-center justify-between mb-8">
           <Link to="/" onClick={onClose}>
             <img src="/src/assets/logo/Logo.svg" alt="Nice Gadgets" />
           </Link>
-          <button onClick={onClose} aria-label="Close menu" className="text-secondary">
+          <button
+            onClick={onClose}
+            aria-label="Close menu"
+            className="text-secondary"
+          >
             <X className="w-6 h-6" />
           </button>
         </div>
@@ -61,43 +65,47 @@ export const MobileSidebar = ({
       </div>
 
       {/* Bottom */}
-<div className="grid grid-cols-3 items-center border-t border-[#3B3E4A] h-20">
-  {/* Favorites */}
-  <div className="flex items-center justify-center relative">
-    <Link to="/favorites" onClick={onClose} aria-label="Go to favorites">
-      <Heart
-        className={`w-6 h-6 transition-transform hover:scale-110 ${
-          isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F] hover:text-[#F1F2F9]'
-        }`}
-      />
-    </Link>
-    {favoritesCount > 0 && (
-      <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] leading-none font-bold px-[6px] py-[2px] rounded-full">
-        {favoritesCount}
-      </span>
-    )}
-  </div>
+      <div className="relative grid grid-cols-3 items-center h-20">
+      <div className="absolute top-0 left-0 w-full h-px bg-[#3B3E4A]" />
+        {/* Favorites */}
+        <div className="flex items-center justify-center relative">
+          <Link to="/favorites" onClick={onClose} aria-label="Go to favorites">
+            <Heart
+              className={`w-6 h-6 transition-transform hover:scale-110 ${
+                isFavorites
+                  ? 'text-[#F1F2F9]'
+                  : 'text-[#75767F] hover:text-[#F1F2F9]'
+              }`}
+            />
+          </Link>
+          {favoritesCount > 0 && (
+            <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] leading-none font-bold px-[6px] py-[2px] rounded-full">
+              {favoritesCount}
+            </span>
+          )}
+        </div>
 
-  {/* Divider */}
-  <div className="w-px h-6 bg-[#3B3E4A] mx-auto" />
+        {/* Divider */}
+        <div className="w-px h-full bg-[#3B3E4A] mx-auto" />
 
-  {/* Cart */}
-  <div className="flex items-center justify-center relative">
-    <Link to="/cart" onClick={onClose} aria-label="Go to cart">
-      <ShoppingCart
-        className={`w-6 h-6 transition-transform hover:scale-110 ${
-          isCart ? 'text-[#F1F2F9]' : 'text-[#75767F] hover:text-[#F1F2F9]'
-        }`}
-      />
-    </Link>
-    {cartCount > 0 && (
-      <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] leading-none font-bold px-[6px] py-[2px] rounded-full">
-        {cartCount}
-      </span>
-    )}
-  </div>
-</div>
-
+        {/* Cart */}
+        <div className="flex items-center justify-center relative">
+          <Link to="/cart" onClick={onClose} aria-label="Go to cart">
+            <ShoppingCart
+              className={`w-6 h-6 transition-transform hover:scale-110 ${
+                isCart
+                  ? 'text-[#F1F2F9]'
+                  : 'text-[#75767F] hover:text-[#F1F2F9]'
+              }`}
+            />
+          </Link>
+          {cartCount > 0 && (
+            <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] leading-none font-bold px-[6px] py-[2px] rounded-full">
+              {cartCount}
+            </span>
+          )}
+        </div>
+      </div>
     </aside>
   );
 };

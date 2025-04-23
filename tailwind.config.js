@@ -19,9 +19,9 @@ module.exports = {
       },
     },
     screens: {
-      mobile: '320px',     // до 639px
-      tablet: '640px',     // 640–1199px
-      desktop: '1200px',   // 1200+
+      mobile: '320px', // до 639px
+      tablet: '640px', // 640–1199px
+      desktop: '1200px', // 1200+
     },
   },
   plugins: [require('tw-animate-css')],

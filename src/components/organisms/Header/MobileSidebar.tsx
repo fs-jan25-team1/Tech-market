@@ -1,11 +1,11 @@
-import { NavLink, Link } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Heart, ShoppingCart, X } from 'lucide-react';
-import '@/components/organisms/Header/Header.scss';
 
 interface MobileSidebarProps {
   isOpen: boolean;
   onClose: () => void;
+  favoritesCount?: number;
+  cartCount?: number;
 }
 
 const navItems = [
@@ -15,53 +15,89 @@ const navItems = [
   { path: '/accessories', label: 'Accessories' },
 ];
 
-export const MobileSidebar = ({ isOpen, onClose }: MobileSidebarProps) => {
+export const MobileSidebar = ({
+  isOpen,
+  onClose,
+  favoritesCount = 0,
+  cartCount = 0,
+}: MobileSidebarProps) => {
+  const location = useLocation();
+  const isFavorites = location.pathname === '/favorites';
+  const isCart = location.pathname === '/cart';
+
   if (!isOpen) return null;
 
   return (
-    <aside className="header__sidebar">
-      <div className="header__sidebar-top">
-        <Link to="/" className="header__logo" onClick={onClose}>
-          <img src="/src/assets/logo/Logo.svg" alt="Nice Gadgets" />
-        </Link>
+    <aside className="fixed inset-0 z-50 flex flex-col justify-between bg-black px-6 py-6 sm:hidden">
+      {/* Top */}
+      <div>
+        <div className="flex items-center justify-between mb-8">
+          <Link to="/" onClick={onClose}>
+            <img src="/src/assets/logo/Logo.svg" alt="Nice Gadgets" />
+          </Link>
+          <button onClick={onClose} aria-label="Close menu" className="text-secondary">
+            <X className="w-6 h-6" />
+          </button>
+        </div>
 
-        <button
-          className="header__close"
-          onClick={onClose}
-          aria-label="Close menu"
-        >
-          <X className="w-6 h-6" />
-        </button>
+        <nav className="flex flex-col items-center gap-6 text-center">
+          {navItems.map(({ path, label }) => (
+            <NavLink
+              key={path}
+              to={path}
+              onClick={onClose}
+              className={({ isActive }) =>
+                `text-sm font-semibold uppercase tracking-wide transition-colors pb-1 border-b-2 ${
+                  isActive
+                    ? 'text-[#F1F2F9] border-[#F1F2F9]'
+                    : 'text-[#75767F] border-transparent hover:text-[#F1F2F9]'
+                }`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+        </nav>
       </div>
 
-      <nav className="header__sidebar-nav">
-        {navItems.map(({ path, label }) => (
-          <NavLink
-            key={path}
-            to={path}
-            onClick={onClose}
-            className={({ isActive }) =>
-              `header__link ${isActive ? 'header__link--active' : ''}`
-            }
-          >
-            {label}
-          </NavLink>
-        ))}
-      </nav>
+      {/* Bottom */}
+<div className="grid grid-cols-3 items-center border-t border-[#3B3E4A] h-20">
+  {/* Favorites */}
+  <div className="flex items-center justify-center relative">
+    <Link to="/favorites" onClick={onClose} aria-label="Go to favorites">
+      <Heart
+        className={`w-6 h-6 transition-transform hover:scale-110 ${
+          isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F] hover:text-[#F1F2F9]'
+        }`}
+      />
+    </Link>
+    {favoritesCount > 0 && (
+      <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] leading-none font-bold px-[6px] py-[2px] rounded-full">
+        {favoritesCount}
+      </span>
+    )}
+  </div>
 
-      <div className="header__sidebar-bottom">
-        <Link to="/favorites" onClick={onClose} aria-label="Go to favorites">
-          <Button variant="ghost" size="icon">
-            <Heart className="w-6 h-6" />
-          </Button>
-        </Link>
+  {/* Divider */}
+  <div className="w-px h-6 bg-[#3B3E4A] mx-auto" />
 
-        <Link to="/cart" onClick={onClose} aria-label="Go to cart">
-          <Button variant="ghost" size="icon">
-            <ShoppingCart className="w-6 h-6" />
-          </Button>
-        </Link>
-      </div>
+  {/* Cart */}
+  <div className="flex items-center justify-center relative">
+    <Link to="/cart" onClick={onClose} aria-label="Go to cart">
+      <ShoppingCart
+        className={`w-6 h-6 transition-transform hover:scale-110 ${
+          isCart ? 'text-[#F1F2F9]' : 'text-[#75767F] hover:text-[#F1F2F9]'
+        }`}
+      />
+    </Link>
+    {cartCount > 0 && (
+      <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] leading-none font-bold px-[6px] py-[2px] rounded-full">
+        {cartCount}
+      </span>
+    )}
+  </div>
+</div>
+
     </aside>
   );
 };

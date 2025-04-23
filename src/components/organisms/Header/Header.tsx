@@ -24,8 +24,9 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
   const isCart = location.pathname === '/cart';
 
   return (
-    <header className="w-full bg-black border-b border-[#3B3E4A] font-[MontBold]">
-      <div className="w-full px-6 lg:px-12 py-4 flex items-center justify-between">
+    <header className="w-full bg-black border-b border-[#3B3E4A]">
+      <div className="w-full px-6 lg:px-12 flex items-center justify-between">
+
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-8">
           <Link to="/">
@@ -36,31 +37,31 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
             />
           </Link>
 
-          <nav className="hidden sm:flex gap-6">
+          <nav className="hidden sm:flex gap-6 relative h-12">
             {navItems.map(({ path, label }) => (
               <NavLink
-                key={path}
-                to={path}
-                className={({ isActive }) =>
-                  `text-sm font-semibold uppercase transition-colors pb-1 border-b-2 ${
-                    isActive
-                      ? 'text-[#F1F2F9] border-[#F1F2F9]'
-                      : 'text-[#75767F] border-transparent hover:text-[#F1F2F9]'
-                  }`
+              key={path}
+              to={path}
+              className={({ isActive }) =>
+                `relative flex items-center h-full text-sm font-semibold uppercase transition-colors ${
+                  isActive ? 'text-[#F1F2F9]' : 'text-[#75767F] hover:text-[#F1F2F9]'}`
                 }
               >
                 {label}
-              </NavLink>
-            ))}
-          </nav>
-        </div>
+                <span
+                className={`absolute bottom-0 left-0 h-[3px] w-full transition-all duration-300 ${
+                  location.pathname === path ? 'bg-[#F1F2F9]' : 'bg-transparent'
+                }`}
+                />
+                </NavLink>
+              ))}
+            </nav>
+          </div>
 
         {/* Right: Icons (desktop) */}
         <div className="hidden sm:flex items-center gap-6 h-12">
-          {/* Divider before favorites */}
           <div className="h-full w-px bg-[#3B3E4A]" />
 
-          {/* Favorites */}
           <div className="flex items-center h-full">
             <NavLink
               to="/favorites"
@@ -76,17 +77,15 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
                 <Heart className="h-5 w-5" />
               </Button>
               {favoritesCount > 0 && (
-                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center">
+                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
                   {favoritesCount}
                 </span>
               )}
             </NavLink>
           </div>
 
-          {/* Divider after favorites */}
           <div className="h-full w-px bg-[#3B3E4A]" />
 
-          {/* Cart */}
           <div className="flex items-center h-full">
             <NavLink
               to="/cart"

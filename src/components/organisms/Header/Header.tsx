@@ -26,7 +26,6 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
   return (
     <header className="w-full bg-black border-b border-[#3B3E4A]">
       <div className="w-full px-6 lg:px-12 flex items-center justify-between">
-
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-8">
           <Link to="/">
@@ -40,23 +39,28 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
           <nav className="hidden sm:flex gap-6 relative h-12">
             {navItems.map(({ path, label }) => (
               <NavLink
-              key={path}
-              to={path}
-              className={({ isActive }) =>
-                `relative flex items-center h-full text-sm font-semibold uppercase transition-colors ${
-                  isActive ? 'text-[#F1F2F9]' : 'text-[#75767F] hover:text-[#F1F2F9]'}`
+                key={path}
+                to={path}
+                className={({ isActive }) =>
+                  `relative flex items-center h-full text-sm font-semibold uppercase transition-colors ${
+                    isActive
+                      ? 'text-[#F1F2F9]'
+                      : 'text-[#75767F] hover:text-[#F1F2F9]'
+                  }`
                 }
               >
                 {label}
                 <span
-                className={`absolute bottom-0 left-0 h-[3px] w-full transition-all duration-300 ${
-                  location.pathname === path ? 'bg-[#F1F2F9]' : 'bg-transparent'
-                }`}
+                  className={`absolute bottom-0 left-0 h-[3px] w-full transition-all duration-300 ${
+                    location.pathname === path
+                      ? 'bg-[#F1F2F9]'
+                      : 'bg-transparent'
+                  }`}
                 />
-                </NavLink>
-              ))}
-            </nav>
-          </div>
+              </NavLink>
+            ))}
+          </nav>
+        </div>
 
         {/* Right: Icons (desktop) */}
         <div className="hidden sm:flex items-center gap-6 h-12">

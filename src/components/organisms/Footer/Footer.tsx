@@ -42,7 +42,11 @@ export const Footer = () => {
 
         <div className="footer__back-to-top" onClick={scrollToTop}>
           <a className="footer-back-to-top-text">Back to top</a>
-          <Button variant={ButtonTypes.arrow} className="footer__back-to-top--button" icon={ChevronUp} />
+          <Button
+            variant={ButtonTypes.arrow}
+            className="footer__back-to-top--button"
+            icon={ChevronUp}
+          />
         </div>
       </div>
     </footer>

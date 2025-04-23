@@ -4,6 +4,8 @@ import { ImageSlider } from '@/components/organisms/BannerSlider/ImageSlider';
 import { ProductCard } from '@/components/organisms/ProductCard/ProductCard';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { ProductColor } from '@/types/ProductColor';
+import { BrandNewSlider } from '@/components/organisms/BrandNewSlider/BrandNewSlider';
+import { HotPricesSlider } from '@/components/organisms/HotPricesSlider/HotPricesSlider';
 import { Heart, ChevronRight, ChevronLeft } from 'lucide-react';
 
 const DropdownSortBy = [
@@ -34,6 +36,8 @@ export const HomePage = () => {
       />
       <ImageSlider />
       <ProductCard />
+      <BrandNewSlider />
+      <HotPricesSlider />
     </>
   );
 };

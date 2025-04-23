@@ -37,7 +37,7 @@
   // Навигация стрелки
   .swiper-button-prev,
   .swiper-button-next {
-    color: #F1F2F9;
+    color: #f1f2f9;
     &:after {
       font-size: 20px;
       font-weight: bold;
@@ -60,7 +60,9 @@
     background: white;
     opacity: 0.5;
     margin: 0px 4px !important;
-    transition: background 0.3s, opacity 0.3s;
+    transition:
+      background 0.3s,
+      opacity 0.3s;
   }
 
   .swiper-pagination-bullet-active {

@@ -32,8 +32,14 @@ const Button: React.FC<Props> = ({
   `;
 
   return (
-    <button className={buttonClasses} disabled={disabled} style={{ backgroundColor: bgColor }} >
-      {IconComponent && <IconComponent size={iconSize} className="button-icon" />}
+    <button
+      className={buttonClasses}
+      disabled={disabled}
+      style={{ backgroundColor: bgColor }}
+    >
+      {IconComponent && (
+        <IconComponent size={iconSize} className="button-icon" />
+      )}
       {content}
     </button>
   );

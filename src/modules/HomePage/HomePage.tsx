@@ -16,7 +16,6 @@ const DropdownSortBy = [
 export const HomePage = () => {
   return (
     <>
-      <h1 className="text-red-500 text-4xl">Tailwind check!</h1>
       <div>Home page!</div>
       <Button content={'Button'} variant={ButtonTypes.primary} />
       <Button content={'1'} variant={ButtonTypes.numbered} />

@@ -1,12 +1,17 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useState } from 'react';
 import { Heart, ShoppingCart, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MobileSidebar } from './MobileSidebar';
-import '@/components/organisms/Header/Header.scss';
 
-const Header = () => {
+interface HeaderProps {
+  favoritesCount?: number;
+  cartCount?: number;
+}
+
+const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -15,22 +20,30 @@ const Header = () => {
     { path: '/accessories', label: 'Accessories' },
   ];
 
+  const isFavorites = location.pathname === '/favorites';
+  const isCart = location.pathname === '/cart';
+
   return (
-    <header className="header">
-      <div className="header__container">
-        {/* Left side: logo and nav */}
-        <div className="header__left">
-          <Link to="/" className="header__logo">
-            <img src="/src/assets/logo/Logo.svg" alt="Nice Gadgets" />
+    <header className="w-full bg-black border-b border-[#3B3E4A]">
+      <div className="w-full px-6 lg:px-12 py-4 flex items-center justify-between">
+
+        {/* Left: Logo + Navigation */}
+        <div className="flex items-center gap-8">
+          <Link to="/">
+            <img src="/src/assets/logo/Logo.svg" alt="Nice Gadgets" className="h-6 w-auto" />
           </Link>
 
-          <nav className="header__nav">
+          <nav className="hidden sm:flex gap-6">
             {navItems.map(({ path, label }) => (
               <NavLink
                 key={path}
                 to={path}
                 className={({ isActive }) =>
-                  `header__link ${isActive ? 'header__link--active' : ''}`
+                  `text-sm font-semibold uppercase transition-colors pb-1 border-b-2 ${
+                    isActive
+                      ? 'text-[#F1F2F9] border-[#F1F2F9]'
+                      : 'text-[#75767F] border-transparent hover:text-[#F1F2F9]'
+                  }`
                 }
               >
                 {label}
@@ -39,34 +52,67 @@ const Header = () => {
           </nav>
         </div>
 
-        {/* Right side: icons and burger */}
-        <div className="header__right">
-          <div className="header__icons">
-            <Link to="/favorites" aria-label="Favorites">
-              <Button variant="ghost" size="icon">
-                <Heart className="w-5 h-5" />
-              </Button>
-            </Link>
+        {/* Right: Icons (desktop) */}
+        <div className="hidden sm:flex items-center gap-6 h-12">
+          {/* Divider before favorites */}
+          <div className="h-full w-px bg-[#3B3E4A]" />
 
-            <Link to="/cart" aria-label="Cart">
-              <Button variant="ghost" size="icon">
-                <ShoppingCart className="w-5 h-5" />
+          {/* Favorites */}
+          <div className="flex items-center h-full">
+            <NavLink to="/favorites" className="relative flex items-center justify-center h-full">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`hover:scale-110 transition-transform ${
+                  isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F]'
+                }`}
+              >
+                <Heart className="h-5 w-5" />
               </Button>
-            </Link>
+              {favoritesCount > 0 && (
+                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center">
+                  {favoritesCount}
+                </span>
+              )}
+            </NavLink>
           </div>
 
-          <Button
-            variant="ghost"
-            size="icon"
-            className="header__mobile-toggle"
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            aria-label="Toggle menu"
-          >
-            <Menu className="w-6 h-6" />
-          </Button>
+          {/* Divider after favorites */}
+          <div className="h-full w-px bg-[#3B3E4A]" />
+
+          {/* Cart */}
+          <div className="flex items-center h-full">
+            <NavLink to="/cart" className="relative flex items-center justify-center h-full">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`hover:scale-110 transition-transform ${
+                  isCart ? 'text-[#F1F2F9]' : 'text-[#75767F]'
+                }`}
+              >
+                <ShoppingCart className="h-5 w-5" />
+              </Button>
+              {cartCount > 0 && (
+                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center">
+                  {cartCount}
+                </span>
+              )}
+            </NavLink>
+          </div>
         </div>
+
+        {/* Burger menu (mobile only) */}
+        <Button
+          variant="ghost"
+          size="icon"
+          onClick={() => setIsMenuOpen(true)}
+          className="sm:hidden text-[#F1F2F9]"
+        >
+          <Menu />
+        </Button>
       </div>
 
+      {/* Mobile Sidebar */}
       <MobileSidebar isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
     </header>
   );

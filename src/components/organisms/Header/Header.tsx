@@ -24,13 +24,16 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
   const isCart = location.pathname === '/cart';
 
   return (
-    <header className="w-full bg-black border-b border-[#3B3E4A]">
+    <header className="w-full bg-black border-b border-[#3B3E4A] font-[MontBold]">
       <div className="w-full px-6 lg:px-12 py-4 flex items-center justify-between">
-
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-8">
           <Link to="/">
-            <img src="/src/assets/logo/Logo.svg" alt="Nice Gadgets" className="h-6 w-auto" />
+            <img
+              src="/src/assets/logo/Logo.svg"
+              alt="Nice Gadgets"
+              className="h-6 w-auto"
+            />
           </Link>
 
           <nav className="hidden sm:flex gap-6">
@@ -59,7 +62,10 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
 
           {/* Favorites */}
           <div className="flex items-center h-full">
-            <NavLink to="/favorites" className="relative flex items-center justify-center h-full">
+            <NavLink
+              to="/favorites"
+              className="relative flex items-center justify-center h-full"
+            >
               <Button
                 variant="ghost"
                 size="icon"
@@ -82,7 +88,10 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
 
           {/* Cart */}
           <div className="flex items-center h-full">
-            <NavLink to="/cart" className="relative flex items-center justify-center h-full">
+            <NavLink
+              to="/cart"
+              className="relative flex items-center justify-center h-full"
+            >
               <Button
                 variant="ghost"
                 size="icon"

@@ -1,6 +1,7 @@
 import Button from '@/components/atoms/button/Button';
 import { CustomDropdown } from '@/components/atoms/dropdown/Dropdown';
 import { ImageSlider } from '@/components/organisms/BannerSlider/ImageSlider';
+import { ProductCard } from '@/components/organisms/ProductCard/ProductCard';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { ProductColor } from '@/types/ProductColor';
 import { Heart, ChevronRight, ChevronLeft } from 'lucide-react';
@@ -33,6 +34,7 @@ export const HomePage = () => {
         size="medium"
       />
       <ImageSlider />
+      <ProductCard />
     </>
   );
 };

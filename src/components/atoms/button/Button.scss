@@ -8,6 +8,7 @@ $square-size-large: 40px;
 
 .button {
   display: inline-flex;
+  position: relative;
   align-items: center;
   vertical-align: middle;
   justify-content: center;
@@ -62,25 +63,25 @@ $square-size-large: 40px;
     }
   }
 
-  // Need to make possible inserting any color in, will do later
   &--selector {
     background-color: v.$color-accent-alt;
-
+    box-sizing: border-box;
     width: $square-size-regular;
     height: $square-size-regular;
     border-radius: 50%;
     border: 2px solid v.$color-elements;
+    box-shadow: inset 0 0 0 2px v.$color-black;
 
     &:hover {
-      background-color: v.$color-accent-alt-light;
+      border: 2px solid v.$color-secondary;
     }
 
     &:active {
       border: 2px solid v.$color-white;
     }
+
   }
 
-  // Need to add heart icon
   &--favourite {
     background-color: v.$color-surface-2;
     width: $square-size-large;
@@ -91,8 +92,21 @@ $square-size-large: 40px;
     }
 
     &:active {
+      color: v.$color-red;
       background-color: v.$color-black;
       border: 1px solid v.$color-elements;
+
+      .button-icon {
+        fill: currentColor;
+      }
+    }
+  }
+
+  &--back {
+    background-color: rgba($color: #000000, $alpha: 0.0);
+    
+    &:hover {
+      color: v.$color-accent-alt;
     }
   }
 }

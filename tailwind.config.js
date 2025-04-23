@@ -8,7 +8,9 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        mont: ['Montserrat', 'sans-serif'],
+        mont: ['Mont', 'sans-serif'],
+        montBold: ['MontBold', 'sans-serif'],
+        montSemiBold: ['MontSemiBold', 'sans-serif']
       },
       colors: {
         brand: '#905BFF',

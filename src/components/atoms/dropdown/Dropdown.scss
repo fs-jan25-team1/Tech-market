@@ -1,56 +1,56 @@
-@import '../../../styles/config/variables';
-@import '../../../styles/mixin/mixin';
+@use '@/styles/config/variables' as v;
+@use '@/styles/mixin/mixin' as m;
 
-.trigger {
+.dropdownTrigger {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: $color-surface-2;
-  color: $color-white;
+  background-color: v.$color-surface-2;
+  color: v.$color-white;
   padding: 12px 10px;
   width: 100%;
   box-sizing: border-box;
   cursor: pointer;
   border: 1px solid transparent;
-  @include text-style-dropdown;
-  stroke: $color-secondary;
+  @include m.text-style-dropdown;
+  stroke: v.$color-secondary;
 
   &.small {
-    @include dropdown-size(small);
+    @include m.dropdown-size(small);
   }
 
   &.medium {
-    @include dropdown-size(medium);
+    @include m.dropdown-size(medium);
   }
 
   &.large {
-    @include dropdown-size(large);
+    @include m.dropdown-size(large);
   }
 
   &:hover {
-    border: 1px solid $color-icons;
+    border: 1px solid v.$color-icons;
   }
 
   &:focus {
     outline: none;
-    border: 1px solid $color-accent-alt;
+    border: 1px solid v.$color-accent-alt;
   }
 
   &:focus,
   &[data-state='open'] {
     outline: none;
-    border: 1px solid $color-accent-alt;
+    border: 1px solid v.$color-accent-alt;
   }
 
   & svg {
-    color: $color-secondary;
+    color: v.$color-secondary;
   }
 }
 
-.content {
-  background-color: $color-black;
-  color: $color-secondary;
-  border: 1px solid $color-elements;
+.dropdownContent {
+  background-color: v.$color-black;
+  color: v.$color-secondary;
+  border: 1px solid v.$color-elements;
   width: 136px;
   box-sizing: border-box;
   margin-top: 4px;
@@ -61,28 +61,28 @@
   display: flex;
 
   &.small {
-    @include dropdown-size(small, false);
+    @include m.dropdown-size(small, false);
   }
 
   &.medium {
-    @include dropdown-size(medium, false);
+    @include m.dropdown-size(medium, false);
   }
 
   &.large {
-    @include dropdown-size(large, false);
+    @include m.dropdown-size(large, false);
   }
 }
 
 .item {
   padding: 6px 12px;
   cursor: pointer;
-  @include text-style-dropdown;
-  font-weight: $h4-weight;
+  @include m.text-style-dropdown;
+  font-weight: v.$h4-weight;
   height: 32px;
   outline: none;
 
   &:focus {
-    background-color: $color-surface-2;
-    color: $color-white;
+    background-color: v.$color-surface-2;
+    color: v.$color-white;
   }
 }

@@ -66,7 +66,7 @@ export const MobileSidebar = ({
 
       {/* Bottom */}
       <div className="relative grid grid-cols-3 items-center h-20">
-      <div className="absolute top-0 left-0 w-full h-px bg-[#3B3E4A]" />
+        <div className="absolute top-0 left-0 w-full h-px bg-[#3B3E4A]" />
         {/* Favorites */}
         <div className="flex items-center justify-center relative">
           <Link to="/favorites" onClick={onClose} aria-label="Go to favorites">

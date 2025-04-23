@@ -10,7 +10,7 @@ module.exports = {
       fontFamily: {
         mont: ['Mont', 'sans-serif'],
         montBold: ['MontBold', 'sans-serif'],
-        montSemiBold: ['MontSemiBold', 'sans-serif']
+        montSemiBold: ['MontSemiBold', 'sans-serif'],
       },
       colors: {
         brand: '#905BFF',

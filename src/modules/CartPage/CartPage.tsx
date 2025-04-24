@@ -1,4 +1,4 @@
-import { CartItem } from "@/components/organisms/CartItem/CartItem";
+import { CartItem } from '@/components/organisms/CartItem/CartItem';
 
 export const CartPage = () => {
   return (

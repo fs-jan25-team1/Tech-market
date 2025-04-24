@@ -8,19 +8,36 @@ import { ProductCard } from '@/components/organisms/ProductCard/ProductCard';
 import Button from '@/components/atoms/button/Button';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ButtonTypes } from '@/types/ButtonTypes';
+import { motion } from 'framer-motion';
+import { useInView } from 'react-intersection-observer';
+
+//Тут делаю все под грид
+import styles from './HotPricesSlider.module.scss';
 
 export const HotPricesSlider = () => {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
   const mockArray = Array.from({ length: 10 }, (_, i) => i + 1);
+  const { ref, inView } = useInView({
+    threshold: 0.2, //юзаем когда 20% элемента видно
+  });
 
   return (
-    <section className="px-4 sm:px-6 xl:px-20 py-10 bg-[#0F1121] overflow-hidden">
-      <h2 className="text-2xl sm:text-3xl text-[#F1F2F9] font-[MontBold] mb-6">
+    <section className={styles.hotPrices}>
+      <motion.h2
+        ref={ref}
+        className="col-span-full text-2xl sm:text-3xl text-[#F1F2F9] font-[MontBold] mb-6"
+        initial={{ opacity: 0, y: 50 }}
+        animate={{
+          opacity: inView ? 1 : 0,
+          y: inView ? 0 : 50,
+        }}
+        transition={{ duration: 1 }}
+      >
         Hot prices
-      </h2>
+      </motion.h2>
 
-      <div className="relative">
+      <div className="col-span-full relative">
         <Swiper
           modules={[Navigation]}
           spaceBetween={16}

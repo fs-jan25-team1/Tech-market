@@ -1,0 +1,11 @@
+@use '@/styles/mixin/mixin.scss' as m;
+
+
+.hotPrices {
+  @include m.page-grid;
+  @include m.content-padding-inline;
+
+  & {
+    row-gap: 24px;
+  }
+}

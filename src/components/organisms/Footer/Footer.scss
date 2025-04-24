@@ -3,9 +3,12 @@
 
 .footer {
   font-family: v.$font-family-base;
+  font-size: v.$uppercase-size;
+  line-height: v.$uppercase-line-height;
   width: 100%;
   background-color: v.$color-black;
   border-top: 1px solid v.$color-elements;
+  box-sizing: border-box;
 
   &__container {
     padding: 32px 0;
@@ -38,11 +41,11 @@
       flex-direction: row;
       justify-content: center;
       align-self: center;
-      gap: 107px;
     }
 
     @include m.on-desktop {
       grid-column: 11 / span 4;
+      gap: 107px;
     }
   }
 
@@ -58,9 +61,13 @@
     cursor: pointer;
 
     @include m.on-tablet {
-      grid-column: -4 / -1;
+      grid-column: -6 / -1;
       justify-self: end;
       align-self: center;
+    }
+
+    @include m.on-desktop {
+      grid-column: -6 / -1;
     }
   }
 }

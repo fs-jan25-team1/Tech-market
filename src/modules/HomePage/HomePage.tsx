@@ -33,6 +33,7 @@ export const HomePage = () => {
         options={DropdownSortBy}
         onValueChange={(value) => console.log('DropdownSortBy:', value)}
         size="medium"
+        name='Sort by'
       />
       <ImageSlider />
       <ProductCard />

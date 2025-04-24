@@ -18,6 +18,7 @@ type Props = {
   options: SelectOption[];
   onValueChange?: (value: string) => void;
   size: 'small' | 'medium' | 'large';
+  name: string;
 };
 
 export const CustomDropdown: React.FC<Props> = ({
@@ -25,19 +26,27 @@ export const CustomDropdown: React.FC<Props> = ({
   options,
   onValueChange,
   size,
+  name,
 }) => {
   return (
-    <Select onValueChange={onValueChange}>
-      <SelectTrigger className={`dropdownTrigger ${size}`}>
-        <SelectValue placeholder={placeholder} />
-      </SelectTrigger>
-      <SelectContent className={`dropdownContent  ${size}`}>
-        {options.map((option) => (
-          <SelectItem key={option.value} value={option.value} className="item">
-            {option.label}
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <div className='dropdown'>
+      <label className='dropdown__name'>{name}</label>
+      <Select onValueChange={onValueChange}>
+        <SelectTrigger className={`dropdown__trigger ${size}`}>
+          <SelectValue placeholder={placeholder} />
+        </SelectTrigger>
+        <SelectContent className={`dropdown__content  ${size}`}>
+          {options.map((option) => (
+            <SelectItem
+              key={option.value}
+              value={option.value}
+              className="dropdown__item"
+            >
+              {option.label}
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
+    </div>
   );
 };

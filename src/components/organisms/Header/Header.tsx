@@ -24,7 +24,8 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
   const isCart = location.pathname === '/cart';
 
   return (
-    <header className="w-full bg-black border-b border-[#3B3E4A]">
+    <header className="sticky top-0 z-50 w-full bg-black border-b border-[#3B3E4A] font-[montBold]">
+
       <div className="w-full px-6 lg:px-12 flex items-center justify-between">
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-8">

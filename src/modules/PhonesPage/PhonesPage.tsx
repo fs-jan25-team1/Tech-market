@@ -1,5 +1,8 @@
 import { CustomDropdown } from '@/components/atoms/dropdown/Dropdown';
 import { Pagination } from '../../components/molecules/Pagination/Pagination';
+import products from '../../../public/api/products.json';
+import { ProductCard } from '@/components/organisms/ProductCard/ProductCard';
+import { ProductCardType } from '@/types/ProductCardType';
 
 const DropdownSortBy = [
   { value: 'newest', label: 'Newest' },
@@ -15,6 +18,8 @@ const DropdownItemsOnPage = [
 ];
 
 export const PhonesPage = () => {
+  const displayedProducts: ProductCardType[] = products.slice(0, 16);
+
   return (
     //breadcrumps
     //needs to update with dinamic routing
@@ -66,6 +71,20 @@ export const PhonesPage = () => {
             name="Items on page"
           />
         </div>
+      </div>
+      <div className="col-span-full grid grid-cols-1 gap-x-4 gap-y-10 justify-items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 mb-10">
+        {displayedProducts.map((product) => (
+          <ProductCard
+            key={product.id}
+            name={product.name}
+            priceRegular={product.fullPrice}
+            priceDiscount={product.price}
+            img={product.image}
+            screen={product.screen}
+            capacity={product.capacity}
+            ram={product.ram}
+          />
+        ))}
       </div>
       <div className="col-span-full">
         <Pagination totalPages={4} />

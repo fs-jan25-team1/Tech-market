@@ -50,26 +50,24 @@ export const ProductCard = ({
     <div
       className="
         bg-[#161827] text-[#F1F2F9]
-        w-[160px] h-[370px]
-        sm:w-[237px] sm:h-[512px]
-        xl:w-[272px] xl:h-[506px]
+        w-full h-full
         p-2 sm:p-4 flex flex-col cursor-pointer
       "
     >
       <Link
         to={`/product/${id}`}
-        className="flex flex-col items-center cursor-pointer grow"
+        className="flex flex-col items-center cursor-pointer grow px-[16px]"
       >
         <img
-          className="h-[120px] w-[140px] sm:h-[196px] sm:w-[208px] object-contain mb-2 sm:mb-[8px]"
+          className="h-[120px] w-[140px] sm:h-[196px] sm:w-[208px] object-contain mb-2 sm:mb-[24px]"
           src={img}
           alt={name}
         />
-        <h2 className="font-[MontSemiBold] text-xs sm:text-sm leading-[18px] sm:leading-[21px] w-[140px] sm:w-[208px] text-center">
+        <h2 className="font-[MontSemiBold] text-xs sm:text-sm leading-[18px] sm:leading-[21px] w-full text-left h-[42px]">
           {name}
         </h2>
 
-        <div className="mb-2 sm:mb-[14px] w-[140px] sm:w-[208px]">
+        <div className="mb-2 sm:mb-[14px] w-full">
           <div className="flex items-center gap-1 sm:gap-2 text-sm sm:text-lg">
             <span className="font-[montBold]">
               ${priceDiscount ?? priceRegular}
@@ -82,9 +80,7 @@ export const ProductCard = ({
           </div>
         </div>
 
-        <div className="w-[140px] sm:w-[208px] h-px bg-[#3B3E4A] mb-3 sm:mb-[32px]" />
-
-        <div className="text-[#89939A] text-xs sm:text-sm mb-4 sm:mb-8 flex flex-col justify-between w-[140px] sm:w-[208px]">
+        <div className="text-[#89939A] text-xs sm:text-sm mb-4 sm:mb-8 flex flex-col justify-between w-full border-t border-[#3B3E4A] mb-3 sm:mb-[32px] pt-[16px]">
           <p className="flex justify-between mb-1 sm:mb-[8px]">
             Screen: <span className="text-[#F1F2F9] font-[mont]">{screen}</span>
           </p>
@@ -102,7 +98,7 @@ export const ProductCard = ({
         <Button
           content="Add to cart"
           variant={ButtonTypes.primary}
-          className="text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2"
+          className="text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 !w-full"
           onClick={handleAddToCartClick}
         />
         <Button

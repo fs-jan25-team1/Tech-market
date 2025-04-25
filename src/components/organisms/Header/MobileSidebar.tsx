@@ -33,7 +33,11 @@ export const MobileSidebar = ({
       <div>
         <div className="flex items-center justify-between mb-8">
           <Link to="/" onClick={onClose}>
-            <img src="/src/assets/logo/Logo.svg" alt="Nice Gadgets" />
+            <img
+              src="/src/assets/logo/Logo.svg"
+              alt="Nice Gadgets"
+              className="h-5"
+            />
           </Link>
           <button
             onClick={onClose}
@@ -100,7 +104,7 @@ export const MobileSidebar = ({
             />
           </Link>
           {cartCount > 0 && (
-            <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] leading-none font-bold px-[6px] py-[2px] rounded-full">
+            <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold leading-none w-4 h-4 flex items-center justify-center rounded-full">
               {cartCount}
             </span>
           )}

@@ -15,6 +15,7 @@ type Props = {
   icon?: LucideIcon;
   iconSize?: number;
   bgColor?: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 };
 
 const Button: React.FC<Props> = ({
@@ -28,6 +29,7 @@ const Button: React.FC<Props> = ({
   icon: IconComponent, // Icon type, from react-lucid: https://lucide.dev/icons/
   iconSize, // Size of an icon, default is 20
   bgColor, // Background color of the button, used for color selector buttons
+  onClick,
 }) => {
   // Create classes depending on the button properties
   const buttonClasses = `
@@ -42,6 +44,7 @@ const Button: React.FC<Props> = ({
       className={buttonClasses}
       disabled={disabled}
       style={{ backgroundColor: bgColor, width, height, color }}
+      onClick={onClick}
     >
       {IconComponent && (
         <IconComponent size={iconSize} className="button-icon" />

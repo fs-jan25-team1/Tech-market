@@ -1,7 +1,7 @@
 import { Routes, Route } from 'react-router-dom';
 import { App } from './App';
 import { HomePage } from './modules/HomePage';
-import { PhonesPage } from './modules/PhonesPage/PhonesPage';
+import { PhonesPage } from './modules/PhonesPage';
 import { TabletsPage } from './modules/TabletsPage/TabletsPage.tsx/TabletsPage';
 import { AccessoriesPage } from './modules/AccessoriesPage/AccessoriesPage';
 import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';

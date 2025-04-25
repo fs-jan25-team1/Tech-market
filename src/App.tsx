@@ -8,7 +8,7 @@ export const App = () => {
     <>
       <Header />
       <ToasterWrapper />
-      < Breadcrumb />
+      <Breadcrumb />
       <main>
         <Outlet />
       </main>

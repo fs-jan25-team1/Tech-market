@@ -20,9 +20,7 @@ export const ProductCard = ({
   capacity = '512Gb',
   ram = '8Gb',
 }: Props) => {
-  const handleFavoritesClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const handleFavoritesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
 
@@ -35,9 +33,7 @@ export const ProductCard = ({
     });
   };
 
-  const handleAddToCartClick = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
+  const handleAddToCartClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
 

@@ -8,13 +8,14 @@ export const Breadcrumb = () => {
   if (segments.length === 0) return null;
 
   const formatSegment = (segment: string) => {
-    return segment
-      .replace(/-/g, ' ')
-      .replace(/\b\w/g, c => c.toUpperCase());
+    return segment.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
   };
 
   return (
-    <nav className="text-sm text-muted-foreground py-4 px-4" aria-label="Breadcrumb">
+    <nav
+      className="text-sm text-muted-foreground py-4 px-4"
+      aria-label="Breadcrumb"
+    >
       <ol className="flex flex-wrap items-center gap-1">
         <li className="flex items-center gap-1">
           <Link

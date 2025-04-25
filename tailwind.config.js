@@ -15,13 +15,6 @@ module.exports = {
       colors: {
         brand: '#905BFF',
       },
-      screens: {
-        xs: '480px',
-        sm: '640px',
-        md: '768px',
-        lg: '1200px',
-        xl: '1440px',
-      },
     },
   },
   plugins: [require('tw-animate-css')],

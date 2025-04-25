@@ -25,9 +25,8 @@
     box-sizing: border-box;
     cursor: pointer;
     border: 1px solid transparent;
-    stroke: v.$color-secondary;
-
     @include m.text-style-dropdown;
+    stroke: v.$color-secondary;
 
     &.small {
       @include m.dropdown-size(small);
@@ -93,14 +92,13 @@
   &__item {
     padding: 6px 12px;
     cursor: pointer;
+    @include m.text-style-dropdown;
     color: v.$color-secondary;
     font-weight: v.$h4-weight;
     height: 32px;
     width: 100%;
     outline: none;
     border: none;
-
-    @include m.text-style-dropdown;
 
     &:hover {
       color: v.$color-white;

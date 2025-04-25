@@ -21,7 +21,7 @@ export const PhonesPageTemplate = () => {
 
   return (
     <div
-    className="grid grid-cols-4 gap-4 
+      className="grid grid-cols-4 gap-4 
       min-[640px]:grid-cols-12
       min-[1200px]:grid-cols-24 px-4
       min-[640px]:px-6

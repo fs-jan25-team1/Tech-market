@@ -30,10 +30,10 @@ export const MobileSidebar = ({
   return (
     <aside className="fixed inset-0 z-50 flex flex-col justify-between bg-black sm:hidden">
       {/* Top */}
-      <div>
+      <div className="px-4 pt-4">
         <div className="flex items-center justify-between mb-8">
           <Link to="/" onClick={onClose}>
-            <img src="/src/assets/logo/Logo.svg" alt="Nice Gadgets" />
+            <img src="/src/assets/logo/Logo.svg" alt="Nice Gadgets" className="h-5" />
           </Link>
           <button
             onClick={onClose}
@@ -65,10 +65,9 @@ export const MobileSidebar = ({
       </div>
 
       {/* Bottom */}
-      <div className="relative grid grid-cols-3 items-center h-20">
-        <div className="absolute top-0 left-0 w-full h-px bg-[#3B3E4A]" />
+      <div className="relative grid grid-cols-3 items-center h-20 border-t border-[#3B3E4A]">
         {/* Favorites */}
-        <div className="flex items-center justify-center relative">
+        <div className="flex items-center justify-center relative cursor-pointer">
           <Link to="/favorites" onClick={onClose} aria-label="Go to favorites">
             <Heart
               className={`w-6 h-6 transition-transform hover:scale-110 ${
@@ -79,7 +78,7 @@ export const MobileSidebar = ({
             />
           </Link>
           {favoritesCount > 0 && (
-            <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] leading-none font-bold px-[6px] py-[2px] rounded-full">
+            <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] font-bold leading-none w-4 h-4 flex items-center justify-center rounded-full">
               {favoritesCount}
             </span>
           )}
@@ -89,7 +88,7 @@ export const MobileSidebar = ({
         <div className="w-px h-full bg-[#3B3E4A] mx-auto" />
 
         {/* Cart */}
-        <div className="flex items-center justify-center relative">
+        <div className="flex items-center justify-center relative cursor-pointer">
           <Link to="/cart" onClick={onClose} aria-label="Go to cart">
             <ShoppingCart
               className={`w-6 h-6 transition-transform hover:scale-110 ${
@@ -100,9 +99,9 @@ export const MobileSidebar = ({
             />
           </Link>
           {cartCount > 0 && (
-            <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] leading-none font-bold px-[6px] py-[2px] rounded-full">
-              {cartCount}
-            </span>
+            <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold leading-none w-4 h-4 flex items-center justify-center rounded-full">
+            {cartCount}
+          </span>
           )}
         </div>
       </div>

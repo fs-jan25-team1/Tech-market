@@ -13,16 +13,22 @@
 }
 
 @mixin content-padding-inline() {
-  padding-inline: v.$padding-inline-mobile;
+  & {
+    padding-inline: v.$padding-inline-mobile;
+  }
 
   @include on-tablet {
-    padding-inline: v.$padding-inline-tablet;
+    & {
+      padding-inline: v.$padding-inline-tablet;
+    }
   }
 
   @include on-desktop {
-    margin-inline: auto;
-    padding-inline: 0;
-    max-width: 1136px;
+    & {
+      margin-inline: auto;
+      padding-inline: 0;
+      max-width: 1136px;
+    }
   }
 }
 
@@ -49,52 +55,81 @@
 }
 
 @mixin text-style-dropdown {
-  font-family: v.$font-family-base;
-  font-weight: v.$uppercase-weight;
-  font-size: v.$body-text-size;
-  line-height: v.$body-line-height;
-  color: v.$color-white;
-  letter-spacing: 0%;
+  & {
+    font-family: v.$font-family-base;
+    font-weight: v.$uppercase-weight;
+    font-size: v.$body-text-size;
+    line-height: v.$body-line-height;
+    letter-spacing: 0%;
+  }
 }
 
 @mixin dropdown-size($size, $with-height: true) {
   @if $size == small {
-    width: 136px;
+    & {
+      width: 136px;
 
-    @if $with-height {
-      height: 40px;
+      @if $with-height {
+        height: 32px;
+      }
+    }
+
+    @include on-tablet {
+      & {
+        @if $with-height {
+          height: 40px;
+        }
+      }
     }
 
     @include on-desktop {
-      width: 128px;
+      & {
+        width: 128px;
+      }
     }
   } @else if $size == medium {
-    width: 136px;
+    & {
+      width: 136px;
 
-    @if $with-height {
-      height: 40px;
+      @if $with-height {
+        height: 32px;
+      }
     }
 
     @include on-tablet {
-      width: 176px;
+      & {
+        width: 176px;
+
+        @if $with-height {
+          height: 40px;
+        }
+      }
     }
 
     @include on-desktop {
-      width: 187px;
+      & {
+        width: 187px;
+      }
     }
   } @else if $size == large {
-    width: 180px;
+    & {
+      width: 180px;
 
-    @if $with-height {
-      height: 40px;
+      @if $with-height {
+        height: 40px;
+      }
     }
 
     @include on-tablet {
-      width: 220px;
+      & {
+        width: 220px;
+      }
     }
 
     @include on-desktop {
-      width: 240px;
+      & {
+        width: 240px;
+      }
     }
   }
 }

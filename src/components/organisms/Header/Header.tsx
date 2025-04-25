@@ -66,10 +66,10 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
         <div className="hidden sm:flex items-center gap-6 h-12">
           <div className="h-full w-px bg-[#3B3E4A]" />
 
-          <div className="flex items-center h-full">
+          <div className="relative flex items-center">
             <NavLink
               to="/favorites"
-              className="relative flex items-center justify-center h-full"
+              className="flex items-center justify-center h-full"
             >
               <Button
                 variant="ghost"
@@ -81,7 +81,7 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
                 <Heart className="h-5 w-5" />
               </Button>
               {favoritesCount > 0 && (
-                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+                <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white rounded-full text-[10px] sm:text-xs w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center leading-none">
                   {favoritesCount}
                 </span>
               )}
@@ -90,10 +90,10 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
 
           <div className="h-full w-px bg-[#3B3E4A]" />
 
-          <div className="flex items-center h-full">
+          <div className="relative flex items-center">
             <NavLink
               to="/cart"
-              className="relative flex items-center justify-center h-full"
+              className="flex items-center justify-center h-full"
             >
               <Button
                 variant="ghost"
@@ -105,7 +105,7 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
                 <ShoppingCart className="h-5 w-5" />
               </Button>
               {cartCount > 0 && (
-                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center">
+                <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white rounded-full text-[10px] sm:text-xs w-4 h-4 sm:w-5 sm:h-5 flex items-center justify-center leading-none">
                   {cartCount}
                 </span>
               )}
@@ -125,7 +125,12 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
       </div>
 
       {/* Mobile Sidebar */}
-      <MobileSidebar isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <MobileSidebar
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        favoritesCount={favoritesCount}
+        cartCount={cartCount}
+      />
     </header>
   );
 };

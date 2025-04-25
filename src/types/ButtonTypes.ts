@@ -6,4 +6,6 @@ export enum ButtonTypes {
   favourite = 'favourite',
   back = 'back',
   cart = 'cart',
+  ghost = "ghost",
+  secondary = "secondary",
 }

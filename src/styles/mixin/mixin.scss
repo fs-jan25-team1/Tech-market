@@ -53,6 +53,7 @@
   font-weight: v.$uppercase-weight;
   font-size: v.$body-text-size;
   line-height: v.$body-line-height;
+  color: v.$color-white;
   letter-spacing: 0%;
 }
 
@@ -61,13 +62,7 @@
     width: 136px;
 
     @if $with-height {
-      height: 32px;
-    }
-
-    @include on-tablet {
-      @if $with-height {
-        height: 40px;
-      }
+      height: 40px;
     }
 
     @include on-desktop {
@@ -77,14 +72,11 @@
     width: 136px;
 
     @if $with-height {
-      height: 32px;
+      height: 40px;
     }
 
     @include on-tablet {
       width: 176px;
-      @if $with-height {
-        height: 40px;
-      }
     }
 
     @include on-desktop {

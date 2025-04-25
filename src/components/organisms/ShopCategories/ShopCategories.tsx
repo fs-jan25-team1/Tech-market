@@ -23,14 +23,14 @@ export const ShopCategories = () => {
         Shop by category
       </motion.h2>
 
-      <div className="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full justify-items-center">
+      <div className="col-span-full flex flex-col items-center gap-4 sm:flex-row sm:justify-between sm:flex-wrap lg:flex-nowrap">
         {/* Mobile phones */}
         <Link
           to="/phones"
-          className="w-full max-w-[368px] flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 animate-fade-up"
+          className="flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 animate-fade-up"
         >
           <img
-            className="w-full aspect-square object-cover shadow-md transition-transform duration-300 hover:scale-101"
+            className="w-[288px] h-[288px] sm:w-[187px] sm:h-[187px] lg:w-[368px] lg:h-[368px] object-cover shadow-md transition-transform duration-300 hover:scale-101"
             src="/src/assets/categories/phones.png"
             alt="category-mobile-phones"
           />
@@ -43,10 +43,10 @@ export const ShopCategories = () => {
         {/* Tablets */}
         <Link
           to="/tablets"
-          className="w-full max-w-[368px] flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 animate-fade-up"
+          className="flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 animate-fade-up"
         >
           <img
-            className="w-full aspect-square object-cover shadow-md transition-transform duration-300 hover:scale-101"
+            className="w-[288px] h-[288px] sm:w-[187px] sm:h-[187px] lg:w-[368px] lg:h-[368px] object-cover shadow-md transition-transform duration-300 hover:scale-101"
             src="/src/assets/categories/tablets.png"
             alt="category-tablets"
           />
@@ -59,10 +59,10 @@ export const ShopCategories = () => {
         {/* Accessories */}
         <Link
           to="/accessories"
-          className="w-full max-w-[368px] flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 animate-fade-up"
+          className="flex flex-col items-center text-center transition-transform duration-300 hover:scale-105 animate-fade-up"
         >
           <img
-            className="w-full aspect-square object-cover shadow-md transition-transform duration-300 hover:scale-101"
+            className="w-[288px] h-[288px] sm:w-[187px] sm:h-[187px] lg:w-[368px] lg:h-[368px] object-cover shadow-md transition-transform duration-300 hover:scale-101"
             src="/src/assets/categories/accss.png"
             alt="category-accessories"
           />

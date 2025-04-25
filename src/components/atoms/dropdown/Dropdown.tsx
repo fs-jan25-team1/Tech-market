@@ -29,8 +29,8 @@ export const CustomDropdown: React.FC<Props> = ({
   name,
 }) => {
   return (
-    <div className="dropdown">
-      <label className="dropdown__name">{name}</label>
+    <div className='dropdown'>
+      <label className='dropdown__name'>{name}</label>
       <Select onValueChange={onValueChange}>
         <SelectTrigger className={`dropdown__trigger ${size}`}>
           <SelectValue placeholder={placeholder} />

@@ -7,9 +7,9 @@ import './ImageSlider.scss';
 import { Link } from 'react-router';
 
 const images = [
-  { src: './src/assets/Banner1.png', link: '/phones' },
-  { src: './src/assets/Banner2.png', link: '/tablets' },
-  { src: './src/assets/Banner3.png', link: '/accessories' },
+  { src: '/SliderBanners/Banner1.png', link: '/phones' },
+  { src: '/SliderBanners/Banner2.png', link: '/tablets' },
+  { src: '/SliderBanners/Banner3.png', link: '/accessories' },
 ];
 
 export const ImageSlider = () => {

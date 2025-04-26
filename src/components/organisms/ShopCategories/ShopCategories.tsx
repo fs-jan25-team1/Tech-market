@@ -31,7 +31,7 @@ export const ShopCategories = () => {
         >
           <img
             className="w-full aspect-square object-cover shadow-md transition-transform duration-300 hover:scale-101"
-            src="/src/assets/categories/phones.png"
+            src="/categories/phones.png"
             alt="category-mobile-phones"
           />
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
@@ -47,7 +47,7 @@ export const ShopCategories = () => {
         >
           <img
             className="w-full aspect-square object-cover shadow-md transition-transform duration-300 hover:scale-101"
-            src="/src/assets/categories/tablets.png"
+            src="/categories/tablets.png"
             alt="category-tablets"
           />
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
@@ -63,7 +63,7 @@ export const ShopCategories = () => {
         >
           <img
             className="w-full aspect-square object-cover shadow-md transition-transform duration-300 hover:scale-101"
-            src="/src/assets/categories/accss.png"
+            src="/categories/accss.png"
             alt="category-accessories"
           />
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">

@@ -23,7 +23,7 @@ export const Footer = () => {
       <div className="footer__container">
         <div className="footer__logo">
           <Link to="/" className="footer__logo--link">
-            <img src="/src/assets/logo/Logo.svg" alt="Nice Gadgets" />
+            <img src="/logo/Logo.svg" alt="Nice Gadgets" />
           </Link>
         </div>
 

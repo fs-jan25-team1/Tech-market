@@ -49,9 +49,13 @@ export const ProductCard = ({
   return (
     <div
       className="
-        bg-[#161827] text-[#F1F2F9]
-        w-full h-full
-        p-2 sm:p-4 flex flex-col cursor-pointer
+      bg-[#161827] text-[#F1F2F9]
+      w-full h-full
+      p-2 sm:p-4 flex flex-col cursor-pointer
+      transition-all duration-300 ease-in-out
+      hover:scale-105 hover:shadow-lg
+      hover:bg-[#1f2133]
+      animate-fadeIn
       "
     >
       <Link

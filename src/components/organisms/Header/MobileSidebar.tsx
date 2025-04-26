@@ -33,11 +33,7 @@ export const MobileSidebar = ({
       <div>
         <div className="flex items-center justify-between mb-8">
           <Link to="/" onClick={onClose}>
-            <img
-              src="/src/assets/logo/Logo.svg"
-              alt="Nice Gadgets"
-              className="h-5"
-            />
+            <img src="/logo/Logo.svg" alt="Nice Gadgets" className="h-5" />
           </Link>
           <button
             onClick={onClose}

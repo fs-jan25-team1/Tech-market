@@ -30,7 +30,7 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
         <div className="flex items-center gap-8">
           <Link to="/">
             <img
-              src="/src/assets/logo/Logo.svg"
+              src="/logo/Logo.svg"
               alt="Nice Gadgets"
               className="h-6 w-auto"
             />
@@ -74,7 +74,7 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={`hover:scale-110 transition-transform ${
+                className={`hover:scale-110 transition-transform cursor-pointer ${
                   isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F]'
                 }`}
               >
@@ -98,7 +98,7 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
               <Button
                 variant="ghost"
                 size="icon"
-                className={`hover:scale-110 transition-transform ${
+                className={`hover:scale-110 transition-transform cursor-pointer ${
                   isCart ? 'text-[#F1F2F9]' : 'text-[#75767F]'
                 }`}
               >

@@ -2,9 +2,16 @@ import Button from '@/components/atoms/button/Button';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { Minus, Plus, X } from 'lucide-react';
 
-export const CartItem = ({
+type Props = {
+  img: string;
+  name: string;
+  price: number;
+};
+
+export const CartItem: React.FC<Props> = ({
   img = '/img/phones/apple-iphone-14-pro/spaceblack/00.webp',
   name = 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
+  price = 999,
 }) => {
   return (
     // Container
@@ -14,7 +21,7 @@ export const CartItem = ({
         max-w-screen min-w-[288px]
         p-2 flex flex-col cursor-pointer
         gap-4
-        mx-4 mb-4
+        mb-4
         sm:flex-row sm:h-32 sm:items-center
       "
     >
@@ -48,7 +55,7 @@ export const CartItem = ({
           </div>
         </div>
         <div className="ml-6">
-          <h2 className="font-[montBold] text-2xl leading-tight">$999</h2>
+          <h2 className="font-[montBold] text-2xl leading-tight">${price}</h2>
         </div>
       </div>
     </div>

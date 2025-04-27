@@ -1,10 +1,5 @@
-import { CartItem } from '@/components/organisms/CartItem/CartItem';
+import { CartPageTemplate } from '@/components/templates/CartPageTemplate/CartPageTemplate';
 
 export const CartPage = () => {
-  return (
-    <>
-      <div>Cart Page</div>
-      <CartItem />
-    </>
-  );
+  return <CartPageTemplate />;
 };

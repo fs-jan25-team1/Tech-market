@@ -3,7 +3,6 @@ import { ProductCardType } from '../types/ProductCardType';
 import { getProducts } from '@/services/clientRequests';
 import { CategoryType } from '@/types/CategoryType';
 import { FilterStatus } from '@/types/FilterStatusType';
-import { ItemsPerPage } from '@/types/ItemsPerPageType';
 
 interface ProductsState {
   productsList: ProductCardType[];
@@ -11,8 +10,6 @@ interface ProductsState {
   error: null | string;
   filter: {
     sortBy: FilterStatus;
-    itemsPerPage: ItemsPerPage;
-    currentPage: number;
   };
 }
 
@@ -22,8 +19,6 @@ const initialState: ProductsState = {
   error: null,
   filter: {
     sortBy: FilterStatus.newest,
-    itemsPerPage: ItemsPerPage.sixteen,
-    currentPage: 1,
   },
 };
 
@@ -61,14 +56,10 @@ export const productsSlice = createSlice({
       state,
       action: PayloadAction<{
         sortBy?: FilterStatus;
-        itemsPerPage?: ItemsPerPage;
-        currentPage?: number;
       }>,
     ) => {
-      const { sortBy, itemsPerPage, currentPage } = action.payload;
+      const { sortBy } = action.payload;
       if (sortBy) state.filter.sortBy = sortBy;
-      if (itemsPerPage) state.filter.itemsPerPage = itemsPerPage;
-      if (currentPage) state.filter.currentPage = currentPage;
     },
   },
   extraReducers(builder) {

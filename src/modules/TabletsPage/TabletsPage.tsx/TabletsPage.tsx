@@ -1,3 +1,5 @@
+import { TabletsPageTemplate } from '@/components/templates/TabletsPageTemplate/TabletsPageTemplate';
+
 export const TabletsPage = () => {
-  return <div>Tablets Page</div>;
+  return <TabletsPageTemplate />;
 };

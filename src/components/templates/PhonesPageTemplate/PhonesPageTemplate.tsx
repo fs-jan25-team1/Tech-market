@@ -1,13 +1,19 @@
 import { CustomDropdown } from '@/components/atoms/dropdown/Dropdown';
 import { Pagination } from '../../molecules/Pagination/Pagination';
-import products from '../../../../public/api/products.json';
 import { ProductCard } from '@/components/organisms/ProductCard/ProductCard';
-import { ProductCardType } from '@/types/ProductCardType';
+import { Loader } from '@/components/atoms/Loader/Loader';
+import { fetchProducts, setStatus } from '@/features/productsSlice';
+import { useEffect } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { CategoryType } from '@/types/CategoryType';
+import { FilterStatus } from '@/types/FilterStatusType';
+import { ItemsPerPage } from '@/types/ItemsPerPageType';
+
 const DropdownSortBy = [
   { value: 'newest', label: 'Newest' },
   { value: 'oldest', label: 'Oldest' },
   { value: 'cheapest', label: 'Cheapest' },
-  { value: 'most-expensive', label: 'Most expensive' },
+  { value: 'mostExpensive', label: 'Most expensive' },
 ];
 
 const DropdownItemsOnPage = [
@@ -17,7 +23,21 @@ const DropdownItemsOnPage = [
 ];
 
 export const PhonesPageTemplate = () => {
-  const displayedProducts: ProductCardType[] = products.slice(0, 16);
+  const dispatch = useAppDispatch();
+  const { productsList, isLoading, filter } = useAppSelector(
+    (store) => store.products,
+  );
+  const { sortBy, itemsPerPage, currentPage } = filter;
+
+  //PAGINATION
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const displayedProducts = productsList.slice(startIndex, endIndex);
+  const totalPages = Math.ceil(productsList.length / itemsPerPage);
+
+  useEffect(() => {
+    dispatch(fetchProducts({ category: CategoryType.phones, sortBy }));
+  }, [sortBy]);
 
   return (
     <div
@@ -48,7 +68,7 @@ export const PhonesPageTemplate = () => {
           text-[14px] leading-[21px] tracking-normal
           text-[#F1F2F9] mb-10"
       >
-        95 models
+        {productsList.length} models
       </div>
       <div
         className="col-span-full grid 
@@ -64,7 +84,11 @@ export const PhonesPageTemplate = () => {
           <CustomDropdown
             placeholder="Newest"
             options={DropdownSortBy}
-            onValueChange={(value) => console.log('DropdownSortBy:', value)}
+            onValueChange={(value) =>
+              dispatch(
+                setStatus({ sortBy: value as FilterStatus, currentPage: 1 }),
+              )
+            }
             size="medium"
             name="Sort by"
           />
@@ -77,36 +101,53 @@ export const PhonesPageTemplate = () => {
           <CustomDropdown
             placeholder="16"
             options={DropdownItemsOnPage}
-            onValueChange={(value) => console.log('DropdownSortBy:', value)}
+            onValueChange={(value) =>
+              dispatch(
+                setStatus({
+                  itemsPerPage: +value as ItemsPerPage,
+                  currentPage: 1,
+                }),
+              )
+            }
             size="small"
             name="Items on page"
           />
         </div>
       </div>
-      <div
-        className="col-span-full grid 
-          grid-cols-1 gap-x-4 gap-y-10
-          justify-items-center
-          min-[400px]:grid-cols-2
-          sm:grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-4 mb-10"
-      >
-        {displayedProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            name={product.name}
-            priceRegular={product.fullPrice}
-            priceDiscount={product.price}
-            img={product.image}
-            screen={product.screen}
-            capacity={product.capacity}
-            ram={product.ram}
-          />
-        ))}
-      </div>
+      {isLoading ? (
+        <div className="col-span-full grid">
+          <Loader />
+        </div>
+      ) : (
+        <div
+          className="col-span-full grid 
+            grid-cols-1 gap-x-4 gap-y-10
+            justify-items-center
+            min-[400px]:grid-cols-2
+            sm:grid-cols-2
+            md:grid-cols-3
+            lg:grid-cols-4 mb-10"
+        >
+          {displayedProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              name={product.name}
+              priceRegular={product.fullPrice}
+              priceDiscount={product.price}
+              img={product.image}
+              screen={product.screen}
+              capacity={product.capacity}
+              ram={product.ram}
+            />
+          ))}
+        </div>
+      )}
       <div className="col-span-full">
-        <Pagination totalPages={4} />
+        <Pagination
+          totalPages={totalPages}
+          currentPage={currentPage}
+          onPageChange={(page) => dispatch(setStatus({ currentPage: page }))}
+        />
       </div>
     </div>
   );

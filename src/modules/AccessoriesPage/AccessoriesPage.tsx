@@ -1,1 +1,5 @@
-export const AccessoriesPage = () => <div>Accessories page!</div>;
+import { AccessoriesPageTemplate } from '@/components/templates/AccessoriesPageTemplate/AccessoriesPageTemplate';
+
+export const AccessoriesPage = () => {
+  return <AccessoriesPageTemplate />;
+};

@@ -22,7 +22,7 @@ const DropdownItemsOnPage = [
   { value: '24', label: '24' },
 ];
 
-export const PhonesPageTemplate = () => {
+export const TabletsPageTemplate = () => {
   const dispatch = useAppDispatch();
   const { productsList, isLoading, filter } = useAppSelector(
     (store) => store.products,
@@ -41,9 +41,9 @@ export const PhonesPageTemplate = () => {
   }, [currentPage]);
 
   useEffect(() => {
-    dispatch(fetchProducts({ category: CategoryType.phones, sortBy }));
+    dispatch(fetchProducts({ category: CategoryType.tablets, sortBy }));
     setCurrentPage(1);
-  }, [dispatch, sortBy]);
+  }, [dispatch, sortBy, itemsPerPage]);
 
   return (
     <div
@@ -66,7 +66,7 @@ export const PhonesPageTemplate = () => {
           min-[639px]:text-[48px] min-[1200px]:leading-[56px]
           text-[#F1F2F9] mb-2"
       >
-        Mobile phones
+        Tablets
       </div>
       <div
         className="col-span-full
@@ -90,10 +90,9 @@ export const PhonesPageTemplate = () => {
           <CustomDropdown
             placeholder="Newest"
             options={DropdownSortBy}
-            onValueChange={(value) => {
-              dispatch(setStatus({ sortBy: value as FilterStatus }));
-              setCurrentPage(1);
-            }}
+            onValueChange={(value) =>
+              dispatch(setStatus({ sortBy: value as FilterStatus }))
+            }
             size="medium"
             name="Sort by"
           />

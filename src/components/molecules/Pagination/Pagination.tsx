@@ -17,7 +17,6 @@ export const Pagination: React.FC<Props> = ({
   const handlePageChange = useCallback(
     (page: number) => {
       onPageChange(page);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
     },
     [onPageChange],
   );
@@ -25,9 +24,8 @@ export const Pagination: React.FC<Props> = ({
   const handlePrev = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
-      if (currentPage > 1) {
-        handlePageChange(currentPage - 1);
-      }
+      const newPage = Math.max(currentPage - 1, 1); // Минимум 1
+      handlePageChange(newPage);
     },
     [currentPage, handlePageChange],
   );
@@ -35,9 +33,8 @@ export const Pagination: React.FC<Props> = ({
   const handleNext = useCallback(
     (e: React.MouseEvent) => {
       e.preventDefault();
-      if (currentPage < totalPages) {
-        handlePageChange(currentPage + 1);
-      }
+      const newPage = Math.min(currentPage + 1, totalPages); // Максимум totalPages
+      handlePageChange(newPage);
     },
     [currentPage, totalPages, handlePageChange],
   );

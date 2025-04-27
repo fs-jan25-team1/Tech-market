@@ -19,7 +19,9 @@ export const Breadcrumb = ({ productName }: { productName?: string }) => {
           >
             Home
           </Link>
-          {breadcrumbItems.length > 0 && <span className="text-[#75767F]">›</span>}
+          {breadcrumbItems.length > 0 && (
+            <span className="text-[#75767F]">›</span>
+          )}
         </li>
 
         {breadcrumbItems.map((crumb, index) => (

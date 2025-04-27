@@ -39,7 +39,6 @@ export const ItemCard = () => {
   return (
     <section className="bg-[#0F1121] text-[#F1F2F9] py-10 px-4 sm:px-6 lg:px-0">
       <div className="max-w-[1136px] mx-auto flex flex-col gap-16 lg:gap-20">
-
         {/* Title */}
         <div className="text-center">
           <h1 className="text-2xl font-[montBold] leading-tight">
@@ -49,7 +48,6 @@ export const ItemCard = () => {
 
         {/* Content */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-20">
-
           {/* Gallery */}
           <div className="flex flex-col sm:flex-row-reverse gap-4">
             {/* Main image */}
@@ -63,14 +61,16 @@ export const ItemCard = () => {
 
             {/* Thumbnails */}
             <div className="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-visible sm:w-1/3">
-              {Array(4).fill(null).map((_, i) => (
-                <img
-                  key={i}
-                  src={`/img/phones/apple-iphone-14-pro/spaceblack/0${i}.webp`}
-                  alt={`iPhone 14 Pro image ${i}`}
-                  className="w-20 h-20 object-cover border border-[#3B3E4A] rounded cursor-pointer shrink-0"
-                />
-              ))}
+              {Array(4)
+                .fill(null)
+                .map((_, i) => (
+                  <img
+                    key={i}
+                    src={`/img/phones/apple-iphone-14-pro/spaceblack/0${i}.webp`}
+                    alt={`iPhone 14 Pro image ${i}`}
+                    className="w-20 h-20 object-cover border border-[#3B3E4A] rounded cursor-pointer shrink-0"
+                  />
+                ))}
             </div>
           </div>
 
@@ -87,7 +87,9 @@ export const ItemCard = () => {
                       variant={ButtonTypes.ghost}
                       bgColor={color}
                       className={`w-6 h-6 rounded-full border-2 transition-all duration-200 ${
-                        selectedColor === color ? 'border-white' : 'border-transparent'
+                        selectedColor === color
+                          ? 'border-white'
+                          : 'border-transparent'
                       } hover:ring-2 hover:ring-white/40 hover:scale-105`}
                       onClick={() => setSelectedColor(color)}
                     />
@@ -96,7 +98,7 @@ export const ItemCard = () => {
               </div>
 
               {/* Capacity */}
-              <div className='w-full mb-6'>
+              <div className="w-full mb-6">
                 <p className="text-sm text-[#89939A] mb-4">Select capacity</p>
                 <div className="flex gap-4">
                   {CAPACITIES.map((cap) => (
@@ -107,9 +109,10 @@ export const ItemCard = () => {
                       color={selectedCapacity === cap ? '#0F1121' : '#F1F2F9'}
                       className={`
                         px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200
-                        ${selectedCapacity === cap
-                          ? 'bg-white border-white hover:border-white'
-                          : 'bg-transparent border-[#3B3E4A] hover:border-white hover:text-white'
+                        ${
+                          selectedCapacity === cap
+                            ? 'bg-white border-white hover:border-white'
+                            : 'bg-transparent border-[#3B3E4A] hover:border-white hover:text-white'
                         }
                       `}
                       onClick={() => setSelectedCapacity(cap)}
@@ -121,7 +124,9 @@ export const ItemCard = () => {
               {/* Price */}
               <div className="flex gap-4 items-center text-lg mb-6">
                 <span className="text-white font-[montBold]">$999</span>
-                <span className="text-[#75767F] line-through text-base">$1199</span>
+                <span className="text-[#75767F] line-through text-base">
+                  $1199
+                </span>
               </div>
 
               {/* Buttons */}
@@ -162,10 +167,8 @@ export const ItemCard = () => {
                   <span className="text-white">6 GB</span>
                 </div>
               </div>
-
             </div>
           </div>
-
         </div>
 
         {/* About and Tech specs */}
@@ -174,16 +177,44 @@ export const ItemCard = () => {
             <p className="text-lg font-semibold mb-4">About</p>
             <div className="text-sm text-[#89939A] space-y-6 leading-relaxed">
               <div>
-                <h4 className="text-white text-base font-semibold mb-2">And then there was Pro</h4>
-                <p>A transformative triple‑camera system that adds tons of capability without complexity. An unprecedented leap in battery life. And a mind-blowing chip that doubles down on machine learning and pushes the boundaries of what a smartphone can do. Welcome to the first iPhone powerful enough to be called Pro.</p>
+                <h4 className="text-white text-base font-semibold mb-2">
+                  And then there was Pro
+                </h4>
+                <p>
+                  A transformative triple‑camera system that adds tons of
+                  capability without complexity. An unprecedented leap in
+                  battery life. And a mind-blowing chip that doubles down on
+                  machine learning and pushes the boundaries of what a
+                  smartphone can do. Welcome to the first iPhone powerful enough
+                  to be called Pro.
+                </p>
               </div>
               <div>
-                <h4 className="text-white text-base font-semibold mb-2">Camera</h4>
-                <p>Meet the first triple-camera system to combine cutting-edge technology with the legendary simplicity of iPhone. Capture up to four times more scene. Get beautiful images in drastically lower light. Shoot the highest-quality video in a smartphone — then edit with the same tools you love for photos. You’ve never shot with anything like it.</p>
+                <h4 className="text-white text-base font-semibold mb-2">
+                  Camera
+                </h4>
+                <p>
+                  Meet the first triple-camera system to combine cutting-edge
+                  technology with the legendary simplicity of iPhone. Capture up
+                  to four times more scene. Get beautiful images in drastically
+                  lower light. Shoot the highest-quality video in a smartphone —
+                  then edit with the same tools you love for photos. You’ve
+                  never shot with anything like it.
+                </p>
               </div>
               <div>
-                <h4 className="text-white text-base font-semibold mb-2">Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak it. Love it.</h4>
-                <p>iPhone 11 Pro lets you capture videos that are beautifully true to life, with greater detail and smoother motion. Epic processing power means it can shoot 4K video with extended dynamic range and cinematic video stabilization — all at 60 fps. You get more creative control, too, with four times more scene and powerful new editing tools to play with.</p>
+                <h4 className="text-white text-base font-semibold mb-2">
+                  Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak
+                  it. Love it.
+                </h4>
+                <p>
+                  iPhone 11 Pro lets you capture videos that are beautifully
+                  true to life, with greater detail and smoother motion. Epic
+                  processing power means it can shoot 4K video with extended
+                  dynamic range and cinematic video stabilization — all at 60
+                  fps. You get more creative control, too, with four times more
+                  scene and powerful new editing tools to play with.
+                </p>
               </div>
             </div>
           </div>
@@ -213,7 +244,9 @@ export const ItemCard = () => {
               </li>
               <li className="flex justify-between">
                 <span>Camera</span>
-                <span className="text-white">12 Mp + 12 Mp + 12 Mp (Triple)</span>
+                <span className="text-white">
+                  12 Mp + 12 Mp + 12 Mp (Triple)
+                </span>
               </li>
               <li className="flex justify-between">
                 <span>Zoom</span>

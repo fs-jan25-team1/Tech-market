@@ -7,12 +7,12 @@ import { AccessoriesPage } from './modules/AccessoriesPage/AccessoriesPage';
 import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';
 import { CartPage } from './modules/CartPage/CartPage';
 import { ItemCard as ItemCardTemplate } from './components/templates/ItemCardTemplate/ItemCardTemplate';
-import { Toaster } from 'react-hot-toast';
+import { ScrollToTop } from './components/ui/ScrollToTop';
 
 export const AppRouter = () => {
   return (
     <>
-      <Toaster position="top-center" />
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<HomePage />} />

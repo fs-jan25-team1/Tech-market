@@ -84,7 +84,7 @@ export const ProductCard = ({
           </div>
         </div>
 
-        <div className="text-[#89939A] text-xs sm:text-sm mb-4 sm:mb-8 flex flex-col justify-between w-full border-t border-[#3B3E4A] mb-3 sm:mb-[32px] pt-[16px]">
+        <div className="text-[#89939A] text-xs flex flex-col justify-between w-full border-t border-[#3B3E4A] mb-3 sm:mb-[32px] pt-[16px]">
           <p className="flex justify-between mb-1 sm:mb-[8px]">
             Screen: <span className="text-[#F1F2F9] font-[mont]">{screen}</span>
           </p>

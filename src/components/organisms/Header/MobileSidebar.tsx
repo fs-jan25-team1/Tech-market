@@ -30,7 +30,7 @@ export const MobileSidebar = ({
   return (
     <aside className="fixed inset-0 z-50 flex flex-col justify-between bg-black sm:hidden">
       {/* Top */}
-      <div>
+      <div className="p-6">
         <div className="flex items-center justify-between mb-8">
           <Link to="/" onClick={onClose}>
             <img src="/logo/Logo.svg" alt="Nice Gadgets" className="h-5" />
@@ -65,45 +65,65 @@ export const MobileSidebar = ({
       </div>
 
       {/* Bottom */}
-      <div className="relative grid grid-cols-3 items-center h-20">
-        <div className="absolute top-0 left-0 w-full h-px bg-[#3B3E4A]" />
+      <div className="relative flex items-center justify-center h-20 border-t border-[#3B3E4A]">
         {/* Favorites */}
-        <div className="flex items-center justify-center relative">
-          <Link to="/favorites" onClick={onClose} aria-label="Go to favorites">
-            <Heart
-              className={`w-6 h-6 transition-transform hover:scale-110 ${
-                isFavorites
-                  ? 'text-[#F1F2F9]'
-                  : 'text-[#75767F] hover:text-[#F1F2F9]'
-              }`}
-            />
+        <div className="flex flex-col items-center justify-center w-1/2 relative">
+          <Link
+            to="/favorites"
+            onClick={onClose}
+            aria-label="Go to favorites"
+            className="flex flex-col items-center justify-center relative"
+          >
+            <div className="relative flex items-center justify-center">
+              <Heart
+                className={`w-6 h-6 transition-transform hover:scale-110 ${
+                  isFavorites
+                    ? 'text-[#F1F2F9]'
+                    : 'text-[#75767F] hover:text-[#F1F2F9]'
+                }`}
+              />
+              {favoritesCount > 0 && (
+                <span className="absolute -top-1 -right-3 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+                  {favoritesCount}
+                </span>
+              )}
+            </div>
+            {/* Подчеркивание */}
+            {isFavorites && (
+              <div className="mt-1 w-6 h-[2px] bg-[#F1F2F9] rounded-full" />
+            )}
           </Link>
-          {favoritesCount > 0 && (
-            <span className="absolute top-0 right-0 transform translate-x-1/2 -translate-y-1/2 bg-red-600 text-white text-[10px] leading-none font-bold px-[6px] py-[2px] rounded-full">
-              {favoritesCount}
-            </span>
-          )}
         </div>
 
         {/* Divider */}
-        <div className="w-px h-full bg-[#3B3E4A] mx-auto" />
+        <div className="w-px h-10 bg-[#3B3E4A]" />
 
         {/* Cart */}
-        <div className="flex items-center justify-center relative">
-          <Link to="/cart" onClick={onClose} aria-label="Go to cart">
-            <ShoppingCart
-              className={`w-6 h-6 transition-transform hover:scale-110 ${
-                isCart
-                  ? 'text-[#F1F2F9]'
-                  : 'text-[#75767F] hover:text-[#F1F2F9]'
-              }`}
-            />
+        <div className="flex flex-col items-center justify-center w-1/2 relative">
+          <Link
+            to="/cart"
+            onClick={onClose}
+            aria-label="Go to cart"
+            className="flex flex-col items-center justify-center relative"
+          >
+            <div className="relative flex items-center justify-center">
+              <ShoppingCart
+                className={`w-6 h-6 transition-transform hover:scale-110 ${
+                  isCart
+                    ? 'text-[#F1F2F9]'
+                    : 'text-[#75767F] hover:text-[#F1F2F9]'
+                }`}
+              />
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-3 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+                  {cartCount}
+                </span>
+              )}
+            </div>
+            {isCart && (
+              <div className="mt-1 w-6 h-[2px] bg-[#F1F2F9] rounded-full" />
+            )}
           </Link>
-          {cartCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-red-600 text-white text-[10px] font-bold leading-none w-4 h-4 flex items-center justify-center rounded-full">
-              {cartCount}
-            </span>
-          )}
         </div>
       </div>
     </aside>

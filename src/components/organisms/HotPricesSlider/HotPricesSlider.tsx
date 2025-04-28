@@ -1,6 +1,9 @@
-import { useState } from 'react';
+'use client';
+
+import { useState, useRef, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -11,16 +14,57 @@ import { ButtonTypes } from '@/types/ButtonTypes';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-//Тут делаю все под грид
 import styles from './HotPricesSlider.module.scss';
+
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { fetchProducts } from '@/features/productsSlice';
+import { CategoryType } from '@/types/CategoryType';
+import { Loader } from '@/components/atoms/Loader/Loader';
+import { FilterStatus } from '@/types/FilterStatusType';
 
 export const HotPricesSlider = () => {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-  const mockArray = Array.from({ length: 10 }, (_, i) => i + 1);
-  const { ref, inView } = useInView({
-    threshold: 0.2, //юзаем когда 20% элемента видно
-  });
+  const [swiperReady, setSwiperReady] = useState(false);
+
+  const prevRef = useRef<HTMLDivElement>(null);
+  const nextRef = useRef<HTMLDivElement>(null);
+
+  const { ref, inView } = useInView({ threshold: 0.2 });
+
+  const dispatch = useAppDispatch();
+  const { productsList, isLoading } = useAppSelector((store) => store.products);
+
+  useEffect(() => {
+    dispatch(
+      fetchProducts({
+        category: CategoryType.phones,
+        sortBy: FilterStatus.newest,
+      }),
+    );
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (productsList.length > 0) {
+      setSwiperReady(true);
+    }
+  }, [productsList]);
+
+  const discountedProducts = [...productsList]
+    .sort((a, b) => {
+      const discountA = a.fullPrice - a.price;
+      const discountB = b.fullPrice - b.price;
+      return discountB - discountA;
+    })
+    .slice(0, 10);
+
+  if (isLoading || !swiperReady) {
+    return (
+      <div className="flex justify-center items-center h-[300px]">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <section className={styles.hotPrices}>
@@ -34,22 +78,33 @@ export const HotPricesSlider = () => {
         }}
         transition={{ duration: 1 }}
       >
-        Hot prices
+        Hot Prices
       </motion.h2>
 
       <div className="col-span-full relative">
         <Swiper
           modules={[Navigation]}
           spaceBetween={16}
-          slidesPerView={1.3}
-          breakpoints={{
-            640: { slidesPerView: 2.3 },
-            1024: { slidesPerView: 3.3 },
-            1280: { slidesPerView: 4.3 },
-          }}
+          slidesPerView={1.5}
+          watchOverflow
+          loop={false}
           navigation={{
-            prevEl: '#hotPricesPrev',
-            nextEl: '#hotPricesNext',
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          breakpoints={{
+            320: {
+              slidesPerView: 1.5,
+              spaceBetween: 16,
+            },
+            640: {
+              slidesPerView: 2.5,
+              spaceBetween: 16,
+            },
+            1200: {
+              slidesPerView: 4,
+              spaceBetween: 24,
+            },
           }}
           onSwiper={(swiper) => {
             setIsBeginning(swiper.isBeginning);
@@ -60,22 +115,32 @@ export const HotPricesSlider = () => {
             setIsEnd(swiper.isEnd);
           }}
         >
-          {mockArray.map((num) => (
-            <SwiperSlide key={num} className="!shrink">
-              <ProductCard />
+          {discountedProducts.map((product) => (
+            <SwiperSlide key={product.id} className="!shrink-0 !grow-0 py-10">
+              <ProductCard
+                key={product.id}
+                id={product.id}
+                name={product.name}
+                priceRegular={product.fullPrice}
+                priceDiscount={product.price}
+                img={product.image}
+                screen={product.screen}
+                capacity={product.capacity}
+                ram={product.ram}
+              />
             </SwiperSlide>
           ))}
         </Swiper>
 
         <div className="absolute top-[-60px] right-0 flex gap-2">
           <div
-            id="hotPricesPrev"
+            ref={prevRef}
             className={`${isBeginning ? 'opacity-50 pointer-events-none' : ''}`}
           >
             <Button variant={ButtonTypes.arrow} icon={ChevronLeft} />
           </div>
           <div
-            id="hotPricesNext"
+            ref={nextRef}
             className={`${isEnd ? 'opacity-50 pointer-events-none' : ''}`}
           >
             <Button variant={ButtonTypes.arrow} icon={ChevronRight} />

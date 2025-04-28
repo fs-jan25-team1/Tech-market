@@ -4,10 +4,10 @@ import { HomePage } from './modules/HomePage';
 import { PhonesPage } from './modules/PhonesPage';
 import { TabletsPage } from './modules/TabletsPage/TabletsPage.tsx/TabletsPage';
 import { AccessoriesPage } from './modules/AccessoriesPage/AccessoriesPage';
-import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';
 import { CartPage } from './modules/CartPage/CartPage';
 import { ItemCard as ItemCardTemplate } from './components/templates/ItemCardTemplate/ItemCardTemplate';
 import { ScrollToTop } from './components/ui/ScrollToTop';
+import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';
 import { CheckoutPage } from './modules/CheckoutPage';
 
 export const AppRouter = () => {

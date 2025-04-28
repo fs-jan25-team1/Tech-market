@@ -80,7 +80,7 @@ export const ItemCard = () => {
             <div className="w-full">
               <div>
                 <p className="text-sm text-[#89939A] mb-4">Available colors</p>
-                <div className="flex gap-2">
+                <div className="flex gap-2 mb-4">
                   {COLORS.map((color) => (
                     <Button
                       key={color}
@@ -262,7 +262,6 @@ export const ItemCard = () => {
 
         {/* You may also like */}
         <div className="mt-20">
-          <p className="text-2xl font-semibold mb-6">You may also like</p>
           <YouMayAlsoLikeSlider />
         </div>
       </div>

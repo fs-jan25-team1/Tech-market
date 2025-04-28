@@ -1,10 +1,10 @@
 import products from '../../../../public/api/products.json';
-import { ProductCard } from "@/components/organisms/ProductCard/ProductCard";
-import { ProductCardType } from "@/types/ProductCardType";
+import { ProductCard } from '@/components/organisms/ProductCard/ProductCard';
+import { ProductCardType } from '@/types/ProductCardType';
 
 export const FavouritesPageTemplate = () => {
   const displayedProducts: ProductCardType[] = products.slice(0, 5);
-  
+
   return (
     <div
       className="grid grid-cols-4 gap-4 

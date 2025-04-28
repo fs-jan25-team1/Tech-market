@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css';
@@ -11,16 +11,30 @@ import { ButtonTypes } from '@/types/ButtonTypes';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 
-//тут делаю под грид
 import styles from './BrandNewSlider.module.scss';
+import { useAppDispatch, useAppSelector } from '@/store/store';
+import { CategoryType } from '@/types/CategoryType';
+import { fetchProducts } from '@/features/productsSlice';
+import { FilterStatus } from '@/types/FilterStatusType';
+import { Loader } from '@/components/atoms/Loader/Loader';
 
 export const BrandNewSlider = () => {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
-  const mockArray = Array.from({ length: 10 }, (_, i) => i + 1);
+  const dispatch = useAppDispatch();
+  const { productsList, isLoading } = useAppSelector((store) => store.products);
   const { ref, inView } = useInView({
-    threshold: 0.2, //юзаем когда 20% элемента видно
+    threshold: 0.2, // юзаем когда 20% элемента видно
   });
+
+  useEffect(() => {
+    dispatch(
+      fetchProducts({
+        category: CategoryType.phones,
+        sortBy: FilterStatus.newest,
+      }),
+    );
+  }, [dispatch]);
 
   return (
     <section className={styles.brandNew}>
@@ -60,11 +74,28 @@ export const BrandNewSlider = () => {
             setIsEnd(swiper.isEnd);
           }}
         >
-          {mockArray.map((num) => (
-            <SwiperSlide key={num} className="!shrink">
-              <ProductCard />
+          {isLoading ? (
+            <SwiperSlide>
+              <div className="col-span-full grid">
+                <Loader />
+              </div>
             </SwiperSlide>
-          ))}
+          ) : (
+            productsList.slice(0, 12).map((product) => (
+              <SwiperSlide key={product.id} className="!shrink">
+                <ProductCard
+                  id={product.id}
+                  name={product.name}
+                  priceRegular={product.fullPrice}
+                  priceDiscount={product.price}
+                  img={product.image}
+                  screen={product.screen}
+                  capacity={product.capacity}
+                  ram={product.ram}
+                />
+              </SwiperSlide>
+            ))
+          )}
         </Swiper>
 
         <div className="absolute top-[-60px] right-0 flex gap-2">

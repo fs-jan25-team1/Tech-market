@@ -1,5 +1,5 @@
 export interface CardInfoType {
-  id: string;
+  id: number;
   img: string;
   name: string;
   priceRegular: number;

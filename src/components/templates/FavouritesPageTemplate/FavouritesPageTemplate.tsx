@@ -1,10 +1,11 @@
-import products from '../../../../public/api/products.json';
 import { ProductCard } from '@/components/organisms/ProductCard/ProductCard';
+import { useAppSelector } from '@/store/store';
 import { ProductCardType } from '@/types/ProductCardType';
 
 export const FavouritesPageTemplate = () => {
-  const displayedProducts: ProductCardType[] = products.slice(0, 5);
-
+  const items = useAppSelector((store) => store.favourites.items);
+  const displayedProducts: ProductCardType[] = items;
+  console.log('Favourites items:', items);
   return (
     <div
       className="grid grid-cols-4 gap-4 
@@ -33,7 +34,7 @@ export const FavouritesPageTemplate = () => {
           text-[14px] leading-[21px] tracking-normal
           text-[#F1F2F9] mb-10"
       >
-        5 models
+        {items.length} models
       </div>
       <div
         className="col-span-full grid 
@@ -47,6 +48,7 @@ export const FavouritesPageTemplate = () => {
         {displayedProducts.map((product) => (
           <ProductCard
             key={product.id}
+            id={product.id}
             name={product.name}
             priceRegular={product.fullPrice}
             priceDiscount={product.price}
@@ -54,7 +56,6 @@ export const FavouritesPageTemplate = () => {
             screen={product.screen}
             capacity={product.capacity}
             ram={product.ram}
-            isFavourite={true}
           />
         ))}
       </div>

@@ -5,14 +5,15 @@ import Button from '../../atoms/button/Button';
 import { Heart } from 'lucide-react';
 import React from 'react';
 import { toast } from 'react-hot-toast';
+import { addFavourite, removeFavourite } from '@/features/favouritesSlice';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 
 type Props = Partial<CardInfoType> & {
-  id?: string;
-  isFavourite?: boolean;
+  id?: number;
 };
 
 export const ProductCard = ({
-  id = '1',
+  id,
   img = '/img/phones/apple-iphone-14-pro/spaceblack/00.webp',
   name = 'Apple iPhone 11 128GB Black',
   priceRegular = 1199,
@@ -20,19 +21,54 @@ export const ProductCard = ({
   screen = '6,5" OLED',
   capacity = '512Gb',
   ram = '8Gb',
-  isFavourite = false,
 }: Props) => {
+  const dispatch = useAppDispatch();
+  const favourites = useAppSelector((store) => store.favourites.items);
+  const isCurrentlyFavourite = favourites.some((item) => item.id === id);
+  console.log('Current product id:', id, 'Favourites:', favourites);
+
   const handleFavoritesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
 
-    toast.success(`${name} added to favorites`, {
-      style: {
-        background: '#161827',
-        color: '#F1F2F9',
-        border: '1px solid #3B3E4A',
-      },
-    });
+    if (isCurrentlyFavourite) {
+      if (id) {
+        dispatch(removeFavourite(id));
+        toast.success(`${name} removed from favorites`, {
+          style: {
+            background: '#161827',
+            color: '#F1F2F9',
+            border: '1px solid #3B3E4A',
+          },
+        });
+      }
+    } else {
+      if (id) {
+        dispatch(
+          addFavourite({
+            id,
+            category: '',
+            itemId: '',
+            name,
+            fullPrice: priceRegular,
+            price: priceDiscount ?? priceRegular,
+            screen,
+            capacity,
+            color: '',
+            ram,
+            year: 2023,
+            image: img,
+          }),
+        );
+        toast.success(`${name} added to favorites`, {
+          style: {
+            background: '#161827',
+            color: '#F1F2F9',
+            border: '1px solid #3B3E4A',
+          },
+        });
+      }
+    }
   };
 
   const handleAddToCartClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -111,7 +147,7 @@ export const ProductCard = ({
           variant={ButtonTypes.favourite}
           icon={Heart}
           iconSize={14}
-          className={`w-8 h-8 sm:w-10 sm:h-10 ${isFavourite ? 'active' : ''}`}
+          className={`w-8 h-8 sm:w-10 sm:h-10 ${isCurrentlyFavourite ? 'active' : ''}`}
           onClick={handleFavoritesClick}
         />
       </div>

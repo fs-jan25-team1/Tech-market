@@ -25,7 +25,7 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-black border-b border-[#3B3E4A] font-[montBold]">
-      <div className="w-full px-6 lg:px-12 flex items-center justify-between">
+      <div className="w-full pl-6 pr-0 lg:pl-12 flex items-center justify-between">
         {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-8">
           <Link to="/">
@@ -36,7 +36,7 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
             />
           </Link>
 
-          <nav className="hidden sm:flex gap-6 relative h-12">
+          <nav className="hidden sm:flex relative h-12 flex-1 gap-8">
             {navItems.map(({ path, label }) => (
               <NavLink
                 key={path}
@@ -63,54 +63,56 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
         </div>
 
         {/* Right: Icons (desktop) */}
-        <div className="hidden sm:flex items-center gap-6 h-12">
-          <div className="h-full w-px bg-[#3B3E4A]" />
-
-          <div className="flex items-center h-full">
-            <NavLink
-              to="/favorites"
-              className="relative flex items-center justify-center h-full"
+        <div className="hidden sm:flex items-center h-12 border-l border-[#3B3E4A]">
+          <NavLink
+            to="/favorites"
+            className="relative flex items-center h-full border-l border-[#3B3E4A]"
+          >
+            <Button
+              variant="ghost"
+              size="icon"
+              className={`flex justify-center items-center px-6 hover:scale-110 transition-transform cursor-pointer ${
+                isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F]'
+              }`}
             >
-              <Button
-                variant="ghost"
-                size="icon"
-                className={`hover:scale-110 transition-transform cursor-pointer ${
-                  isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F]'
-                }`}
-              >
-                <Heart className="h-5 w-5" />
-              </Button>
-              {favoritesCount > 0 && (
-                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
-                  {favoritesCount}
-                </span>
-              )}
-            </NavLink>
-          </div>
+              <Heart className="h-5 w-5" />
+            </Button>
 
-          <div className="h-full w-px bg-[#3B3E4A]" />
+            {favoritesCount > 0 && (
+              <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+                {favoritesCount}
+              </span>
+            )}
 
-          <div className="flex items-center h-full">
-            <NavLink
-              to="/cart"
-              className="relative flex items-center justify-center h-full"
+            {isFavorites && (
+              <span className="absolute bottom-0 left-0 w-full h-[3px] bg-[#F1F2F9]" />
+            )}
+          </NavLink>
+
+          <NavLink
+            to="/cart"
+            className="relative flex items-center h-full border-l border-[#3B3E4A]"
+          >
+            <Button
+              variant="ghost"
+              size="icon"
+              className={`flex justify-center items-center px-6 hover:scale-110 transition-transform cursor-pointer ${
+                isCart ? 'text-[#F1F2F9]' : 'text-[#75767F]'
+              }`}
             >
-              <Button
-                variant="ghost"
-                size="icon"
-                className={`hover:scale-110 transition-transform cursor-pointer ${
-                  isCart ? 'text-[#F1F2F9]' : 'text-[#75767F]'
-                }`}
-              >
-                <ShoppingCart className="h-5 w-5" />
-              </Button>
-              {cartCount > 0 && (
-                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-xs bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center">
-                  {cartCount}
-                </span>
-              )}
-            </NavLink>
-          </div>
+              <ShoppingCart className="h-5 w-5" />
+            </Button>
+
+            {cartCount > 0 && (
+              <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+                {cartCount}
+              </span>
+            )}
+
+            {isCart && (
+              <span className="absolute bottom-0 left-0 w-full h-[3px] bg-[#F1F2F9]" />
+            )}
+          </NavLink>
         </div>
 
         {/* Burger menu (mobile only) */}

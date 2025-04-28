@@ -1,14 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Button from '@/components/atoms/button/Button';
 import { ShoppingCart, Heart } from 'lucide-react';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { YouMayAlsoLikeSlider } from '@/components/organisms/YouMayAlsoLike/YouMayAlsoLike';
 import { toast } from 'react-hot-toast';
+import { useParams } from 'react-router-dom';
+
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchProductDetails,
+  clearProductDetails,
+} from '../../../features/productDetailsSlice';
+import { RootState, AppDispatch } from '../../../store/store';
 
 const COLORS = ['#1C1C1C', '#4D4D4D', '#EB5757'];
 const CAPACITIES = ['128 GB', '256 GB'];
 
 export const ItemCard = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { product } = useSelector((state: RootState) => state.productDetails);
+  const { productId } = useParams<{ productId: string }>();
+  useEffect(() => {
+    if (productId) {
+      dispatch(
+        fetchProductDetails({
+          id: Number(productId),
+        }),
+      );
+    }
+
+    return () => {
+      dispatch(clearProductDetails());
+    };
+  }, [productId, dispatch]);
+
   const [selectedColor, setSelectedColor] = useState(COLORS[0]);
   const [selectedCapacity, setSelectedCapacity] = useState(CAPACITIES[0]);
 
@@ -42,7 +67,7 @@ export const ItemCard = () => {
         {/* Title */}
         <div className="text-center">
           <h1 className="text-2xl font-[montBold] leading-tight">
-            Apple iPhone 14 Pro 128GB Space Black
+            {product?.name}
           </h1>
         </div>
 
@@ -53,7 +78,7 @@ export const ItemCard = () => {
             {/* Main image */}
             <div className="w-full sm:w-2/3 aspect-square bg-[#1F2133] rounded flex items-center justify-center">
               <img
-                src="/img/phones/apple-iphone-14-pro/spaceblack/00.webp"
+                src={product?.images[0]}
                 alt="product"
                 className="w-full h-full object-contain"
               />
@@ -61,16 +86,14 @@ export const ItemCard = () => {
 
             {/* Thumbnails */}
             <div className="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-visible sm:w-1/3">
-              {Array(4)
-                .fill(null)
-                .map((_, i) => (
-                  <img
-                    key={i}
-                    src={`/img/phones/apple-iphone-14-pro/spaceblack/0${i}.webp`}
-                    alt={`iPhone 14 Pro image ${i}`}
-                    className="w-20 h-20 object-cover border border-[#3B3E4A] rounded cursor-pointer shrink-0"
-                  />
-                ))}
+              {product?.images.map((imageUrl, i) => (
+                <img
+                  key={i}
+                  src={`/${imageUrl}`}
+                  alt={`Product image ${i}`}
+                  className="w-20 h-20 object-cover border border-[#3B3E4A] rounded cursor-pointer shrink-0"
+                />
+              ))}
             </div>
           </div>
 
@@ -81,7 +104,7 @@ export const ItemCard = () => {
               <div>
                 <p className="text-sm text-[#89939A] mb-4">Available colors</p>
                 <div className="flex gap-2 mb-4">
-                  {COLORS.map((color) => (
+                  {product?.colorsAvailable.map((color) => (
                     <Button
                       key={color}
                       variant={ButtonTypes.ghost}
@@ -101,7 +124,7 @@ export const ItemCard = () => {
               <div className="w-full mb-6">
                 <p className="text-sm text-[#89939A] mb-4">Select capacity</p>
                 <div className="flex gap-4">
-                  {CAPACITIES.map((cap) => (
+                  {product?.capacityAvailable.map((cap) => (
                     <Button
                       key={cap}
                       content={cap}
@@ -123,9 +146,11 @@ export const ItemCard = () => {
 
               {/* Price */}
               <div className="flex gap-4 items-center text-lg mb-6">
-                <span className="text-white font-[montBold]">$999</span>
+                <span className="text-white font-[montBold]">
+                  {product?.priceDiscount}
+                </span>
                 <span className="text-[#75767F] line-through text-base">
-                  $1199
+                  {product?.priceRegular}
                 </span>
               </div>
 
@@ -152,19 +177,19 @@ export const ItemCard = () => {
               <div className="flex flex-col gap-1 text-xs sm:text-sm text-[#89939A] w-full">
                 <div className="flex justify-between">
                   <span>Screen:</span>
-                  <span className="text-white">6.1” OLED</span>
+                  <span className="text-white">{product?.screen} OLED</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Resolution:</span>
-                  <span className="text-white">2556x1179</span>
+                  <span className="text-white">{product?.resolution}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Processor:</span>
-                  <span className="text-white">A16 Bionic</span>
+                  <span className="text-white">{product?.processor}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>RAM:</span>
-                  <span className="text-white">6 GB</span>
+                  <span className="text-white">{product?.ram}</span>
                 </div>
               </div>
             </div>
@@ -176,46 +201,14 @@ export const ItemCard = () => {
           <div>
             <p className="text-lg font-semibold mb-4">About</p>
             <div className="text-sm text-[#89939A] space-y-6 leading-relaxed">
-              <div>
-                <h4 className="text-white text-base font-semibold mb-2">
-                  And then there was Pro
-                </h4>
-                <p>
-                  A transformative triple‑camera system that adds tons of
-                  capability without complexity. An unprecedented leap in
-                  battery life. And a mind-blowing chip that doubles down on
-                  machine learning and pushes the boundaries of what a
-                  smartphone can do. Welcome to the first iPhone powerful enough
-                  to be called Pro.
-                </p>
-              </div>
-              <div>
-                <h4 className="text-white text-base font-semibold mb-2">
-                  Camera
-                </h4>
-                <p>
-                  Meet the first triple-camera system to combine cutting-edge
-                  technology with the legendary simplicity of iPhone. Capture up
-                  to four times more scene. Get beautiful images in drastically
-                  lower light. Shoot the highest-quality video in a smartphone —
-                  then edit with the same tools you love for photos. You’ve
-                  never shot with anything like it.
-                </p>
-              </div>
-              <div>
-                <h4 className="text-white text-base font-semibold mb-2">
-                  Shoot it. Flip it. Zoom it. Crop it. Cut it. Light it. Tweak
-                  it. Love it.
-                </h4>
-                <p>
-                  iPhone 11 Pro lets you capture videos that are beautifully
-                  true to life, with greater detail and smoother motion. Epic
-                  processing power means it can shoot 4K video with extended
-                  dynamic range and cinematic video stabilization — all at 60
-                  fps. You get more creative control, too, with four times more
-                  scene and powerful new editing tools to play with.
-                </p>
-              </div>
+              {product?.description.map((desc) => (
+                <div>
+                  <h4 className="text-white text-base font-semibold mb-2">
+                    {desc.text}
+                  </h4>
+                  <p>{desc.title}</p>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -224,37 +217,35 @@ export const ItemCard = () => {
             <ul className="text-sm text-[#89939A] space-y-2">
               <li className="flex justify-between">
                 <span>Screen</span>
-                <span className="text-white">6.1” OLED</span>
+                <span className="text-white">{product?.screen}</span>
               </li>
               <li className="flex justify-between">
                 <span>Resolution</span>
-                <span className="text-white">2556x1179</span>
+                <span className="text-white">{product?.resolution}</span>
               </li>
               <li className="flex justify-between">
                 <span>Processor</span>
-                <span className="text-white">A16 Bionic</span>
+                <span className="text-white">{product?.processor}</span>
               </li>
               <li className="flex justify-between">
                 <span>RAM</span>
-                <span className="text-white">6 GB</span>
+                <span className="text-white">{product?.ram}</span>
               </li>
               <li className="flex justify-between">
                 <span>Built-in memory</span>
-                <span className="text-white">64 GB</span>
+                <span className="text-white">{product?.capacity}</span>
               </li>
               <li className="flex justify-between">
                 <span>Camera</span>
-                <span className="text-white">
-                  12 Mp + 12 Mp + 12 Mp (Triple)
-                </span>
+                <span className="text-white">{product?.camera}</span>
               </li>
               <li className="flex justify-between">
                 <span>Zoom</span>
-                <span className="text-white">Optical, 2x</span>
+                <span className="text-white">{product?.zoom}</span>
               </li>
               <li className="flex justify-between">
                 <span>Cell</span>
-                <span className="text-white">GSM, LTE, UMTS</span>
+                <span className="text-white">{product?.cell}</span>
               </li>
             </ul>
           </div>

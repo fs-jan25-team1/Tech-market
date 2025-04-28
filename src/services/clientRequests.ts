@@ -1,5 +1,6 @@
 import { CategoryType } from '@/types/CategoryType';
 import { ProductCardType } from '@/types/ProductCardType';
+import { ProductDetails } from '@/types/ProductDetails';
 
 const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -32,4 +33,16 @@ export const getProducts = async (
 ): Promise<ProductCardType[]> => {
   const allProducts: ProductCardType[] = await fetchData('/api/products.json');
   return filterByCategory(category, allProducts);
+};
+
+export const getProductDetails = async (id: number): Promise<ProductDetails | null> => {
+  const allProducts: ProductCardType[] = await fetchData('/api/products.json'); 
+
+  const prod = allProducts.find((p) => p.id === id);
+
+  const categoryProducts: ProductDetails[] = await fetchData(`/api/${prod?.category}.json`); 
+
+  const res = categoryProducts.find((p) => p.id === prod?.itemId);
+
+  return res ? res : null;
 };

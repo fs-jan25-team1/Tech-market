@@ -94,7 +94,7 @@ export const CartPageTemplate: React.FC<Props> = ({
                 Total for {totalItems} items
               </h4>
               <div className="h-[1px] bg-[#3B3E4A] w-full my-4"></div>
-              <Link to="/checkout" className='w-full'>
+              <Link to="/checkout" className="w-full">
                 <Button
                   variant={ButtonTypes.primary}
                   content="Checkout"

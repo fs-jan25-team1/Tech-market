@@ -12,8 +12,14 @@
 }
 
 @keyframes fadeIn {
-  0% { opacity: 0; transform: scale(0.95); }
-  100% { opacity: 1; transform: scale(1); }
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .animate-fade-in {
@@ -39,7 +45,14 @@ $rccs-shadow: 0 0 20px rgba(#000, 0.2) !default;
 $rccs-light-text-color: #fff !default;
 $rccs-dark-text-color: #555 !default;
 $rccs-stripe-bg-color: #2a1d16 !default;
-$rccs-signature-background: repeating-linear-gradient(0.1deg, #fff 20%, #fff 40%, #fea 40%, #fea 44%, #fff 44%) !default;
+$rccs-signature-background: repeating-linear-gradient(
+  0.1deg,
+  #fff 20%,
+  #fff 40%,
+  #fea 40%,
+  #fea 44%,
+  #fff 44%
+) !default;
 
 $rccs-default-background: linear-gradient(25deg, #939393, #717171) !default;
 $rccs-unknown-background: linear-gradient(25deg, #999, #999) !default;
@@ -48,7 +61,11 @@ $rccs-background-transition: all 0.5s ease-out !default;
 $rccs-animate-background: true;
 
 /** ISSUERS **/
-$rccs-american-express-background: linear-gradient(25deg, #308c67, #a3f2cf) !default;
+$rccs-american-express-background: linear-gradient(
+  25deg,
+  #308c67,
+  #a3f2cf
+) !default;
 $rccs-dankort-background: linear-gradient(25deg, #ccc, #999) !default;
 $rccs-diners-club-background: linear-gradient(25deg, #fff, #eee) !default;
 $rccs-discover-background: linear-gradient(25deg, #fff, #eee) !default;

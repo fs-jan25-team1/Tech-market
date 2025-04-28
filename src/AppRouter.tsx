@@ -24,7 +24,7 @@ export const AppRouter = () => {
           <Route path="cart" element={<CartPage />} />
           <Route path="product/:productId" element={<ItemCardTemplate />} />
         </Route>
-        <Route path='/checkout' element={<CheckoutPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </>
   );

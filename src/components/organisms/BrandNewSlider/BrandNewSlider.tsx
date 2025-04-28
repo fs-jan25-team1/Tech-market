@@ -112,6 +112,8 @@ export const BrandNewSlider = () => {
           {newProducts.map((product) => (
             <SwiperSlide key={product.id} className="!shrink-0 !grow-0 py-10">
               <ProductCard
+                key={product.id}
+                id={product.id}
                 name={product.name}
                 priceRegular={product.fullPrice}
                 priceDiscount={product.price}

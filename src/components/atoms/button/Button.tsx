@@ -10,7 +10,7 @@ type Props = {
   variant: ButtonTypes;
   disabled?: boolean;
   className?: string;
-  width?: number;
+  width?: number | string;
   height?: number;
   icon?: LucideIcon;
   iconSize?: number;

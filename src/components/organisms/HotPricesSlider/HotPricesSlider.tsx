@@ -36,10 +36,12 @@ export const HotPricesSlider = () => {
   const { productsList, isLoading } = useAppSelector((store) => store.products);
 
   useEffect(() => {
-    dispatch(fetchProducts({
-      category: CategoryType.phones,
-      sortBy: FilterStatus.newest
-    }));
+    dispatch(
+      fetchProducts({
+        category: CategoryType.phones,
+        sortBy: FilterStatus.newest,
+      }),
+    );
   }, [dispatch]);
 
   useEffect(() => {

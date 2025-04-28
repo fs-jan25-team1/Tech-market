@@ -36,10 +36,12 @@ export const YouMayAlsoLikeSlider = () => {
   const { productsList, isLoading } = useAppSelector((store) => store.products);
 
   useEffect(() => {
-    dispatch(fetchProducts({
-      category: CategoryType.phones,
-      sortBy: FilterStatus.newest
-    }));
+    dispatch(
+      fetchProducts({
+        category: CategoryType.phones,
+        sortBy: FilterStatus.newest,
+      }),
+    );
   }, [dispatch]);
 
   useEffect(() => {
@@ -61,7 +63,9 @@ export const YouMayAlsoLikeSlider = () => {
   }
 
   return (
-    <section className={`${styles.youMayAlsoLike} bg-[#0F1121] py-10 overflow-hidden`}>
+    <section
+      className={`${styles.youMayAlsoLike} bg-[#0F1121] py-10 overflow-hidden`}
+    >
       <motion.h2
         ref={ref}
         className="col-span-full text-2xl sm:text-3xl text-[#F1F2F9] font-[MontBold] mb-6"

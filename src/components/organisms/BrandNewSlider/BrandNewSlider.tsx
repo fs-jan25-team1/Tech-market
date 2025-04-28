@@ -36,10 +36,12 @@ export const BrandNewSlider = () => {
   const { productsList, isLoading } = useAppSelector((store) => store.products);
 
   useEffect(() => {
-    dispatch(fetchProducts({
-      category: CategoryType.phones,
-      sortBy: FilterStatus.newest
-    }));
+    dispatch(
+      fetchProducts({
+        category: CategoryType.phones,
+        sortBy: FilterStatus.newest,
+      }),
+    );
   }, [dispatch]);
 
   useEffect(() => {
@@ -108,10 +110,7 @@ export const BrandNewSlider = () => {
           }}
         >
           {newProducts.map((product) => (
-            <SwiperSlide
-              key={product.id}
-              className="!shrink-0 !grow-0 py-10"
-            >
+            <SwiperSlide key={product.id} className="!shrink-0 !grow-0 py-10">
               <ProductCard
                 name={product.name}
                 priceRegular={product.fullPrice}

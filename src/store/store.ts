@@ -7,7 +7,7 @@ import { favouritesSlice } from '@/features/favouritesSlice';
 
 const rootReducer = combineSlices({
   products: productsSlice.reducer,
-  favourites: favouritesSlice.reducer
+  favourites: favouritesSlice.reducer,
 });
 
 export const store = configureStore({

@@ -9,7 +9,7 @@ import { cartSlice } from '@/features/cartSlice';
 const rootReducer = combineSlices({
   products: productsSlice.reducer,
   favourites: favouritesSlice.reducer,
-  cart: cartSlice.reducer
+  cart: cartSlice.reducer,
 });
 
 export const store = configureStore({

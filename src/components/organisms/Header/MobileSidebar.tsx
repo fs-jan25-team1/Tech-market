@@ -65,66 +65,60 @@ export const MobileSidebar = ({
       </div>
 
       {/* Bottom */}
-      <div className="relative flex items-center justify-center h-20 border-t border-[#3B3E4A]">
+      <div className="flex items-center justify-center h-20 border-t border-[#3B3E4A]">
         {/* Favorites */}
-        <div className="flex flex-col items-center justify-center w-1/2 relative">
-          <Link
-            to="/favorites"
-            onClick={onClose}
-            aria-label="Go to favorites"
-            className="flex flex-col items-center justify-center relative"
-          >
-            <div className="relative flex items-center justify-center">
-              <Heart
-                className={`w-6 h-6 transition-transform hover:scale-110 ${
-                  isFavorites
-                    ? 'text-[#F1F2F9]'
-                    : 'text-[#75767F] hover:text-[#F1F2F9]'
-                }`}
-              />
-              {favoritesCount > 0 && (
-                <span className="absolute -top-1 -right-3 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
-                  {favoritesCount}
-                </span>
-              )}
-            </div>
-            {/* Подчеркивание */}
-            {isFavorites && (
-              <div className="mt-1 w-6 h-[2px] bg-[#F1F2F9] rounded-full" />
+        <Link
+          to="/favorites"
+          onClick={onClose}
+          aria-label="Go to favorites"
+          className={`flex flex-col items-center justify-center w-1/2 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
+            isFavorites
+              ? 'border-b-2 border-b-[#F1F2F9]'
+              : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
+          }`}
+        >
+          <div className="relative flex items-center justify-center h-full">
+            <Heart
+              className={`w-6 h-6 transition-transform hover:scale-110 ${
+                isFavorites
+                  ? 'text-[#F1F2F9]'
+                  : 'text-[#75767F] hover:text-[#F1F2F9]'
+              }`}
+            />
+            {favoritesCount > 0 && (
+              <span className="absolute -top-1 -right-3 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+                {favoritesCount}
+              </span>
             )}
-          </Link>
-        </div>
-
-        {/* Divider */}
-        <div className="w-px h-10 bg-[#3B3E4A]" />
+          </div>
+        </Link>
 
         {/* Cart */}
-        <div className="flex flex-col items-center justify-center w-1/2 relative">
-          <Link
-            to="/cart"
-            onClick={onClose}
-            aria-label="Go to cart"
-            className="flex flex-col items-center justify-center relative"
-          >
-            <div className="relative flex items-center justify-center">
-              <ShoppingCart
-                className={`w-6 h-6 transition-transform hover:scale-110 ${
-                  isCart
-                    ? 'text-[#F1F2F9]'
-                    : 'text-[#75767F] hover:text-[#F1F2F9]'
-                }`}
-              />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-3 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
-                  {cartCount}
-                </span>
-              )}
-            </div>
-            {isCart && (
-              <div className="mt-1 w-6 h-[2px] bg-[#F1F2F9] rounded-full" />
+        <Link
+          to="/cart"
+          onClick={onClose}
+          aria-label="Go to cart"
+          className={`flex flex-col items-center justify-center w-1/2 h-full relative transition-all duration-300 ${
+            isCart
+              ? 'border-b-2 border-b-[#F1F2F9]'
+              : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
+          }`}
+        >
+          <div className="relative flex items-center justify-center h-full">
+            <ShoppingCart
+              className={`w-6 h-6 transition-transform hover:scale-110 ${
+                isCart
+                  ? 'text-[#F1F2F9]'
+                  : 'text-[#75767F] hover:text-[#F1F2F9]'
+              }`}
+            />
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-3 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+                {cartCount}
+              </span>
             )}
-          </Link>
-        </div>
+          </div>
+        </Link>
       </div>
     </aside>
   );

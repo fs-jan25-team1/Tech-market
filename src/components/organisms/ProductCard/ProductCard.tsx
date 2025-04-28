@@ -8,6 +8,7 @@ import { toast } from 'react-hot-toast';
 
 type Props = Partial<CardInfoType> & {
   id?: string;
+  isFavourite?: boolean;
 };
 
 export const ProductCard = ({
@@ -19,6 +20,7 @@ export const ProductCard = ({
   screen = '6,5" OLED',
   capacity = '512Gb',
   ram = '8Gb',
+  isFavourite = false,
 }: Props) => {
   const handleFavoritesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -109,7 +111,7 @@ export const ProductCard = ({
           variant={ButtonTypes.favourite}
           icon={Heart}
           iconSize={14}
-          className="w-8 h-8 sm:w-10 sm:h-10"
+          className={`w-8 h-8 sm:w-10 sm:h-10 ${isFavourite ? 'active' : ''}`}
           onClick={handleFavoritesClick}
         />
       </div>

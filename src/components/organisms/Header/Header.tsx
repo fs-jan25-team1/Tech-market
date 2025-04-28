@@ -96,10 +96,7 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
             <div className="h-full w-px bg-[#3B3E4A]" />
 
             {/* Cart */}
-            <NavLink
-              to="/cart"
-              className="relative flex items-center h-full"
-            >
+            <NavLink to="/cart" className="relative flex items-center h-full">
               <Button
                 variant="ghost"
                 size="icon"

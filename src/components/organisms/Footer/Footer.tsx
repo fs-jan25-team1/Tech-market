@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom';
-import '@/components/organisms/Footer/Footer.scss';
 import Button from '@/components/atoms/button/Button';
 import { ButtonTypes } from '../../../types/ButtonTypes';
 import { ChevronUp } from 'lucide-react';
@@ -19,34 +18,49 @@ export const Footer = () => {
   };
 
   return (
-    <footer className="footer">
-      <div className="footer__container">
-        <div className="footer__logo">
-          <Link to="/" className="footer__logo--link">
+    <footer className="w-full bg-[#0f1121] border-t border-[#3b3e4a] font-['Mont'] text-[12px] leading-[11px]">
+      <div
+        className="
+          grid grid-cols-4 gap-x-4 gap-y-8 py-8 px-4
+          min-[640px]:grid-cols-12 min-[640px]:px-8 
+          min-[1200px]:grid-cols-24 min-[1200px]:mx-auto min-[1200px]:px-0 min-[1200px]:max-w-[1136px]"
+      >
+        <div className="col-span-4 min-[640px]:col-span-3 self-center">
+          <Link to="/" className="block w-[89px] h-[32px]">
             <img src="/logo/Logo.svg" alt="Nice Gadgets" />
           </Link>
         </div>
 
-        <div className="footer__links">
+        <div
+          className="
+            col-span-4 flex flex-col gap-4 
+            min-[640px]:col-start-4 min-[640px]:col-span-6 
+            min-[640px]:flex-row min-[640px]:justify-center 
+            min-[640px]:self-center 
+            min-[1200px]:col-start-9 min-[1200px]:col-span-8 
+            min-[1200px]:gap-[107px]"
+        >
           {footerItems.map((item) => (
             <a
-              className="footer-items"
+              className="text-white hover:underline transition"
               href={item.link}
               key={item.name}
-              target="blank"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               {item.name}
             </a>
           ))}
         </div>
 
-        <div className="footer__back-to-top" onClick={scrollToTop}>
-          <a className="footer-back-to-top-text">Back to top</a>
-          <Button
-            variant={ButtonTypes.arrow}
-            className="footer__back-to-top--button"
-            icon={ChevronUp}
-          />
+        <div
+          className="col-span-4 flex items-center justify-center gap-4 cursor-pointer 
+              min-[640px]:col-start-10 min-[640px]:col-span-3 min-[640px]:justify-end min-[640px]:self-center
+              min-[1200px]:col-start-22 min-[1200px]:col-span-3 min-[1200px]:justify-end"
+          onClick={scrollToTop}
+        >
+          <span className="text-white">Back to top</span>
+          <Button variant={ButtonTypes.arrow} className="" icon={ChevronUp} />
         </div>
       </div>
     </footer>

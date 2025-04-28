@@ -1,3 +1,5 @@
+import { FavouritesPageTemplate } from '../../components/templates/FavouritesPageTemplate/FavouritesPageTemplate';
+
 export const FavoritesPage = () => {
-  return <div>Favorites Page</div>;
+  return <FavouritesPageTemplate />;
 };

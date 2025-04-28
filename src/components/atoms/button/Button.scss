@@ -90,9 +90,10 @@ $square-size-large: 40px;
       background-color: v.$color-icons;
     }
 
-    &:active {
+    &:active,
+    &.active {
       color: v.$color-red;
-      background-color: v.$color-black;
+      background-color: v.$color-surface-1;
       border: 1px solid v.$color-elements;
 
       .button-icon {

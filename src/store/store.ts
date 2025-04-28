@@ -4,10 +4,12 @@ import { TypedUseSelectorHook } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { favouritesSlice } from '@/features/favouritesSlice';
+import { cartSlice } from '@/features/cartSlice';
 
 const rootReducer = combineSlices({
   products: productsSlice.reducer,
   favourites: favouritesSlice.reducer,
+  cart: cartSlice.reducer,
 });
 
 export const store = configureStore({

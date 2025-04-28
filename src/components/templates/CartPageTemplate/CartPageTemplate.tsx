@@ -1,43 +1,17 @@
-import React from 'react';
-
 import Button from '@/components/atoms/button/Button';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { CartItem } from '@/components/organisms/CartItem/CartItem';
+import { useAppSelector } from '@/store/store';
 
-type CartItemType = {
-  img: string;
-  name: string;
-  price: number;
-};
+export const CartPageTemplate = () => {
+  const products = useAppSelector((store) => store.cart.items);
+  const cartItems = Object.values(products);
 
-// Dummy data for cart items
-const cartItemsData: CartItemType[] = [
-  {
-    img: '/img/phones/apple-iphone-14-pro/spaceblack/00.webp',
-    name: 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-    price: 999,
-  },
-  {
-    img: '/img/phones/apple-iphone-14-pro/spaceblack/00.webp',
-    name: 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-    price: 999,
-  },
-  {
-    img: '/img/phones/apple-iphone-14-pro/spaceblack/00.webp',
-    name: 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-    price: 999,
-  },
-];
-
-type Props = {
-  cartItems?: CartItemType[]; // Replace with the actual type of cart items
-};
-
-export const CartPageTemplate: React.FC<Props> = ({
-  cartItems = cartItemsData,
-}) => {
-  const totalItems = 5;
-  const totalPrice = 1000;
+  const totalItems = cartItems.length;
+  const totalPrice = cartItems.reduce(
+    (acc, item) => acc + item.product.price * item.quantity,
+    0,
+  );
 
   return (
     <div
@@ -62,7 +36,7 @@ export const CartPageTemplate: React.FC<Props> = ({
         Cart
       </h1>
 
-      {!cartItems ? (
+      {cartItems.length === 0 ? (
         <h2
           className="col-span-full
           font-[Mont] font-semibold
@@ -75,12 +49,13 @@ export const CartPageTemplate: React.FC<Props> = ({
         <>
           {/* Cart items */}
           <div className="col-span-full min-[1200px]:col-span-16">
-            {cartItems.map((item, index) => (
+            {cartItems.map((item) => (
               <CartItem
-                key={index}
-                img={item.img}
-                name={item.name}
-                price={item.price}
+                key={item.product.id}
+                id={item.product.id}
+                img={item.product.image}
+                name={item.product.name}
+                price={item.product.price}
               />
             ))}
           </div>

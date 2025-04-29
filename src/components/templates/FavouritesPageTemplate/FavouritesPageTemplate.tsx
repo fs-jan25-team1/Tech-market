@@ -11,7 +11,7 @@ export const FavouritesPageTemplate = () => {
       className="grid grid-cols-4 gap-4 
         min-[640px]:grid-cols-12
         min-[1200px]:grid-cols-24 px-4
-        min-[640px]:px-6
+        min-[640px]:px-8
         min-[1200px]:px-0
         min-[1200px]:max-w-[1136px] mx-auto
         pt-6 pb-16

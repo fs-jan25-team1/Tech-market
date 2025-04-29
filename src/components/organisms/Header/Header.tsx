@@ -8,6 +8,7 @@ import { AuthForm } from '@/components/molecules/SingInForm/SingUpForm/SingUpFor
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '@/shared/firebase';
 import { Loader } from '@/components/atoms/Loader/Loader';
+import { useAppSelector } from '@/store/store';
 
 interface HeaderProps {
   favoritesCount?: number;
@@ -20,6 +21,8 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
+  cartCount = useAppSelector((store) => Object.keys(store.cart.items).length);
+  favoritesCount = useAppSelector((store) => store.favourites.items.length);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {

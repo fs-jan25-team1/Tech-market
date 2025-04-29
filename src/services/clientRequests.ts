@@ -50,3 +50,5 @@ export const getProductDetails = async (
 
   return res ? res : null;
 };
+
+

@@ -165,12 +165,16 @@ export const ProductCard = ({
       </Link>
 
       <div className="flex items-center justify-between gap-1 sm:gap-2 w-full mt-auto">
-        <Button
-          content={isInCart ? 'In cart' : 'Add to cart'}
-          variant={ButtonTypes.primary}
-          className={`text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 !w-full ${isInCart ? 'active' : ''}`}
-          onClick={handleAddToCartClick}
-        />
+        <div className="flex-grow">
+          <Button
+            content={isInCart ? 'In cart' : 'Add to cart'}
+            variant={ButtonTypes.primary}
+            width={'100%'}
+            className={`text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 ${isInCart ? 'active' : ''}`}
+            onClick={handleAddToCartClick}
+          />
+        </div>
+
         <Button
           variant={ButtonTypes.favourite}
           icon={Heart}

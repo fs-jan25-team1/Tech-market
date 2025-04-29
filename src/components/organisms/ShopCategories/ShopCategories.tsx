@@ -2,11 +2,38 @@ import { Link } from 'react-router-dom';
 import styles from './ShopCategories.module.scss';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
+import { useEffect, useState } from 'react';
+import { getProducts } from '@/services/clientRequests';
+import { CategoryType } from '@/types/CategoryType';
 
 export const ShopCategories = () => {
+  const [phonesCount, setPhonesCount] = useState<number | null>(null);
+  const [tabletsCount, setTabletsCount] = useState<number | null>(null);
+  const [accssesoriesCount, setAccssesoriesCount] = useState<number | null>(
+    null,
+  );
+
   const { ref, inView } = useInView({
     threshold: 0.2, //юзаем когда 20% элемента видно
   });
+
+  useEffect(() => {
+    const loadProducts = async () => {
+      try {
+        const [phones, tablets, accessories] = await Promise.all([
+          getProducts(CategoryType.phones),
+          getProducts(CategoryType.tablets),
+          getProducts(CategoryType.accessories),
+        ]);
+        setPhonesCount(phones.length);
+        setTabletsCount(tablets.length);
+        setAccssesoriesCount(accessories.length);
+      } catch (e) {
+        console.warn(e);
+      }
+    };
+    loadProducts();
+  }, []);
 
   return (
     <section className={styles.shopCategories}>
@@ -37,7 +64,7 @@ export const ShopCategories = () => {
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
             Mobile phones
           </h4>
-          <h6 className="text-grey">95 models</h6>
+          <h6 className="text-grey">{phonesCount} models</h6>
         </Link>
 
         {/* Tablets */}
@@ -53,7 +80,7 @@ export const ShopCategories = () => {
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
             Tablets
           </h4>
-          <h6 className="text-[#F1F2F9]">24 models</h6>
+          <h6 className="text-[#F1F2F9]">{tabletsCount} models</h6>
         </Link>
 
         {/* Accessories */}
@@ -69,7 +96,7 @@ export const ShopCategories = () => {
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
             Accessories
           </h4>
-          <h6 className="text-grey">100 models</h6>
+          <h6 className="text-grey">{accssesoriesCount} models</h6>
         </Link>
       </div>
     </section>

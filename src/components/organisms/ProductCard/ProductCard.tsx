@@ -6,6 +6,7 @@ import { Heart } from 'lucide-react';
 import React from 'react';
 import { toast } from 'react-hot-toast';
 import { addFavourite, removeFavourite } from '@/features/favouritesSlice';
+import { addToCart, removeFromCart } from '@/features/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 
 type Props = Partial<CardInfoType> & {
@@ -24,7 +25,9 @@ export const ProductCard = ({
 }: Props) => {
   const dispatch = useAppDispatch();
   const favourites = useAppSelector((store) => store.favourites.items);
+  const cart = useAppSelector((store) => store.cart.items);
   const isCurrentlyFavourite = favourites.some((item) => item.id === id);
+  const isInCart = Object.values(cart).some((el) => el.product.id === id);
   console.log('Current product id:', id, 'Favourites:', favourites);
 
   const handleFavoritesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -74,6 +77,31 @@ export const ProductCard = ({
   const handleAddToCartClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
+
+    if (isInCart) {
+      if (id) {
+        dispatch(removeFromCart(id));
+      }
+    } else {
+      if (id) {
+        dispatch(
+          addToCart({
+            id,
+            category: '',
+            itemId: '',
+            name,
+            fullPrice: priceRegular,
+            price: priceDiscount ?? priceRegular,
+            screen,
+            capacity,
+            color: '',
+            ram,
+            year: 2023,
+            image: img,
+          }),
+        );
+      }
+    }
 
     toast.success(`${name} added to cart`, {
       style: {
@@ -138,7 +166,7 @@ export const ProductCard = ({
 
       <div className="flex items-center justify-between gap-1 sm:gap-2 w-full mt-auto">
         <Button
-          content="Add to cart"
+          content={isInCart ? 'In cart' : 'Add to cart'}
           variant={ButtonTypes.primary}
           className="text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 !w-full"
           onClick={handleAddToCartClick}

@@ -1,18 +1,43 @@
 import Button from '@/components/atoms/button/Button';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { Minus, Plus, X } from 'lucide-react';
+import {
+  removeFromCart,
+  removeQuantity,
+  addQuantity,
+} from '@/features/cartSlice';
 
 type Props = {
+  id: number;
   img: string;
   name: string;
   price: number;
 };
 
 export const CartItem: React.FC<Props> = ({
+  id,
   img = '/img/phones/apple-iphone-14-pro/spaceblack/00.webp',
   name = 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
   price = 999,
 }) => {
+  const dispatch = useAppDispatch();
+  const products = useAppSelector((state) => state.cart.items);
+  const productInCart = products[id];
+  const quantity = productInCart?.quantity || 1;
+
+  const handleDecrease = () => {
+    dispatch(removeQuantity(id));
+  };
+
+  const handleIncrease = () => {
+    dispatch(addQuantity(id));
+  };
+
+  const handleRemoveItem = () => {
+    dispatch(removeFromCart(id));
+  };
+
   return (
     // Container
     <div
@@ -35,6 +60,7 @@ export const CartItem: React.FC<Props> = ({
           icon={X}
           iconSize={15}
           color="#4A4D58"
+          onClick={handleRemoveItem}
         />
         <img className="h-16 w-16 object-contain" src={img} alt={name} />
         <h2 className="font-[Mont] text-left text-sm leading-5">{name}</h2>
@@ -48,10 +74,16 @@ export const CartItem: React.FC<Props> = ({
               variant={ButtonTypes.arrow}
               icon={Minus}
               iconSize={16}
-              disabled={true}
+              disabled={quantity === 1 ? true : false}
+              onClick={handleDecrease}
             />
-            <span>1</span>
-            <Button variant={ButtonTypes.arrow} icon={Plus} iconSize={16} />
+            <span>{quantity}</span>
+            <Button
+              variant={ButtonTypes.arrow}
+              icon={Plus}
+              iconSize={16}
+              onClick={handleIncrease}
+            />
           </div>
         </div>
         <div className="ml-6">

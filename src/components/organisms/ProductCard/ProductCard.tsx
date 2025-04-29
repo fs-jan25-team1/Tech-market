@@ -168,7 +168,7 @@ export const ProductCard = ({
         <Button
           content={isInCart ? 'In cart' : 'Add to cart'}
           variant={ButtonTypes.primary}
-          className="text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 !w-full"
+          className={`text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 !w-full ${isInCart ? 'active' : ''}`}
           onClick={handleAddToCartClick}
         />
         <Button

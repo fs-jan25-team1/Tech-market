@@ -34,7 +34,8 @@ $square-size-large: 40px;
       background-color: v.$color-accent-alt-light;
     }
 
-    &:active {
+    &:active,
+    &.active {
       background-color: v.$color-surface-2;
     }
   }

@@ -1,8 +1,13 @@
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Heart, ShoppingCart, Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { MobileSidebar } from './MobileSidebar';
+import { Modal } from '@/components/molecules/Modal/Modal';
+import { AuthForm } from '@/components/molecules/SingInForm/SingUpForm/SingUpForm';
+import { signOut, onAuthStateChanged, User } from 'firebase/auth';
+import { auth } from '@/shared/firebase';
+import { Loader } from '@/components/atoms/Loader/Loader';
 
 interface HeaderProps {
   favoritesCount?: number;
@@ -11,7 +16,18 @@ interface HeaderProps {
 
 const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState(false);
   const location = useLocation();
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -22,6 +38,18 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
 
   const isFavorites = location.pathname === '/favorites';
   const isCart = location.pathname === '/cart';
+
+  const handleLogout = async () => {
+    setLoading(true);
+    try {
+      await signOut(auth);
+      setUser(null);
+    } catch (error) {
+      console.error('Error logging out:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-black border-b border-[#3B3E4A] font-[montBold]">
@@ -62,72 +90,105 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
           </nav>
         </div>
 
-        {/* Right: Icons (desktop) */}
-        <div className="hidden sm:flex items-center h-12 border-l border-[#3B3E4A]">
-          <NavLink
-            to="/favorites"
-            className="relative flex items-center h-full border-l border-[#3B3E4A]"
-          >
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`flex justify-center items-center px-6 hover:scale-110 transition-transform cursor-pointer ${
-                isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F]'
-              }`}
+        {/* Right: Icons + Burger */}
+        <div className="flex items-center">
+          {/* Desktop Icons */}
+          <div className="hidden sm:flex items-center h-12 border-l border-[#3B3E4A]">
+            {/* Favorites */}
+            <NavLink
+              to="/favorites"
+              className="relative flex items-center justify-center h-full border-l border-[#3B3E4A]"
             >
-              <Heart className="h-5 w-5" />
-            </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`flex justify-center items-center px-6 hover:scale-110 transition-transform cursor-pointer ${
+                  isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F]'
+                }`}
+              >
+                <Heart className="h-5 w-5" />
+              </Button>
+              {favoritesCount > 0 && (
+                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+                  {favoritesCount}
+                </span>
+              )}
+            </NavLink>
 
-            {favoritesCount > 0 && (
-              <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
-                {favoritesCount}
-              </span>
-            )}
-
-            {isFavorites && (
-              <span className="absolute bottom-0 left-0 w-full h-[3px] bg-[#F1F2F9]" />
-            )}
-          </NavLink>
-
-          <NavLink
-            to="/cart"
-            className="relative flex items-center h-full border-l border-[#3B3E4A]"
-          >
-            <Button
-              variant="ghost"
-              size="icon"
-              className={`flex justify-center items-center px-6 hover:scale-110 transition-transform cursor-pointer ${
-                isCart ? 'text-[#F1F2F9]' : 'text-[#75767F]'
-              }`}
+            {/* Cart */}
+            <NavLink
+              to="/cart"
+              className="relative flex items-center justify-center h-full border-l border-[#3B3E4A]"
             >
-              <ShoppingCart className="h-5 w-5" />
-            </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`flex justify-center items-center px-6 hover:scale-110 transition-transform cursor-pointer ${
+                  isCart ? 'text-[#F1F2F9]' : 'text-[#75767F]'
+                }`}
+              >
+                <ShoppingCart className="h-5 w-5" />
+              </Button>
+              {cartCount > 0 && (
+                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+                  {cartCount}
+                </span>
+              )}
+            </NavLink>
 
-            {cartCount > 0 && (
-              <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
-                {cartCount}
-              </span>
-            )}
+            {/* Sign In or Log Out */}
+            <div className="relative flex items-center justify-center h-full border-l border-[#3B3E4A]">
+              {user ? (
+                <Button
+                  variant="ghost"
+                  className="w-12 h-12 text-white bg-violet-600 hover:bg-violet-700 hover:scale-110 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
+                  onClick={handleLogout}
+                  disabled={loading}
+                >
+                  {loading ? <Loader /> : 'Log Out'}
+                </Button>
+              ) : (
+                <Button
+                  variant="ghost"
+                  className="w-12 h-12 text-white bg-violet-600 hover:bg-violet-700 hover:scale-110 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
+                  onClick={() => setIsAuthModalOpen(true)}
+                >
+                  Sign in
+                </Button>
+              )}
+            </div>
+          </div>
 
-            {isCart && (
-              <span className="absolute bottom-0 left-0 w-full h-[3px] bg-[#F1F2F9]" />
-            )}
-          </NavLink>
+          {/* Burger Button for Mobile */}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setIsMenuOpen(true)}
+            className="sm:hidden text-[rgb(241,242,249)] ml-2"
+          >
+            <Menu />
+          </Button>
         </div>
-
-        {/* Burger menu (mobile only) */}
-        <Button
-          variant="ghost"
-          size="icon"
-          onClick={() => setIsMenuOpen(true)}
-          className="sm:hidden text-[#F1F2F9]"
-        >
-          <Menu />
-        </Button>
       </div>
 
       {/* Mobile Sidebar */}
-      <MobileSidebar isOpen={isMenuOpen} onClose={() => setIsMenuOpen(false)} />
+      <MobileSidebar
+        isOpen={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        favoritesCount={favoritesCount}
+        cartCount={cartCount}
+        user={user}
+        loading={loading}
+        onLogout={handleLogout}
+        onSignIn={() => setIsAuthModalOpen(true)}
+      />
+
+      {/* Sign In Modal */}
+      {isAuthModalOpen && (
+        <Modal onClose={() => setIsAuthModalOpen(false)}>
+          <AuthForm onClose={() => setIsAuthModalOpen(false)} />
+        </Modal>
+      )}
     </header>
   );
 };

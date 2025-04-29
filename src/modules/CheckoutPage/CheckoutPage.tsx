@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import Cards from 'react-19-credit-cards';
 import './CheckoutPage.scss';
 import Button from '@/components/atoms/button/Button';
@@ -26,14 +26,19 @@ export const CheckoutPage = () => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
   };
 
-  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
-    evt.preventDefault();
-    setShowModal(true);
+  const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-    setTimeout(() => {
+  const startRedirectTimeout = () => {
+    timeoutRef.current = setTimeout(() => {
       setShowModal(false);
       navigate('/');
     }, 3000);
+  };
+
+  const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
+    evt.preventDefault();
+    setShowModal(true);
+    startRedirectTimeout();
   };
 
   return (
@@ -51,9 +56,22 @@ export const CheckoutPage = () => {
     >
       {/* Modal */}
       {showModal && (
-        <div className="absolute inset-0 flex justify-center items-center bg-[#0f1121]/50 z-50 animate-fade-in">
+        <div className="absolute inset-0 flex flex-col justify-center items-center bg-[#0f1121]/50 z-50 animate-fade-in">
           <div className="bg-[#f1f2f9] text-black px-8 py-6 rounded-2xl shadow-xl text-xl font-semibold">
-            Thanks for shopping with us!
+            <div className='mb-3'>Thanks for shopping with us!</div>
+            <Link to={'/'}>
+              <Button
+                variant={ButtonTypes.primary}
+                content={'Go back to shopping'}
+                width="100%"
+                onClick={() => {
+                  if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current);
+                  }
+                  navigate('/');
+                }}
+              />
+            </Link>
           </div>
         </div>
       )}

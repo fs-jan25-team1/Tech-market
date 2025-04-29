@@ -28,7 +28,6 @@ export const ProductCard = ({
   const cart = useAppSelector((store) => store.cart.items);
   const isCurrentlyFavourite = favourites.some((item) => item.id === id);
   const isInCart = Object.values(cart).some((el) => el.product.id === id);
-  const isRegistered = true;
 
   const handleFavoritesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -96,9 +95,9 @@ export const ProductCard = ({
     };
 
     if (isInCart) {
-      dispatch(removeFromCart({ productId: id, isRegistered }));
+      dispatch(removeFromCart({ productId: id }));
     } else {
-      dispatch(addToCart({ product, isRegistered }));
+      dispatch(addToCart({ product }));
     }
 
     toast.success(`${name} added to cart`, {

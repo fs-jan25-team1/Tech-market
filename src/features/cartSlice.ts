@@ -27,61 +27,50 @@ export const cartSlice = createSlice({
       state,
       action: PayloadAction<{
         product: ProductCardType;
-        isRegistered: boolean;
       }>,
     ) => {
-      const { product, isRegistered } = action.payload;
+      const { product } = action.payload;
 
       if (state.items[product.id]) {
         state.items[product.id].quantity += 1;
       } else {
         state.items[product.id] = { product, quantity: 1 };
       }
-
-      if (isRegistered) {
-        saveCartToLocalStorage(state);
-      }
+      saveCartToLocalStorage(state);
     },
-    removeFromCart: (
-      state,
-      action: PayloadAction<{ productId: number; isRegistered: boolean }>,
-    ) => {
-      const { productId, isRegistered } = action.payload;
+    removeFromCart: (state, action: PayloadAction<{ productId: number }>) => {
+      const { productId } = action.payload;
 
       delete state.items[productId];
-
-      if (isRegistered) {
-        saveCartToLocalStorage(state);
-      }
+      saveCartToLocalStorage(state);
     },
-    addQuantity: (
-      state,
-      action: PayloadAction<{ productId: number; isRegistered: boolean }>,
-    ) => {
-      const { productId, isRegistered } = action.payload;
+    addQuantity: (state, action: PayloadAction<{ productId: number }>) => {
+      const { productId } = action.payload;
 
       if (state.items[productId]) {
         state.items[productId].quantity += 1;
-        if (isRegistered) {
-          saveCartToLocalStorage(state);
-        }
       }
+      saveCartToLocalStorage(state);
     },
-    removeQuantity: (
-      state,
-      action: PayloadAction<{ productId: number; isRegistered: boolean }>,
-    ) => {
-      const { productId, isRegistered } = action.payload;
+    removeQuantity: (state, action: PayloadAction<{ productId: number }>) => {
+      const { productId } = action.payload;
 
       if (state.items[productId] && state.items[productId].quantity > 1) {
         state.items[productId].quantity -= 1;
-        if (isRegistered) {
-          saveCartToLocalStorage(state);
-        }
       }
+      saveCartToLocalStorage(state);
+    },
+    clearCart: (state) => {
+      state.items = {};
+      saveCartToLocalStorage(state);
     },
   },
 });
 
-export const { addToCart, removeFromCart, addQuantity, removeQuantity } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  addQuantity,
+  removeQuantity,
+  clearCart,
+} = cartSlice.actions;

@@ -4,8 +4,11 @@ import Cards from 'react-19-credit-cards';
 import './CheckoutPage.scss';
 import Button from '@/components/atoms/button/Button';
 import { ButtonTypes } from '@/types/ButtonTypes';
+import { clearCart } from '@/features/cartSlice';
+import { useAppDispatch } from '@/store/store';
 
 export const CheckoutPage = () => {
+  const dispatch = useAppDispatch();
   const [state, setState] = useState({
     number: '',
     expiry: '',
@@ -69,6 +72,7 @@ export const CheckoutPage = () => {
                     clearTimeout(timeoutRef.current);
                   }
                   navigate('/');
+                  dispatch(clearCart());
                 }}
               />
             </Link>

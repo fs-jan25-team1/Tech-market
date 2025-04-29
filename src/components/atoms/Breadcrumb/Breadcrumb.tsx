@@ -8,7 +8,11 @@ export const Breadcrumb = ({ productName }: { productName?: string }) => {
 
   return (
     <nav
-      className="text-sm text-muted-foreground py-4 px-4"
+      className="grid grid-cols-1 pt-6
+        min-[640px]:px-8
+        min-[1200px]:px-0
+        min-[1200px]:max-w-[1136px] mx-auto
+        text-sm text-muted-foreground"
       aria-label="Breadcrumb"
     >
       <ol className="flex flex-wrap items-center gap-1">

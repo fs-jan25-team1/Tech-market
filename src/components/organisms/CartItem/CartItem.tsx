@@ -15,44 +15,28 @@ type Props = {
   price: number;
 };
 
-export const CartItem: React.FC<Props> = ({
-  id,
-  img = '/img/phones/apple-iphone-14-pro/spaceblack/00.webp',
-  name = 'Apple iPhone 14 Pro 128GB Silver (MQ023)',
-  price = 999,
-}) => {
+export const CartItem: React.FC<Props> = ({ id, img, name, price }) => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.cart.items);
   const productInCart = products[id];
   const quantity = productInCart?.quantity || 1;
+  const isRegistered = true;
 
   const handleDecrease = () => {
-    dispatch(removeQuantity(id));
+    dispatch(removeQuantity({ productId: id, isRegistered }));
   };
 
   const handleIncrease = () => {
-    dispatch(addQuantity(id));
+    dispatch(addQuantity({ productId: id, isRegistered }));
   };
 
   const handleRemoveItem = () => {
-    dispatch(removeFromCart(id));
+    dispatch(removeFromCart({ productId: id, isRegistered }));
   };
 
   return (
-    // Container
-    <div
-      className="
-        bg-[#161827] text-[#F1F2F9]
-        max-w-screen min-w-[288px]
-        p-2 flex flex-col cursor-pointer
-        gap-4
-        mb-4
-        sm:flex-row sm:h-32 sm:items-center
-      "
-    >
-      {/* Image and Name */}
+    <div className="bg-[#161827] text-[#F1F2F9] max-w-screen min-w-[288px] p-2 flex flex-col cursor-pointer gap-4 mb-4 sm:flex-row sm:h-32 sm:items-center">
       <div className="flex flex-row items-center gap-6 m-2">
-        {/* Close button */}
         <Button
           variant={ButtonTypes.numbered}
           width={16}
@@ -66,7 +50,6 @@ export const CartItem: React.FC<Props> = ({
         <h2 className="font-[Mont] text-left text-sm leading-5">{name}</h2>
       </div>
 
-      {/* Counter and Price */}
       <div className="flex items-center justify-between w-full px-2 sm:flex-1">
         <div className="sm:flex-1 sm:flex sm:justify-center">
           <div className="flex flex-row items-center gap-4">
@@ -74,7 +57,7 @@ export const CartItem: React.FC<Props> = ({
               variant={ButtonTypes.arrow}
               icon={Minus}
               iconSize={16}
-              disabled={quantity === 1 ? true : false}
+              disabled={quantity === 1}
               onClick={handleDecrease}
             />
             <span>{quantity}</span>

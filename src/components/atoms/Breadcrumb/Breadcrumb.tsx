@@ -44,7 +44,7 @@ export const Breadcrumb = ({ productName }: { productName?: string }) => {
               <span className="text-[#75767F]">{crumb.name}</span>
             )}
             {!crumb.isLast && (
-              <span className="text-[#F1F2F9]">
+              <span className="text-[#75767F]">
                 {<ChevronRight className="w-4 h-4" />}
               </span>
             )}

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Button from '@/components/atoms/button/Button';
-import { ShoppingCart, Heart } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { YouMayAlsoLikeSlider } from '@/components/organisms/YouMayAlsoLike/YouMayAlsoLike';
 import { toast } from 'react-hot-toast';
@@ -21,6 +21,7 @@ export const ItemCard = () => {
     (store) => store.productDetails,
   );
   const { productId } = useParams<{ productId: string }>();
+
   useEffect(() => {
     if (productId) {
       dispatch(
@@ -63,141 +64,183 @@ export const ItemCard = () => {
   };
 
   return (
-    <section className="bg-[#0F1121] text-[#F1F2F9] py-10 px-4 sm:px-6 lg:px-0">
+    <section className="bg-[#0F1121] text-[#F1F2F9]">
       {isLoading ? (
         <div className="col-span-full grid">
           <Loader />
         </div>
       ) : (
-        <div className="max-w-[1136px] mx-auto flex flex-col gap-16 lg:gap-20">
+        <div
+          className="grid grid-cols-4 gap-4 
+            min-[640px]:grid-cols-12
+            min-[1200px]:grid-cols-24 px-4
+            min-[640px]:px-8
+            min-[1200px]:px-0
+            min-[1200px]:max-w-[1136px] mx-auto
+            pt-14 pb-4
+            min-[640px]:pt-18 min-[640px]:pb-6
+            min-[1200px]:pt-18 min-[1200px]:pb-10 
+            gap-y-0"
+        >
           {/* Title */}
-          <div className="text-center">
-            <h1 className="text-2xl font-[montBold] leading-tight">
-              {product?.name}
-            </h1>
+          <div
+            className="col-span-full mb-8
+              min-[640px]:mb-10
+              text-[#F1F2F9]
+              font-[montBold] leading-tight
+              text-[22px]
+              min-[640px]:text-[32px]"
+          >
+            <h1>{product?.name}</h1>
           </div>
 
           {/* Content */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-20">
-            {/* Gallery */}
-            <div className="flex flex-col sm:flex-row-reverse gap-4">
-              {/* Main image */}
-              <div className="w-full sm:w-2/3 aspect-square bg-[#1F2133] rounded flex items-center justify-center">
-                <img
-                  src={product?.images[0]}
-                  alt="product"
-                  className="w-full h-full object-contain"
-                />
-              </div>
+          <div className="col-span-full grid grid-cols-4 min-[640px]:grid-cols-12 min-[1200px]:grid-cols-24 gap-4 mb-14 min-[640px]:mb-16 min-[1200px]:mb-20">
+            {/* Gallery (Thumbnails + Main image) */}
+            <div className="col-span-full min-[640px]:col-span-7 min-[1200px]:col-span-12 mb-10">
+              <div className="grid grid-cols-4 min-[640px]:grid-cols-7 min-[1200px]:grid-cols-12 gap-4">
+                {/* Thumbnails */}
+                <div className="col-span-full min-[640px]:col-span-1 min-[640px]:col-start-1 min-[1200px]:col-span-2 order-2 min-[640px]:order-1">
+                  <div className="grid grid-cols-4 min-[640px]:grid-cols-1 gap-2">
+                    {product?.images.map((imageUrl, i) => (
+                      <div key={i} className="col-span-1 aspect-square">
+                        <img
+                          src={`/${imageUrl}`}
+                          alt={`Product image ${i}`}
+                          className="w-full h-full object-contain border border-[#3B3E4A] cursor-pointer"
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-              {/* Thumbnails */}
-              <div className="flex sm:flex-col gap-2 overflow-x-auto sm:overflow-visible sm:w-1/3">
-                {product?.images.map((imageUrl, i) => (
+                {/* Main image */}
+                <div className="col-span-full min-[640px]:col-span-6 min-[640px]:col-start-2 min-[1200px]:col-span-10 min-[1200px]:col-start-3 order-1 min-[640px]:order-2 aspect-square flex items-center justify-center">
                   <img
-                    key={i}
-                    src={`/${imageUrl}`}
-                    alt={`Product image ${i}`}
-                    className="w-20 h-20 object-cover border border-[#3B3E4A] rounded cursor-pointer shrink-0"
+                    src={product?.images[0]}
+                    alt="product"
+                    className="w-full h-full object-contain"
                   />
-                ))}
+                </div>
               </div>
             </div>
 
             {/* Product info */}
-            <div className="flex flex-col gap-6 items-start text-left px-6 w-full">
-              {/* Colors */}
-              <div className="w-full">
-                <div>
-                  <p className="text-sm text-[#89939A] mb-4">
-                    Available colors
-                  </p>
-                  <div className="flex gap-2 mb-4">
-                    {product?.colorsAvailable.map((color) => (
+            <div className="col-span-full min-[640px]:col-span-5 min-[1200px]:col-span-7 min-[1200px]:col-start-14">
+              <div className="grid grid-cols-4 min-[640px]:grid-cols-5 min-[1200px]:grid-cols-7 gap-4">
+                <div className="col-span-full">
+                  {/* Colors */}
+                  <div className="mb-6 border-b border-[#3B3E4A] pb-6">
+                    <p className="text-sm text-[#89939A] mb-2">
+                      Available colors
+                    </p>
+                    <div className="inline-grid grid-cols-6 gap-2">
+                      {product?.colorsAvailable.map((color) => (
+                        <div key={color} className="col-span-1">
+                          <Button
+                            variant={ButtonTypes.selector}
+                            bgColor={color}
+                            className={`transition-all duration-200 ${
+                              selectedColor === color ? 'border-white' : ''
+                            } hover:ring-2 hover:ring-white/40 hover:scale-105`}
+                            onClick={() => setSelectedColor(color)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Capacity */}
+                  <div className="mb-8 border-b border-[#3B3E4A] pb-6">
+                    <p className="text-sm text-[#89939A] mb-2">
+                      Select capacity
+                    </p>
+                    <div className="inline-grid grid-cols-3 gap-2">
+                      {product?.capacityAvailable.map((cap) => (
+                        <div key={cap} className="col-span-1">
+                          <Button
+                            content={cap}
+                            variant={ButtonTypes.secondary}
+                            color={
+                              selectedCapacity === cap ? '#0F1121' : '#F1F2F9'
+                            }
+                            className={`
+                              px-2 h-8 text-sm font-medium border transition-all duration-200
+                              ${
+                                selectedCapacity === cap
+                                  ? 'bg-white border-white hover:border-white'
+                                  : 'bg-transparent border-[#3B3E4A] hover:border-white hover:text-white'
+                              }
+                            `}
+                            onClick={() => setSelectedCapacity(cap)}
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Price */}
+                  <div className="inline-grid grid-cols-2 gap-2 items-center text-lg mb-4">
+                    <div className="col-span-1">
+                      <span className="text-white font-[montBold]">
+                        {product?.priceDiscount} $
+                      </span>
+                    </div>
+                    <div className="col-span-1">
+                      <span className="text-[#75767F] line-through text-base">
+                        {product?.priceRegular} $
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Buttons */}
+                  <div className="mb-8">
+                    <div className="flex gap-2 mb-8">
                       <Button
-                        key={color}
-                        variant={ButtonTypes.ghost}
-                        bgColor={color}
-                        className={`w-6 h-6 rounded-full border-2 transition-all duration-200 ${
-                          selectedColor === color
-                            ? 'border-white'
-                            : 'border-transparent'
-                        } hover:ring-2 hover:ring-white/40 hover:scale-105`}
-                        onClick={() => setSelectedColor(color)}
+                        content="Add to cart"
+                        variant={ButtonTypes.primary}
+                        iconSize={18}
+                        height={48}
+                        onClick={handleAddToCartClick}
+                        className="flex-1"
                       />
-                    ))}
-                  </div>
-                </div>
-
-                {/* Capacity */}
-                <div className="w-full mb-6">
-                  <p className="text-sm text-[#89939A] mb-4">Select capacity</p>
-                  <div className="flex gap-4">
-                    {product?.capacityAvailable.map((cap) => (
                       <Button
-                        key={cap}
-                        content={cap}
-                        variant={ButtonTypes.secondary}
-                        color={selectedCapacity === cap ? '#0F1121' : '#F1F2F9'}
-                        className={`
-                        px-4 py-2 text-sm font-medium rounded-lg border transition-all duration-200
-                        ${
-                          selectedCapacity === cap
-                            ? 'bg-white border-white hover:border-white'
-                            : 'bg-transparent border-[#3B3E4A] hover:border-white hover:text-white'
-                        }
-                      `}
-                        onClick={() => setSelectedCapacity(cap)}
+                        variant={ButtonTypes.favourite}
+                        icon={Heart}
+                        iconSize={16}
+                        height={48}
+                        width={48}
+                        onClick={handleFavoritesClick}
                       />
-                    ))}
+                    </div>
                   </div>
-                </div>
 
-                {/* Price */}
-                <div className="flex gap-4 items-center text-lg mb-6">
-                  <span className="text-white font-[montBold]">
-                    {product?.priceDiscount}
-                  </span>
-                  <span className="text-[#75767F] line-through text-base">
-                    {product?.priceRegular}
-                  </span>
-                </div>
-
-                {/* Buttons */}
-                <div className="flex w-full gap-2 mb-8">
-                  <Button
-                    content="Add to cart"
-                    variant={ButtonTypes.primary}
-                    icon={ShoppingCart}
-                    iconSize={18}
-                    className="flex-1"
-                    onClick={handleAddToCartClick}
-                  />
-                  <Button
-                    variant={ButtonTypes.favourite}
-                    icon={Heart}
-                    iconSize={18}
-                    className="w-12 h-12"
-                    onClick={handleFavoritesClick}
-                  />
-                </div>
-
-                {/* Short tech specs */}
-                <div className="flex flex-col gap-1 text-xs sm:text-sm text-[#89939A] w-full">
-                  <div className="flex justify-between">
-                    <span>Screen:</span>
-                    <span className="text-white">{product?.screen} OLED</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Resolution:</span>
-                    <span className="text-white">{product?.resolution}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Processor:</span>
-                    <span className="text-white">{product?.processor}</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>RAM:</span>
-                    <span className="text-white">{product?.ram}</span>
+                  {/* Short tech specs */}
+                  <div className="flex flex-col gap-1 text-xs sm:text-sm text-[#89939A]">
+                    <div className="flex justify-between gap-2">
+                      <span className="min-w-[80px]">Screen:</span>
+                      <span className="text-white max-w-[200px] text-right break-words">
+                        {product?.screen} OLED
+                      </span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="min-w-[80px]">Resolution:</span>
+                      <span className="text-white max-w-[200px] text-right break-words">
+                        {product?.resolution}
+                      </span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="min-w-[80px]">Processor:</span>
+                      <span className="text-white max-w-[200px] text-right break-words">
+                        {product?.processor}
+                      </span>
+                    </div>
+                    <div className="flex justify-between gap-2">
+                      <span className="min-w-[80px]">RAM:</span>
+                      <span className="text-white max-w-[200px] text-right break-words">
+                        {product?.ram}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -205,23 +248,23 @@ export const ItemCard = () => {
           </div>
 
           {/* About and Tech specs */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
-            <div>
-              <p className="text-lg font-semibold mb-4">About</p>
-              <div className="text-sm text-[#89939A] space-y-6 leading-relaxed">
-                {product?.description.map((desc) => (
-                  <div>
-                    <h4 className="text-white text-base font-semibold mb-2">
-                      {desc.text}
+          <div className="col-span-full grid grid-cols-4  min-[1200px]:grid-cols-24 gap-4 mb-20">
+            <div className="col-span-full min-[640px]:col-span-7 min-[1200px]:col-span-12">
+              <p className="col-span-full text-lg font-semibold border-b border-[#3B3E4A] pb-4 mb-8">About</p>
+              <div className="col-span-full text-sm text-[#89939A] leading-relaxed">
+                {product?.description.map((desc, i) => (
+                  <div key={i} className='mb-8'>
+                    <h4 className="text-white text-base font-semibold mb-4">
+                      {desc.title}
                     </h4>
-                    <p>{desc.title}</p>
+                    <p>{desc.text}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div>
-              <p className="text-lg font-semibold mb-4">Tech specs</p>
+            <div className="col-span-full min-[640px]:col-span-5 min-[1200px]:col-span-11 min-[1200px]:col-start-14">
+              <p className="text-lg font-semibold border-b border-[#3B3E4A] pb-4 mb-8">Tech specs</p>
               <ul className="text-sm text-[#89939A] space-y-2">
                 <li className="flex justify-between">
                   <span>Screen</span>
@@ -260,7 +303,7 @@ export const ItemCard = () => {
           </div>
 
           {/* You may also like */}
-          <div className="mt-20">
+          <div className="col-span-full">
             <YouMayAlsoLikeSlider />
           </div>
         </div>

@@ -35,12 +35,16 @@ export const getProducts = async (
   return filterByCategory(category, allProducts);
 };
 
-export const getProductDetails = async (id: number): Promise<ProductDetails | null> => {
-  const allProducts: ProductCardType[] = await fetchData('/api/products.json'); 
+export const getProductDetails = async (
+  id: number,
+): Promise<ProductDetails | null> => {
+  const allProducts: ProductCardType[] = await fetchData('/api/products.json');
 
   const prod = allProducts.find((p) => p.id === id);
 
-  const categoryProducts: ProductDetails[] = await fetchData(`/api/${prod?.category}.json`); 
+  const categoryProducts: ProductDetails[] = await fetchData(
+    `/api/${prod?.category}.json`,
+  );
 
   const res = categoryProducts.find((p) => p.id === prod?.itemId);
 

@@ -10,7 +10,6 @@ export const useAuthUser = () => {
   useEffect(() => {
     const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, (user) => {
-
       if (user) {
         const serializedUser: SerializableUser = {
           uid: user.uid,

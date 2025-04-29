@@ -25,7 +25,10 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (
       state,
-      action: PayloadAction<{ product: ProductCardType; isRegistered: boolean }>
+      action: PayloadAction<{
+        product: ProductCardType;
+        isRegistered: boolean;
+      }>,
     ) => {
       const { product, isRegistered } = action.payload;
 
@@ -41,7 +44,7 @@ export const cartSlice = createSlice({
     },
     removeFromCart: (
       state,
-      action: PayloadAction<{ productId: number; isRegistered: boolean }>
+      action: PayloadAction<{ productId: number; isRegistered: boolean }>,
     ) => {
       const { productId, isRegistered } = action.payload;
 
@@ -53,7 +56,7 @@ export const cartSlice = createSlice({
     },
     addQuantity: (
       state,
-      action: PayloadAction<{ productId: number; isRegistered: boolean }>
+      action: PayloadAction<{ productId: number; isRegistered: boolean }>,
     ) => {
       const { productId, isRegistered } = action.payload;
 
@@ -66,7 +69,7 @@ export const cartSlice = createSlice({
     },
     removeQuantity: (
       state,
-      action: PayloadAction<{ productId: number; isRegistered: boolean }>
+      action: PayloadAction<{ productId: number; isRegistered: boolean }>,
     ) => {
       const { productId, isRegistered } = action.payload;
 

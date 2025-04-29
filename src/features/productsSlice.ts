@@ -11,6 +11,7 @@ interface ProductsState {
   filter: {
     sortBy: FilterStatus;
   };
+  currentCategory: string;
 }
 
 const initialState: ProductsState = {
@@ -20,6 +21,7 @@ const initialState: ProductsState = {
   filter: {
     sortBy: FilterStatus.newest,
   },
+  currentCategory: 'phones',
 };
 
 export const fetchProducts = createAsyncThunk<
@@ -61,6 +63,9 @@ export const productsSlice = createSlice({
       const { sortBy } = action.payload;
       if (sortBy) state.filter.sortBy = sortBy;
     },
+    setCurrentCategory: (state, action: PayloadAction<string>) => {
+      state.currentCategory = action.payload;
+    },
   },
   extraReducers(builder) {
     builder
@@ -84,4 +89,7 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { setStatus } = productsSlice.actions;
+export const selectProductCategory = (state: { products: ProductsState }) =>
+  state.products.currentCategory || 'phones';
+
+export const { setStatus, setCurrentCategory } = productsSlice.actions;

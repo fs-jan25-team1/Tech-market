@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useBreadcrumb } from './useBreadcrumb';
+import { Home, ChevronRight } from 'lucide-react';
 
 export const Breadcrumb = ({ productName }: { productName?: string }) => {
   const breadcrumbItems = useBreadcrumb(productName);
@@ -15,32 +16,38 @@ export const Breadcrumb = ({ productName }: { productName?: string }) => {
         text-sm text-muted-foreground"
       aria-label="Breadcrumb"
     >
-      <ol className="flex flex-wrap items-center gap-1">
-        <li className="flex items-center gap-1">
+      <ol className="flex flex-wrap items-center gap-2">
+        <li className="flex items-center gap-2">
           <Link
             to="/"
-            className="text-[#75767F] hover:text-[#F1F2F9] transition-colors"
+            className="text-[#F1F2F9] hover:text-[#75767F] transition-colors"
           >
-            Home
+            <Home className="w-4 h-4" />
           </Link>
           {breadcrumbItems.length > 0 && (
-            <span className="text-[#75767F]">›</span>
+            <span className="text-[#75767F]">
+              {<ChevronRight className="w-4 h-4" />}
+            </span>
           )}
         </li>
 
         {breadcrumbItems.map((crumb, index) => (
-          <li key={index} className="flex items-center gap-1 capitalize">
+          <li key={index} className="flex items-center gap-2 capitalize">
             {!crumb.isLast ? (
               <Link
                 to={crumb.path}
-                className="text-[#75767F] hover:text-[#F1F2F9] transition-colors"
+                className="text-[#F1F2F9] hover:text-[#75767F] transition-colors"
               >
                 {crumb.name}
               </Link>
             ) : (
-              <span className="text-[#F1F2F9]">{crumb.name}</span>
+              <span className="text-[#75767F]">{crumb.name}</span>
             )}
-            {!crumb.isLast && <span className="text-[#75767F]">›</span>}
+            {!crumb.isLast && (
+              <span className="text-[#F1F2F9]">
+                {<ChevronRight className="w-4 h-4" />}
+              </span>
+            )}
           </li>
         ))}
       </ol>

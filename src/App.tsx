@@ -6,6 +6,7 @@ import { Breadcrumb } from './components/atoms/Breadcrumb/Breadcrumb';
 import { useAuthUser } from './hooks/useAuthUser';
 import { useAppSelector } from './store/store';
 import { selectProductName } from './features/productDetailsSlice';
+import { WelcomeDiscountModal } from './components/molecules/Modal/WelcomeModal';
 
 export const App = () => {
   useAuthUser();
@@ -13,6 +14,7 @@ export const App = () => {
 
   return (
     <>
+      <WelcomeDiscountModal />
       <Header />
       <ToasterWrapper />
       <Breadcrumb productName={productName} />

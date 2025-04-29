@@ -1,7 +1,10 @@
+import { useState } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Heart, ShoppingCart, X } from 'lucide-react';
+import { Loader } from '@/components/atoms/Loader/Loader';
 import { User } from 'firebase/auth';
 import { motion } from 'framer-motion';
+import { UserAvatar } from '@/components/molecules/UserAvatar/UserAvatar';
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -34,6 +37,7 @@ export const MobileSidebar = ({
   const location = useLocation();
   const isFavorites = location.pathname === '/favorites';
   const isCart = location.pathname === '/cart';
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
 
   if (!isOpen) return null;
 
@@ -74,20 +78,40 @@ export const MobileSidebar = ({
           ))}
         </nav>
 
-        {/* Sign In / Log Out Button with Animation */}
+        {/* Auth Section */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4 }}
         >
           {user ? (
-            <button
-              onClick={onLogout}
-              disabled={loading}
-              className="w-full py-2 text-white bg-violet-600 hover:bg-violet-700 rounded-md text-sm font-semibold transition"
-            >
-              {loading ? 'Loading...' : 'Log Out'}
-            </button>
+            <div className="relative flex justify-center">
+              <button
+                onClick={() => setUserMenuOpen((prev) => !prev)}
+                className=" h-12 rounded-full overflow-hidden "
+              >
+                <UserAvatar user={user} />
+              </button>
+
+              {userMenuOpen && (
+                <div className="absolute top-14 right-0 bg-white text-black rounded-md shadow-lg w-40 z-50">
+                  <div className="px-4 py-3 border-b border-gray-200">
+                    <p className="font-semibold truncate">{user.displayName}</p>
+                    <p className="text-sm text-gray-600 truncate">{user.email}</p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      onLogout();
+                      setUserMenuOpen(false);
+                      onClose();
+                    }}
+                    className="w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors"
+                  >
+                    {loading ? <Loader /> : 'Logout'}
+                  </button>
+                </div>
+              )}
+            </div>
           ) : (
             <button
               onClick={() => {
@@ -115,16 +139,14 @@ export const MobileSidebar = ({
               : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
           }`}
         >
-          <div className="relative flex items-center justify-center h-full">
+          <div className="relative flex items-center justify-center h-full group">
             <Heart
-              className={`w-6 h-6 transition-transform hover:scale-110 ${
-                isFavorites
-                  ? 'text-[#F1F2F9]'
-                  : 'text-[#75767F] hover:text-[#F1F2F9]'
-              }`}
+              className={`w-6 h-6 ${
+                isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F]'
+              } group-hover:text-[#F1F2F9] transition-colors`}
             />
             {favoritesCount > 0 && (
-              <span className="absolute -top-1 -right-3 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+              <span className="top-[6px] right-[6px] bg-[#EB5757] text-white text-[8px] leading-[10px] font-bold rounded-full min-w-[14px] h-[14px] flex items-center justify-center px-[2px]">
                 {favoritesCount}
               </span>
             )}
@@ -135,23 +157,20 @@ export const MobileSidebar = ({
         <Link
           to="/cart"
           onClick={onClose}
-          aria-label="Go to cart"
-          className={`flex flex-col items-center justify-center w-1/2 h-full relative transition-all duration-300 ${
-            isCart
+          className={`flex flex-col items-center justify-center w-1/2 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
+            isFavorites
               ? 'border-b-2 border-b-[#F1F2F9]'
               : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
           }`}
         >
-          <div className="relative flex items-center justify-center h-full">
+          <div className="relative flex items-center justify-center h-full group">
             <ShoppingCart
-              className={`w-6 h-6 transition-transform hover:scale-110 ${
-                isCart
-                  ? 'text-[#F1F2F9]'
-                  : 'text-[#75767F] hover:text-[#F1F2F9]'
-              }`}
+              className={`w-6 h-6 ${
+                isCart ? 'text-[#F1F2F9]' : 'text-[#75767F]'
+              } group-hover:text-[#F1F2F9] transition-colors`}
             />
             {cartCount > 0 && (
-              <span className="absolute -top-1 -right-3 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+              <span className="top-[6px] right-[6px] bg-[#EB5757] text-white text-[10px] leading-[11px] font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
                 {cartCount}
               </span>
             )}

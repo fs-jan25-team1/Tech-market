@@ -12,9 +12,6 @@ import {
 } from '../../../features/productDetailsSlice';
 import { Loader } from '@/components/atoms/Loader/Loader';
 
-const COLORS = ['#1C1C1C', '#4D4D4D', '#EB5757'];
-const CAPACITIES = ['128 GB', '256 GB'];
-
 export const ItemCard = () => {
   const dispatch = useAppDispatch();
   const { product, isLoading } = useAppSelector(
@@ -36,8 +33,28 @@ export const ItemCard = () => {
     };
   }, [productId, dispatch]);
 
-  const [selectedColor, setSelectedColor] = useState(COLORS[0]);
-  const [selectedCapacity, setSelectedCapacity] = useState(CAPACITIES[0]);
+  useEffect(() => {
+    if (product) {
+      // selectedCapacity
+      if (product.capacity && product.capacityAvailable) {
+        const initialCapacity = product.capacityAvailable.includes(product.capacity)
+          ? product.capacity
+          : product.capacityAvailable[0];
+        setSelectedCapacity(initialCapacity);
+      }
+  
+      // selectedColor
+      if (product.color && product.colorsAvailable) {
+        const initialColor = product.colorsAvailable.includes(product.color)
+          ? product.color
+          : product.colorsAvailable[0];
+        setSelectedColor(initialColor);
+      }
+    }
+  }, [product]);
+
+  const [selectedColor, setSelectedColor] = useState('');
+  const [selectedCapacity, setSelectedCapacity] = useState('');
 
   const handleFavoritesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -141,7 +158,7 @@ export const ItemCard = () => {
                             variant={ButtonTypes.selector}
                             bgColor={color}
                             className={`transition-all duration-200 ${
-                              selectedColor === color ? 'border-white' : ''
+                              selectedColor === color ? '!border-2 !border-[#F1F2F9]' : 'border-2 border-[#3B3E4A]'
                             } hover:ring-2 hover:ring-white/40 hover:scale-105`}
                             onClick={() => setSelectedColor(color)}
                           />
@@ -155,7 +172,7 @@ export const ItemCard = () => {
                     <p className="text-sm text-[#89939A] mb-2">
                       Select capacity
                     </p>
-                    <div className="inline-grid grid-cols-3 gap-2">
+                    <div className="inline-grid grid-cols-5 gap-2">
                       {product?.capacityAvailable.map((cap) => (
                         <div key={cap} className="col-span-1">
                           <Button
@@ -165,7 +182,7 @@ export const ItemCard = () => {
                               selectedCapacity === cap ? '#0F1121' : '#F1F2F9'
                             }
                             className={`
-                              px-2 h-8 text-sm font-medium border transition-all duration-200
+                              px-2 h-8 w-full text-sm font-medium border transition-all duration-200 
                               ${
                                 selectedCapacity === cap
                                   ? 'bg-white border-white hover:border-white'
@@ -217,10 +234,10 @@ export const ItemCard = () => {
 
                   {/* Short tech specs */}
                   <div className="flex flex-col gap-1 text-xs sm:text-sm text-[#89939A]">
-                    <div className="flex justify-between gap-2">
+                    <div className="flex justify-between gap-2 text-[12px]">
                       <span className="min-w-[80px]">Screen:</span>
                       <span className="text-white max-w-[200px] text-right break-words">
-                        {product?.screen} OLED
+                        {product?.screen}
                       </span>
                     </div>
                     <div className="flex justify-between gap-2">
@@ -250,22 +267,26 @@ export const ItemCard = () => {
           {/* About and Tech specs */}
           <div className="col-span-full grid grid-cols-4  min-[1200px]:grid-cols-24 gap-4 mb-20">
             <div className="col-span-full min-[640px]:col-span-7 min-[1200px]:col-span-12">
-              <p className="col-span-full text-lg font-semibold border-b border-[#3B3E4A] pb-4 mb-8">About</p>
+              <p className="col-span-full text-[22px] font-semibold border-b border-[#3B3E4A] pb-4 mb-8">
+                About
+              </p>
               <div className="col-span-full text-sm text-[#89939A] leading-relaxed">
                 {product?.description.map((desc, i) => (
-                  <div key={i} className='mb-8'>
-                    <h4 className="text-white text-base font-semibold mb-4">
+                  <div key={i} className="mb-8">
+                    <h4 className="text-white text-base font-semibold text-[20px] mb-4">
                       {desc.title}
                     </h4>
-                    <p>{desc.text}</p>
+                    <p className='text-[14px]'>{desc.text}</p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="col-span-full min-[640px]:col-span-5 min-[1200px]:col-span-11 min-[1200px]:col-start-14">
-              <p className="text-lg font-semibold border-b border-[#3B3E4A] pb-4 mb-8">Tech specs</p>
-              <ul className="text-sm text-[#89939A] space-y-2">
+              <p className="text-[22px] font-semibold border-b border-[#3B3E4A] pb-4 mb-8">
+                Tech specs
+              </p>
+              <ul className="text-[14px] text-[#89939A] space-y-2">
                 <li className="flex justify-between">
                   <span>Screen</span>
                   <span className="text-white">{product?.screen}</span>

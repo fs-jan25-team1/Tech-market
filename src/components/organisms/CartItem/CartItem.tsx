@@ -20,18 +20,17 @@ export const CartItem: React.FC<Props> = ({ id, img, name, price }) => {
   const products = useAppSelector((state) => state.cart.items);
   const productInCart = products[id];
   const quantity = productInCart?.quantity || 1;
-  const isRegistered = true;
 
   const handleDecrease = () => {
-    dispatch(removeQuantity({ productId: id, isRegistered }));
+    dispatch(removeQuantity({ productId: id }));
   };
 
   const handleIncrease = () => {
-    dispatch(addQuantity({ productId: id, isRegistered }));
+    dispatch(addQuantity({ productId: id }));
   };
 
   const handleRemoveItem = () => {
-    dispatch(removeFromCart({ productId: id, isRegistered }));
+    dispatch(removeFromCart({ productId: id }));
   };
 
   return (

@@ -3,16 +3,28 @@ import { ButtonTypes } from '@/types/ButtonTypes';
 import { CartItem } from '@/components/organisms/CartItem/CartItem';
 import { Link } from 'react-router';
 import { useAppSelector } from '@/store/store';
+import { useEffect, useState } from 'react';
 
 export const CartPageTemplate = () => {
+  const [totalPrice, setTotalPrice] = useState(0);
   const products = useAppSelector((store) => store.cart.items);
   const cartItems = Object.values(products);
 
   const totalItems = cartItems.length;
-  const totalPrice = cartItems.reduce(
-    (acc, item) => acc + item.product.price * item.quantity,
-    0,
-  );
+  const user = useAppSelector((store) => store.auth.user);
+
+  useEffect(() => {
+    let price = cartItems.reduce(
+      (acc, item) => acc + item.product.price * item.quantity,
+      0,
+    );
+
+    if (user) {
+      price *= 0.95;
+    }
+
+    setTotalPrice(price);
+  }, [user, cartItems]);
 
   return (
     <div
@@ -62,13 +74,39 @@ export const CartPageTemplate = () => {
           </div>
 
           {/* Checkout container */}
-          <div className="col-span-full min-[1200px]:col-span-8 border-1 border-[#3B3E4A] p-6 self-start">
-            <div className="flex flex-col items-center">
-              <h2 className="font-[montBold] text-2xl">${totalPrice}</h2>
+          {/* Checkout container */}
+          <div className="col-span-full min-[1200px]:col-span-8 border-1 border-[#3B3E4A] p-6 self-start rounded-2xl bg-[#1D1F2B]">
+            <div className="flex flex-col items-center text-center">
+              {user ? (
+                <>
+                  <div className="text-sm text-green-400 mb-2">
+                    5% discount applied
+                  </div>
+                  <div className="text-[#A0A0A8] line-through text-base mb-1">
+                    $
+                    {cartItems
+                      .reduce(
+                        (acc, item) => acc + item.product.price * item.quantity,
+                        0,
+                      )
+                      .toFixed(2)}
+                  </div>
+                </>
+              ) : (
+                <div className="text-sm text-[#FACC15] mb-2">
+                  Sign up to get 5% off your order
+                </div>
+              )}
+
+              <h2 className="font-[montBold] text-2xl text-white">
+                ${totalPrice.toFixed(2)}
+              </h2>
               <h4 className="font-[Mont] text-sm text-[#75767F]">
                 Total for {totalItems} items
               </h4>
+
               <div className="h-[1px] bg-[#3B3E4A] w-full my-4"></div>
+
               <Link to="/checkout" className="w-full">
                 <Button
                   variant={ButtonTypes.primary}

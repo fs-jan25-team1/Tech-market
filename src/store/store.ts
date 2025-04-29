@@ -6,12 +6,14 @@ import { useDispatch } from 'react-redux';
 import { favouritesSlice } from '@/features/favouritesSlice';
 import productDetailsSlice from '../features/productDetailsSlice';
 import { cartSlice } from '@/features/cartSlice';
+import authSlice from '@/features/authSlice';
 
 const rootReducer = combineSlices({
   products: productsSlice.reducer,
   favourites: favouritesSlice.reducer,
   productDetails: productDetailsSlice.reducer,
   cart: cartSlice.reducer,
+  auth: authSlice,
 });
 
 export const store = configureStore({

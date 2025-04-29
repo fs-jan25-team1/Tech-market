@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { AuthModal } from '@/components/organisms/AuthModal/AuthModal'
+import { AuthModal } from '@/components/organisms/AuthModal/AuthModal';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/shared/firebase';
 
@@ -50,7 +50,9 @@ export const WelcomeDiscountModal = () => {
             >
               <h2 className="text-2xl font-bold mb-3">Welcome!</h2>
               <p className="text-[#4A4D58] mb-6">
-                Register now and get <span className="text-[#905BFF] font-semibold">5% off</span> your first order!
+                Register now and get{' '}
+                <span className="text-[#905BFF] font-semibold">5% off</span>{' '}
+                your first order!
               </p>
               <div className="flex justify-end gap-3">
                 <button

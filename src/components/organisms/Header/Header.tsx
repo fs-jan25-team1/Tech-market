@@ -18,8 +18,12 @@ const Header = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
 
-  const cartCount = useAppSelector((store) => Object.keys(store.cart.items).length);
-  const favoritesCount = useAppSelector((store) => store.favourites.items.length);
+  const cartCount = useAppSelector(
+    (store) => Object.keys(store.cart.items).length,
+  );
+  const favoritesCount = useAppSelector(
+    (store) => store.favourites.items.length,
+  );
 
   useEffect(() => {
     setLoading(true);
@@ -55,7 +59,11 @@ const Header = () => {
       <div className="w-full pl-6 pr-0 lg:pl-12 flex items-center justify-between">
         <div className="flex items-center gap-8">
           <Link to="/">
-            <img src="/logo/Logo.svg" alt="Nice Gadgets" className="h-6 w-auto" />
+            <img
+              src="/logo/Logo.svg"
+              alt="Nice Gadgets"
+              className="h-6 w-auto"
+            />
           </Link>
 
           <nav className="hidden sm:flex relative h-12 flex-1 gap-8">
@@ -65,7 +73,9 @@ const Header = () => {
                 to={path}
                 className={({ isActive }) =>
                   `relative flex items-center h-full text-sm font-semibold uppercase transition-colors ${
-                    isActive ? 'text-[#F1F2F9]' : 'text-[#75767F] hover:text-[#F1F2F9]'
+                    isActive
+                      ? 'text-[#F1F2F9]'
+                      : 'text-[#75767F] hover:text-[#F1F2F9]'
                   }`
                 }
               >
@@ -119,22 +129,21 @@ const Header = () => {
             </NavLink>
 
             <div className="relative flex items-center justify-center h-full border-l border-[#3B3E4A]">
-            {loading ? (
-  <div className="w-12 h-12 flex items-center justify-center">
-    <Loader />
-  </div>
-) : user ? (
-  <UserDropdown user={user} onLogout={handleLogout} />
-) : (
-  <Button
-    variant="ghost"
-    className="w-12 h-12 text-white bg-violet-600 hover:bg-violet-700 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
-    onClick={() => setIsAuthModalOpen(true)}
-  >
-    Sign in
-  </Button>
-)}
-
+              {loading ? (
+                <div className="w-12 h-12 flex items-center justify-center">
+                  <Loader />
+                </div>
+              ) : user ? (
+                <UserDropdown user={user} onLogout={handleLogout} />
+              ) : (
+                <Button
+                  variant="ghost"
+                  className="w-12 h-12 text-white bg-violet-600 hover:bg-violet-700 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
+                  onClick={() => setIsAuthModalOpen(true)}
+                >
+                  Sign in
+                </Button>
+              )}
             </div>
           </div>
 

@@ -7,7 +7,10 @@ type UserDropdownProps = {
   onLogout: () => void;
 };
 
-export const UserDropdown: React.FC<UserDropdownProps> = ({ user, onLogout }) => {
+export const UserDropdown: React.FC<UserDropdownProps> = ({
+  user,
+  onLogout,
+}) => {
   const [open, setOpen] = useState(false);
 
   return (

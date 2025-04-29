@@ -97,7 +97,9 @@ export const MobileSidebar = ({
                 <div className="absolute top-14 right-0 bg-white text-black rounded-md shadow-lg w-40 z-50">
                   <div className="px-4 py-3 border-b border-gray-200">
                     <p className="font-semibold truncate">{user.displayName}</p>
-                    <p className="text-sm text-gray-600 truncate">{user.email}</p>
+                    <p className="text-sm text-gray-600 truncate">
+                      {user.email}
+                    </p>
                   </div>
                   <button
                     onClick={() => {

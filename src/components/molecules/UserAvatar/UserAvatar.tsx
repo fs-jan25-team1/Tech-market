@@ -3,7 +3,7 @@ import { User } from 'firebase/auth';
 
 type UserAvatarProps = {
   user: User;
-  size?: number
+  size?: number;
 };
 
 export const UserAvatar: React.FC<UserAvatarProps> = ({ user, size = 32 }) => {
@@ -12,11 +12,12 @@ export const UserAvatar: React.FC<UserAvatarProps> = ({ user, size = 32 }) => {
     height: `${size}px`,
   };
 
-  const initials = user.displayName
-    ?.split(' ')
-    .map((name) => name[0])
-    .join('')
-    .toUpperCase() || 'U';
+  const initials =
+    user.displayName
+      ?.split(' ')
+      .map((name) => name[0])
+      .join('')
+      .toUpperCase() || 'U';
 
   if (user.photoURL) {
     return (

@@ -11,6 +11,13 @@ import {
   clearProductDetails,
 } from '../../../features/productDetailsSlice';
 import { Loader } from '@/components/atoms/Loader/Loader';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import type { Swiper as SwiperType } from 'swiper';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/thumbs';
+import 'swiper/css/autoplay';
 
 export const ItemCard = () => {
   const dispatch = useAppDispatch();
@@ -37,12 +44,14 @@ export const ItemCard = () => {
     if (product) {
       // selectedCapacity
       if (product.capacity && product.capacityAvailable) {
-        const initialCapacity = product.capacityAvailable.includes(product.capacity)
+        const initialCapacity = product.capacityAvailable.includes(
+          product.capacity,
+        )
           ? product.capacity
           : product.capacityAvailable[0];
         setSelectedCapacity(initialCapacity);
       }
-  
+
       // selectedColor
       if (product.color && product.colorsAvailable) {
         const initialColor = product.colorsAvailable.includes(product.color)
@@ -55,6 +64,8 @@ export const ItemCard = () => {
 
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedCapacity, setSelectedCapacity] = useState('');
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
 
   const handleFavoritesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
@@ -78,6 +89,14 @@ export const ItemCard = () => {
         border: '1px solid #3B3E4A',
       },
     });
+  };
+
+  const handleThumbnailClick = (index: number) => {
+    setActiveImageIndex(index);
+    if (mainSwiper) {
+      mainSwiper.slideTo(index);
+      mainSwiper.autoplay.stop();
+    }
   };
 
   return (
@@ -120,11 +139,19 @@ export const ItemCard = () => {
                 <div className="col-span-full min-[640px]:col-span-1 min-[640px]:col-start-1 min-[1200px]:col-span-2 order-2 min-[640px]:order-1">
                   <div className="grid grid-cols-4 min-[640px]:grid-cols-1 gap-2">
                     {product?.images.map((imageUrl, i) => (
-                      <div key={i} className="col-span-1 aspect-square">
+                      <div
+                        key={i}
+                        className={`col-span-1 aspect-square cursor-pointer border border-[#3B3E4A] ${
+                          activeImageIndex === i
+                            ? 'border-[#F1F2F9] border-2'
+                            : ''
+                        }`}
+                        onClick={() => handleThumbnailClick(i)}
+                      >
                         <img
                           src={`/${imageUrl}`}
                           alt={`Product image ${i}`}
-                          className="w-full h-full object-contain border border-[#3B3E4A] cursor-pointer"
+                          className="w-full h-full object-contain"
                         />
                       </div>
                     ))}
@@ -133,11 +160,34 @@ export const ItemCard = () => {
 
                 {/* Main image */}
                 <div className="col-span-full min-[640px]:col-span-6 min-[640px]:col-start-2 min-[1200px]:col-span-10 min-[1200px]:col-start-3 order-1 min-[640px]:order-2 aspect-square flex items-center justify-center">
-                  <img
-                    src={product?.images[0]}
-                    alt="product"
-                    className="w-full h-full object-contain"
-                  />
+                  {product?.images && product.images.length > 0 ? (
+                    <Swiper
+                      spaceBetween={10}
+                      navigation={false}
+                      onSwiper={setMainSwiper}
+                      onSlideChange={(swiper) => setActiveImageIndex(swiper.activeIndex)}
+                      modules={[Navigation, Autoplay]}
+                      autoplay={{
+                        delay: 3000,
+                        disableOnInteraction: true,
+                      }}
+                      className="w-full h-full"
+                    >
+                      {product.images.map((imageUrl, index) => (
+                        <SwiperSlide key={index}>
+                          <img
+                            src={`/${imageUrl}`}
+                            alt={`Product image ${index}`}
+                            className="w-full h-full object-contain"
+                          />
+                        </SwiperSlide>
+                      ))}
+                    </Swiper>
+                  ) : (
+                    <div className="w-full h-full border border-[#3B3E4A] flex items-center justify-center text-[#89939A]">
+                      No images available
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -158,7 +208,9 @@ export const ItemCard = () => {
                             variant={ButtonTypes.selector}
                             bgColor={color}
                             className={`transition-all duration-200 ${
-                              selectedColor === color ? '!border-2 !border-[#F1F2F9]' : 'border-2 border-[#3B3E4A]'
+                              selectedColor === color
+                                ? '!border-2 !border-[#F1F2F9]'
+                                : 'border-2 border-[#3B3E4A]'
                             } hover:ring-2 hover:ring-white/40 hover:scale-105`}
                             onClick={() => setSelectedColor(color)}
                           />
@@ -276,7 +328,7 @@ export const ItemCard = () => {
                     <h4 className="text-white text-base font-semibold text-[20px] mb-4">
                       {desc.title}
                     </h4>
-                    <p className='text-[14px]'>{desc.text}</p>
+                    <p className="text-[14px]">{desc.text}</p>
                   </div>
                 ))}
               </div>

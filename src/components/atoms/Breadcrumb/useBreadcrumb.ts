@@ -1,8 +1,11 @@
+import { selectProductCategory } from '@/features/productsSlice';
+import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 
 export const useBreadcrumb = (productNameFromProps?: string) => {
   const location = useLocation();
   const segments = location.pathname.split('/').filter(Boolean);
+  const category = useSelector(selectProductCategory);
 
   const formatSegment = (segment: string) => {
     return segment.replace(/-/g, ' ').replace(/\b\w/g, (c) => c.toUpperCase());
@@ -21,8 +24,8 @@ export const useBreadcrumb = (productNameFromProps?: string) => {
   if (segments[0] === 'product') {
     breadcrumbItems = [
       {
-        name: 'Phones',
-        path: '/phones',
+        name: formatSegment(category),
+        path: `/${category}`,
         isLast: false,
       },
       {

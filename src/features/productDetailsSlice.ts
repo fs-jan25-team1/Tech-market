@@ -58,7 +58,12 @@ const productDetailsSlice = createSlice({
 });
 
 export const { clearProductDetails } = productDetailsSlice.actions;
+
 export const selectProductName = (state: {
   productDetails: ProductDetailsState;
 }) => state.productDetails.product?.name || '';
+
+export const selectProductCategory = (state: { productDetails: ProductDetailsState }) =>
+  state.productDetails.product?.category || 'phones';
+
 export default productDetailsSlice;

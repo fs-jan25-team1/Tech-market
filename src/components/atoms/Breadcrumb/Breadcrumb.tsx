@@ -25,7 +25,9 @@ export const Breadcrumb = ({ productName }: { productName?: string }) => {
             <Home className="w-4 h-4" />
           </Link>
           {breadcrumbItems.length > 0 && (
-            <span className="text-[#75767F]">{<ChevronRight className="w-4 h-4" />}</span>
+            <span className="text-[#75767F]">
+              {<ChevronRight className="w-4 h-4" />}
+            </span>
           )}
         </li>
 
@@ -41,7 +43,11 @@ export const Breadcrumb = ({ productName }: { productName?: string }) => {
             ) : (
               <span className="text-[#75767F]">{crumb.name}</span>
             )}
-            {!crumb.isLast && <span className="text-[#F1F2F9]">{<ChevronRight className="w-4 h-4" />}</span>}
+            {!crumb.isLast && (
+              <span className="text-[#F1F2F9]">
+                {<ChevronRight className="w-4 h-4" />}
+              </span>
+            )}
           </li>
         ))}
       </ol>

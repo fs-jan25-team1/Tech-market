@@ -2,7 +2,11 @@ import { CustomDropdown } from '@/components/atoms/dropdown/Dropdown';
 import { Pagination } from '../../molecules/Pagination/Pagination';
 import { ProductCard } from '@/components/organisms/ProductCard/ProductCard';
 import { Loader } from '@/components/atoms/Loader/Loader';
-import { fetchProducts, setStatus, setCurrentCategory } from '@/features/productsSlice';
+import {
+  fetchProducts,
+  setStatus,
+  setCurrentCategory,
+} from '@/features/productsSlice';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { CategoryType } from '@/types/CategoryType';

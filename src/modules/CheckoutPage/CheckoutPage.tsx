@@ -58,7 +58,7 @@ export const CheckoutPage = () => {
       {showModal && (
         <div className="absolute inset-0 flex flex-col justify-center items-center bg-[#0f1121]/50 z-50 animate-fade-in">
           <div className="bg-[#f1f2f9] text-black px-8 py-6 rounded-2xl shadow-xl text-xl font-semibold">
-            <div className='mb-3'>Thanks for shopping with us!</div>
+            <div className="mb-3">Thanks for shopping with us!</div>
             <Link to={'/'}>
               <Button
                 variant={ButtonTypes.primary}

@@ -1,32 +1,35 @@
-import { Link, NavLink, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { Heart, ShoppingCart, Menu } from 'lucide-react';
+import { signOut, onAuthStateChanged, User } from 'firebase/auth';
+import { auth } from '@/shared/firebase';
 import { Button } from '@/components/ui/button';
+import { useAppSelector } from '@/store/store';
+import { Heart, ShoppingCart, Menu } from 'lucide-react';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { MobileSidebar } from './MobileSidebar';
 import { Modal } from '@/components/molecules/Modal/Modal';
 import { AuthForm } from '@/components/molecules/SingInForm/SingUpForm/SingUpForm';
-import { signOut, onAuthStateChanged, User } from 'firebase/auth';
-import { auth } from '@/shared/firebase';
+import { UserDropdown } from '@/components/molecules/UserMenu/UserMenu';
 import { Loader } from '@/components/atoms/Loader/Loader';
-import { useAppSelector } from '@/store/store';
 
-interface HeaderProps {
-  favoritesCount?: number;
-  cartCount?: number;
-}
-
-const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
+const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
-  cartCount = useAppSelector((store) => Object.keys(store.cart.items).length);
-  favoritesCount = useAppSelector((store) => store.favourites.items.length);
+
+  const cartCount = useAppSelector(
+    (store) => Object.keys(store.cart.items).length,
+  );
+  const favoritesCount = useAppSelector(
+    (store) => store.favourites.items.length,
+  );
 
   useEffect(() => {
+    setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -38,9 +41,6 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
     { path: '/tablets', label: 'Tablets' },
     { path: '/accessories', label: 'Accessories' },
   ];
-
-  const isFavorites = location.pathname === '/favorites';
-  const isCart = location.pathname === '/cart';
 
   const handleLogout = async () => {
     setLoading(true);
@@ -57,7 +57,6 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
   return (
     <header className="sticky top-0 z-50 w-full bg-black border-b border-[#3B3E4A] font-[montBold]">
       <div className="w-full pl-6 pr-0 lg:pl-12 flex items-center justify-between">
-        {/* Left: Logo + Navigation */}
         <div className="flex items-center gap-8">
           <Link to="/">
             <img
@@ -93,67 +92,53 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
           </nav>
         </div>
 
-        {/* Right: Icons + Burger */}
         <div className="flex items-center">
-          {/* Desktop Icons */}
           <div className="hidden sm:flex items-center h-12 border-l border-[#3B3E4A]">
-            {/* Favorites */}
             <NavLink
               to="/favorites"
-              className="relative flex items-center justify-center h-full border-l border-[#3B3E4A]"
+              className="flex items-center justify-center h-full w-[48px] border-l border-[#3B3E4A]"
             >
-              <Button
-                variant="ghost"
-                size="icon"
-                className={`flex justify-center items-center px-6 hover:scale-110 transition-transform cursor-pointer ${
-                  isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F]'
-                }`}
-              >
-                <Heart className="h-5 w-5" />
-              </Button>
-              {favoritesCount > 0 && (
-                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
-                  {favoritesCount}
-                </span>
-              )}
+              <div className="relative flex items-center justify-center w-full h-full group">
+                <Heart className="w-5 h-5 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
+                {favoritesCount > 0 && (
+                  <span className="absolute top-[6px] right-[6px] bg-[#EB5757] text-white text-[8px] leading-[10px] font-bold rounded-full min-w-[14px] h-[14px] flex items-center justify-center px-[2px]">
+                    {favoritesCount}
+                  </span>
+                )}
+              </div>
             </NavLink>
 
-            {/* Cart */}
             <NavLink
               to="/cart"
-              className="relative flex items-center justify-center h-full border-l border-[#3B3E4A]"
+              className="relative flex items-center justify-center h-full w-[48px] border-l border-[#3B3E4A]"
             >
-              <Button
-                variant="ghost"
-                size="icon"
-                className={`flex justify-center items-center px-6 hover:scale-110 transition-transform cursor-pointer ${
-                  isCart ? 'text-[#F1F2F9]' : 'text-[#75767F]'
-                }`}
-              >
-                <ShoppingCart className="h-5 w-5" />
-              </Button>
-              {cartCount > 0 && (
-                <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 text-[10px] leading-[11px] font-bold text-white bg-[#EB5757] rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
-                  {cartCount}
-                </span>
-              )}
+              <div className="relative flex items-center justify-center w-full h-full group">
+                <ShoppingCart
+                  className={`h-5 w-5 ${
+                    location.pathname === '/cart'
+                      ? 'text-[#F1F2F9]'
+                      : 'text-[#75767F]'
+                  } group-hover:text-[#F1F2F9] transition-colors`}
+                />
+                {cartCount > 0 && (
+                  <span className="absolute top-[6px] right-[6px] bg-[#EB5757] text-white text-[10px] leading-[11px] font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
+                    {cartCount}
+                  </span>
+                )}
+              </div>
             </NavLink>
 
-            {/* Sign In or Log Out */}
             <div className="relative flex items-center justify-center h-full border-l border-[#3B3E4A]">
-              {user ? (
-                <Button
-                  variant="ghost"
-                  className="w-12 h-12 text-white bg-violet-600 hover:bg-violet-700 hover:scale-110 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
-                  onClick={handleLogout}
-                  disabled={loading}
-                >
-                  {loading ? <Loader /> : 'Log Out'}
-                </Button>
+              {loading ? (
+                <div className="w-12 h-12 flex items-center justify-center">
+                  <Loader />
+                </div>
+              ) : user ? (
+                <UserDropdown user={user} onLogout={handleLogout} />
               ) : (
                 <Button
                   variant="ghost"
-                  className="w-12 h-12 text-white bg-violet-600 hover:bg-violet-700 hover:scale-110 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
+                  className="w-12 h-12 text-white bg-violet-600 hover:bg-violet-700 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
                   onClick={() => setIsAuthModalOpen(true)}
                 >
                   Sign in
@@ -162,7 +147,6 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
             </div>
           </div>
 
-          {/* Burger Button for Mobile */}
           <Button
             variant="ghost"
             size="icon"
@@ -174,7 +158,6 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
         </div>
       </div>
 
-      {/* Mobile Sidebar */}
       <MobileSidebar
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
@@ -186,7 +169,6 @@ const Header = ({ favoritesCount = 0, cartCount = 0 }: HeaderProps) => {
         onSignIn={() => setIsAuthModalOpen(true)}
       />
 
-      {/* Sign In Modal */}
       {isAuthModalOpen && (
         <Modal onClose={() => setIsAuthModalOpen(false)}>
           <AuthForm onClose={() => setIsAuthModalOpen(false)} />

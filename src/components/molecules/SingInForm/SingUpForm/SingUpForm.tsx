@@ -2,8 +2,9 @@ import { useState } from 'react';
 import {
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
+  signInWithPopup,
 } from 'firebase/auth';
-import { auth } from '@/shared/firebase';
+import { auth, googleProvider } from '@/shared/firebase';
 import { Loader } from '@/components/atoms/Loader/Loader';
 
 interface AuthFormProps {
@@ -58,6 +59,22 @@ export const AuthForm = ({ onClose }: AuthFormProps) => {
   const toggleMode = () => {
     setIsSignInMode(!isSignInMode);
     setError(null);
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    try {
+      await signInWithPopup(auth, googleProvider);
+      onClose();
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An unknown error occurred');
+      }
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -139,6 +156,15 @@ export const AuthForm = ({ onClose }: AuthFormProps) => {
           </>
         )}
       </p>
+
+      <div className="flex justify-center gap-4 mt-4">
+        <button
+          onClick={handleGoogleSignIn}
+          className="bg-violet-600 p-3 rounded-lg text-white font-semibold w-full"
+        >
+          Sign In with Google
+        </button>
+      </div>
     </div>
   );
 };

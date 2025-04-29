@@ -15,12 +15,7 @@ type Props = {
   price: number;
 };
 
-export const CartItem: React.FC<Props> = ({
-  id,
-  img,
-  name,
-  price,
-}) => {
+export const CartItem: React.FC<Props> = ({ id, img, name, price }) => {
   const dispatch = useAppDispatch();
   const products = useAppSelector((state) => state.cart.items);
   const productInCart = products[id];

@@ -38,19 +38,13 @@ export const cartSlice = createSlice({
       }
       saveCartToLocalStorage(state);
     },
-    removeFromCart: (
-      state,
-      action: PayloadAction<{ productId: number }>,
-    ) => {
+    removeFromCart: (state, action: PayloadAction<{ productId: number }>) => {
       const { productId } = action.payload;
 
       delete state.items[productId];
       saveCartToLocalStorage(state);
     },
-    addQuantity: (
-      state,
-      action: PayloadAction<{ productId: number }>,
-    ) => {
+    addQuantity: (state, action: PayloadAction<{ productId: number }>) => {
       const { productId } = action.payload;
 
       if (state.items[productId]) {
@@ -58,10 +52,7 @@ export const cartSlice = createSlice({
       }
       saveCartToLocalStorage(state);
     },
-    removeQuantity: (
-      state,
-      action: PayloadAction<{ productId: number }>,
-    ) => {
+    removeQuantity: (state, action: PayloadAction<{ productId: number }>) => {
       const { productId } = action.payload;
 
       if (state.items[productId] && state.items[productId].quantity > 1) {
@@ -70,11 +61,16 @@ export const cartSlice = createSlice({
       saveCartToLocalStorage(state);
     },
     clearCart: (state) => {
-      state.items = {}
-      saveCartToLocalStorage(state)
-    }
+      state.items = {};
+      saveCartToLocalStorage(state);
+    },
   },
 });
 
-export const { addToCart, removeFromCart, addQuantity, removeQuantity, clearCart } =
-  cartSlice.actions;
+export const {
+  addToCart,
+  removeFromCart,
+  addQuantity,
+  removeQuantity,
+  clearCart,
+} = cartSlice.actions;

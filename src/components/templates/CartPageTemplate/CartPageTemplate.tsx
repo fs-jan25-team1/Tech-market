@@ -1,6 +1,7 @@
 import Button from '@/components/atoms/button/Button';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { CartItem } from '@/components/organisms/CartItem/CartItem';
+import { Link } from 'react-router';
 import { useAppSelector } from '@/store/store';
 
 export const CartPageTemplate = () => {
@@ -68,11 +69,13 @@ export const CartPageTemplate = () => {
                 Total for {totalItems} items
               </h4>
               <div className="h-[1px] bg-[#3B3E4A] w-full my-4"></div>
-              <Button
-                variant={ButtonTypes.primary}
-                content="Checkout"
-                width={'100%'}
-              />
+              <Link to="/checkout" className="w-full">
+                <Button
+                  variant={ButtonTypes.primary}
+                  content="Checkout"
+                  width={'100%'}
+                />
+              </Link>
             </div>
           </div>
         </>

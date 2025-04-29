@@ -25,6 +25,7 @@
     "framer-motion": "^12.9.1",
     "lucide-react": "^0.501.0",
     "react": "^19.0.0",
+    "react-19-credit-cards": "^1.0.3",
     "react-dom": "^19.0.0",
     "react-hot-toast": "^2.5.2",
     "react-intersection-observer": "^9.16.0",

@@ -8,6 +8,7 @@ import { CartPage } from './modules/CartPage/CartPage';
 import { ItemCard as ItemCardTemplate } from './components/templates/ItemCardTemplate/ItemCardTemplate';
 import { ScrollToTop } from './components/ui/ScrollToTop';
 import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';
+import { CheckoutPage } from './modules/CheckoutPage';
 
 export const AppRouter = () => {
   return (
@@ -23,6 +24,7 @@ export const AppRouter = () => {
           <Route path="cart" element={<CartPage />} />
           <Route path="product/:productId" element={<ItemCardTemplate />} />
         </Route>
+        <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>
     </>
   );

@@ -1,11 +1,17 @@
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Heart, ShoppingCart, X } from 'lucide-react';
+import { User } from 'firebase/auth';
+import { motion } from 'framer-motion';
 
 interface MobileSidebarProps {
   isOpen: boolean;
   onClose: () => void;
   favoritesCount?: number;
   cartCount?: number;
+  user: User | null;
+  loading: boolean;
+  onLogout: () => void;
+  onSignIn: () => void;
 }
 
 const navItems = [
@@ -20,6 +26,10 @@ export const MobileSidebar = ({
   onClose,
   favoritesCount = 0,
   cartCount = 0,
+  user,
+  loading,
+  onLogout,
+  onSignIn,
 }: MobileSidebarProps) => {
   const location = useLocation();
   const isFavorites = location.pathname === '/favorites';
@@ -44,7 +54,8 @@ export const MobileSidebar = ({
           </button>
         </div>
 
-        <nav className="flex flex-col items-center gap-6 text-center">
+        {/* Navigation */}
+        <nav className="flex flex-col items-center gap-6 text-center mb-6">
           {navItems.map(({ path, label }) => (
             <NavLink
               key={path}
@@ -62,9 +73,36 @@ export const MobileSidebar = ({
             </NavLink>
           ))}
         </nav>
+
+        {/* Sign In / Log Out Button with Animation */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+        >
+          {user ? (
+            <button
+              onClick={onLogout}
+              disabled={loading}
+              className="w-full py-2 text-white bg-violet-600 hover:bg-violet-700 rounded-md text-sm font-semibold transition"
+            >
+              {loading ? 'Loading...' : 'Log Out'}
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                onClose();
+                onSignIn();
+              }}
+              className="w-full py-2 text-white bg-violet-600 hover:bg-violet-700 rounded-md text-sm font-semibold transition"
+            >
+              Sign In
+            </button>
+          )}
+        </motion.div>
       </div>
 
-      {/* Bottom */}
+      {/* Bottom Section (Favorites and Cart) */}
       <div className="flex items-center justify-center h-20 border-t border-[#3B3E4A]">
         {/* Favorites */}
         <Link

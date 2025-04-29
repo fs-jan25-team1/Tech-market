@@ -26,7 +26,7 @@ export const useBreadcrumb = (productNameFromProps?: string) => {
         isLast: false,
       },
       {
-        name: productNameFromProps || 'Product',
+        name: productNameFromProps || ' ',
         path: location.pathname,
         isLast: true,
       },

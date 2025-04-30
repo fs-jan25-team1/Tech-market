@@ -1,3 +1,5 @@
+import { ProductCardType } from "./ProductCardType";
+
 export interface ProductDetails {
   id: string;
   namespaceId: string;
@@ -20,4 +22,5 @@ export interface ProductDetails {
   camera: string;
   zoom: string;
   cell: string[];
+  basicInfo?: ProductCardType;
 }

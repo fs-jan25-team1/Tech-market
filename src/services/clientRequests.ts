@@ -47,6 +47,8 @@ export const getProductDetails = async (
   );
 
   const res = categoryProducts.find((p) => p.id === prod?.itemId);
-
+  if (prod && typeof prod !== 'undefined' && res) {
+    res.basicInfo = prod;
+  }
   return res ? res : null;
 };

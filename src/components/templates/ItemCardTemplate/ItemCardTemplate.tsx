@@ -20,6 +20,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/autoplay';
+import { CategoryType } from '@/types/CategoryType';
 
 export const ItemCard = () => {
   const dispatch = useAppDispatch();
@@ -453,7 +454,7 @@ export const ItemCard = () => {
 
           {/* You may also like */}
           <div className="col-span-full">
-            <YouMayAlsoLikeSlider />
+            <YouMayAlsoLikeSlider category={CategoryType.phones} />
           </div>
         </div>
       )}

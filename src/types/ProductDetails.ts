@@ -1,4 +1,4 @@
-import { ProductCardType } from "./ProductCardType";
+import { ProductCardType } from './ProductCardType';
 
 export interface ProductDetails {
   id: string;

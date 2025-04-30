@@ -42,6 +42,7 @@ export const CheckoutPage = () => {
     evt.preventDefault();
     setShowModal(true);
     startRedirectTimeout();
+    dispatch(clearCart());
   };
 
   return (
@@ -72,7 +73,6 @@ export const CheckoutPage = () => {
                     clearTimeout(timeoutRef.current);
                   }
                   navigate('/');
-                  dispatch(clearCart());
                 }}
               />
             </Link>

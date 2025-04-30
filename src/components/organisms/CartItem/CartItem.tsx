@@ -34,8 +34,8 @@ export const CartItem: React.FC<Props> = ({ id, img, name, price }) => {
   };
 
   return (
-    <div className="bg-[#161827] text-[#F1F2F9] max-w-screen min-w-[288px] p-2 flex flex-col cursor-pointer gap-4 mb-4 sm:flex-row sm:h-32 sm:items-center">
-      <div className="flex flex-row items-center gap-6 m-2">
+    <div className="bg-[#161827] text-[#F1F2F9] justify-between max-w-screen min-w-[288px] p-4 sm:p-6 flex flex-col cursor-pointer gap-4 mb-4 sm:flex-row sm:h-32 sm:items-center">
+      <div className="flex flex-row items-center gap-6">
         <Button
           variant={ButtonTypes.numbered}
           width={16}
@@ -49,9 +49,9 @@ export const CartItem: React.FC<Props> = ({ id, img, name, price }) => {
         <h2 className="font-[Mont] text-left text-sm leading-5">{name}</h2>
       </div>
 
-      <div className="flex items-center justify-between w-full px-2 sm:flex-1">
-        <div className="sm:flex-1 sm:flex sm:justify-center">
-          <div className="flex flex-row items-center gap-4">
+      <div className="flex justify-between sm:justify-start">
+        <div className="pr-6">
+          <div className="flex flex-row items-center gap-[14px]">
             <Button
               variant={ButtonTypes.arrow}
               icon={Minus}
@@ -68,7 +68,7 @@ export const CartItem: React.FC<Props> = ({ id, img, name, price }) => {
             />
           </div>
         </div>
-        <div className="ml-6">
+        <div className="w-20 flex justify-end">
           <h2 className="font-[montBold] text-2xl leading-tight">${price}</h2>
         </div>
       </div>

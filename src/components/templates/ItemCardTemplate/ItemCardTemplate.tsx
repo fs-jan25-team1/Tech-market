@@ -10,6 +10,8 @@ import {
   fetchProductDetails,
   clearProductDetails,
 } from '../../../features/productDetailsSlice';
+import { addFavourite, removeFavourite } from '@/features/favouritesSlice';
+import { addToCart, removeFromCart } from '@/features/cartSlice';
 import { Loader } from '@/components/atoms/Loader/Loader';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
@@ -67,28 +69,99 @@ export const ItemCard = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
 
+  const favourites = useAppSelector((store) => store.favourites.items);
+  const cart = useAppSelector((store) => store.cart.items);
+  const isCurrentlyFavourite = favourites.some((item) =>
+    productId ? item.id === +productId : 0,
+  );
+  const isInCart = Object.values(cart).some((el) =>
+    productId ? el.product.id === +productId : 0,
+  );
+
   const handleFavoritesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
-    toast.success('Added to favorites', {
-      style: {
-        background: '#161827',
-        color: '#F1F2F9',
-        border: '1px solid #3B3E4A',
-      },
-    });
+
+    if (isCurrentlyFavourite) {
+      if (product?.basicInfo?.id) {
+        dispatch(removeFavourite(product.basicInfo.id));
+        toast.success(`${product.basicInfo.name} removed from favorites`, {
+          style: {
+            background: '#161827',
+            color: '#F1F2F9',
+            border: '1px solid #3B3E4A',
+          },
+        });
+      }
+    } else {
+      if (product?.basicInfo?.id) {
+        dispatch(
+          addFavourite({
+            id: product?.basicInfo?.id,
+            category: '',
+            itemId: '',
+            name: product.basicInfo.name,
+            fullPrice: product.basicInfo.fullPrice,
+            price: product.basicInfo.price,
+            screen: product.basicInfo.screen,
+            capacity: product.basicInfo.capacity,
+            color: product.basicInfo.color,
+            ram: product.basicInfo.ram,
+            year: product.basicInfo.year,
+            image: product.basicInfo.image,
+          }),
+        );
+        toast.success(`${product.basicInfo.name} added to favorites`, {
+          style: {
+            background: '#161827',
+            color: '#F1F2F9',
+            border: '1px solid #3B3E4A',
+          },
+        });
+      }
+    }
   };
 
   const handleAddToCartClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
-    toast.success('Added to cart', {
-      style: {
-        background: '#161827',
-        color: '#F1F2F9',
-        border: '1px solid #3B3E4A',
-      },
-    });
+
+    if (!product?.basicInfo?.id) return;
+
+    const productDetails = {
+      id: product.basicInfo.id,
+      category: '',
+      itemId: '',
+      name: product.basicInfo.name,
+      fullPrice: product.basicInfo.fullPrice,
+      price: product.basicInfo.price,
+      screen: product.basicInfo.screen,
+      capacity: product.basicInfo.capacity,
+      color: product.basicInfo.color,
+      ram: product.basicInfo.ram,
+      year: product.basicInfo.year,
+      image: product.basicInfo.image,
+    };
+
+    if (isInCart) {
+      dispatch(removeFromCart({ productId: product.basicInfo.id }));
+      toast.success(`${product.basicInfo.name} removed from cart`, {
+        style: {
+          background: '#161827',
+          color: '#F1F2F9',
+          border: '1px solid #3B3E4A',
+        },
+      });
+    } else {
+      dispatch(addToCart({ product: productDetails }));
+      toast.success(`${product.basicInfo.name} added to cart`, {
+        style: {
+          background: '#161827',
+          color: '#F1F2F9',
+          border: '1px solid #3B3E4A',
+        },
+      });
+    }
   };
 
   const handleThumbnailClick = (index: number) => {
@@ -268,12 +341,12 @@ export const ItemCard = () => {
                   <div className="mb-8">
                     <div className="flex gap-2 mb-8">
                       <Button
-                        content="Add to cart"
+                        content={isInCart ? 'In cart' : 'Add to cart'}
                         variant={ButtonTypes.primary}
                         iconSize={18}
                         height={48}
                         onClick={handleAddToCartClick}
-                        className="flex-1"
+                        className={`flex-1 ${isInCart ? 'active' : ''}`}
                       />
                       <Button
                         variant={ButtonTypes.favourite}
@@ -282,6 +355,7 @@ export const ItemCard = () => {
                         height={48}
                         width={48}
                         onClick={handleFavoritesClick}
+                        className={`${isCurrentlyFavourite ? 'active' : ''}`}
                       />
                     </div>
                   </div>

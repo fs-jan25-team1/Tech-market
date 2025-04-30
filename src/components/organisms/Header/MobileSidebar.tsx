@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
 import { Heart, ShoppingCart, X } from 'lucide-react';
 import { Loader } from '@/components/atoms/Loader/Loader';
@@ -38,6 +38,23 @@ export const MobileSidebar = ({
   const isFavorites = location.pathname === '/favorites';
   const isCart = location.pathname === '/cart';
   const [userMenuOpen, setUserMenuOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setUserMenuOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   if (!isOpen) return null;
 
@@ -85,19 +102,24 @@ export const MobileSidebar = ({
           transition={{ duration: 0.4 }}
         >
           {user ? (
-            <div className="relative flex justify-center">
+            <div className="relative flex justify-center" ref={dropdownRef}>
               <button
                 onClick={() => setUserMenuOpen((prev) => !prev)}
-                className=" h-12 rounded-full overflow-hidden "
+                className="w-10 h-10 rounded-full overflow-hidden"
               >
                 <UserAvatar user={user} />
               </button>
 
               {userMenuOpen && (
-                <div className="absolute top-14 right-0 bg-white text-black rounded-md shadow-lg w-40 z-50">
-                  <div className="px-4 py-3 border-b border-gray-200">
+                <motion.div
+                  initial={{ opacity: 0, y: 4 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-12 right-0 bg-[#905BFF] text-white rounded-xl shadow-lg w-44 z-50"
+                >
+                  <div className="px-4 py-3 border-b border-[#a885ff]">
                     <p className="font-semibold truncate">{user.displayName}</p>
-                    <p className="text-sm text-gray-600 truncate">
+                    <p className="text-sm text-[#E3DFFF] truncate">
                       {user.email}
                     </p>
                   </div>
@@ -107,11 +129,11 @@ export const MobileSidebar = ({
                       setUserMenuOpen(false);
                       onClose();
                     }}
-                    className="w-full text-left px-4 py-2 hover:bg-gray-100 transition-colors"
+                    className="w-full text-left px-4 py-2 text-white rounded-b-xl text-sm"
                   >
                     {loading ? <Loader /> : 'Logout'}
                   </button>
-                </div>
+                </motion.div>
               )}
             </div>
           ) : (
@@ -160,7 +182,7 @@ export const MobileSidebar = ({
           to="/cart"
           onClick={onClose}
           className={`flex flex-col items-center justify-center w-1/2 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
-            isFavorites
+            isCart
               ? 'border-b-2 border-b-[#F1F2F9]'
               : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
           }`}

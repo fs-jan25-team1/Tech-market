@@ -22,8 +22,13 @@ export const WelcomeDiscountModal = () => {
   }, []);
 
   useEffect(() => {
-    if (!isAuthenticated && !wasLoggedIn) {
-      const timer = setTimeout(() => setIsOpen(true), 1500);
+    const hasSeenModal = localStorage.getItem('hasSeenWelcomeModal');
+    if (!isAuthenticated && !wasLoggedIn && !hasSeenModal) {
+      const timer = setTimeout(() => {
+        setIsOpen(true);
+        localStorage.setItem('hasSeenWelcomeModal', 'true');
+      }, 1500);
+
       return () => clearTimeout(timer);
     } else {
       setIsOpen(false);

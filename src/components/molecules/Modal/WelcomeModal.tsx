@@ -28,7 +28,7 @@ export const WelcomeDiscountModal = () => {
         setIsOpen(true);
         localStorage.setItem('hasSeenWelcomeModal', 'true');
       }, 1500);
-  
+
       return () => clearTimeout(timer);
     } else {
       setIsOpen(false);

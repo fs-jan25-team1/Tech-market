@@ -42,7 +42,10 @@ export const MobileSidebar = ({
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         setUserMenuOpen(false);
       }
     };
@@ -116,7 +119,9 @@ export const MobileSidebar = ({
                 >
                   <div className="px-4 py-3 border-b border-[#a885ff]">
                     <p className="font-semibold truncate">{user.displayName}</p>
-                    <p className="text-sm text-[#E3DFFF] truncate">{user.email}</p>
+                    <p className="text-sm text-[#E3DFFF] truncate">
+                      {user.email}
+                    </p>
                   </div>
                   <button
                     onClick={() => {

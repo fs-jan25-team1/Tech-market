@@ -29,8 +29,13 @@ type Props = {
   category: CategoryType;
 };
 
-export const YouMayAlsoLikeSlider: React.FC<Props> = ({ currentProduct, category }) => {
-  const [filteredProducts, setFilteredProducts] = useState<ProductCardType[]>([]);
+export const YouMayAlsoLikeSlider: React.FC<Props> = ({
+  currentProduct,
+  category,
+}) => {
+  const [filteredProducts, setFilteredProducts] = useState<ProductCardType[]>(
+    [],
+  );
   const [swiperReady, setSwiperReady] = useState(false);
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -48,18 +53,22 @@ export const YouMayAlsoLikeSlider: React.FC<Props> = ({ currentProduct, category
       fetchProducts({
         category,
         sortBy: FilterStatus.newest,
-      })
+      }),
     );
   }, [dispatch, category]);
 
   useEffect(() => {
     if (productsList.length > 0) {
-      const related = productsList.filter(p => {
-        if (currentProduct) {
-          return String(p.id) !== currentProduct.id
-        }
-      }).slice(0, 8);
-      setFilteredProducts(related.length > 0 ? related : productsList.slice(0, 8));
+      const related = productsList
+        .filter((p) => {
+          if (currentProduct) {
+            return String(p.id) !== currentProduct.id;
+          }
+        })
+        .slice(0, 8);
+      setFilteredProducts(
+        related.length > 0 ? related : productsList.slice(0, 8),
+      );
       setSwiperReady(true);
     }
   }, [currentProduct, productsList]);
@@ -73,7 +82,9 @@ export const YouMayAlsoLikeSlider: React.FC<Props> = ({ currentProduct, category
   }
 
   return (
-    <section className={`${styles.youMayAlsoLike} bg-[#0F1121] py-10 overflow-hidden`}>
+    <section
+      className={`${styles.youMayAlsoLike} bg-[#0F1121] py-10 overflow-hidden`}
+    >
       <motion.h2
         ref={ref}
         className="col-span-full text-2xl sm:text-3xl text-[#F1F2F9] font-[MontBold] mb-6"

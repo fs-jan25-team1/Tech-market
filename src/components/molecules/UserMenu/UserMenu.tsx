@@ -43,7 +43,9 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
         <div className="absolute right-0 mt-2 w-52 bg-[#905BFF] text-white rounded-xl shadow-xl z-50">
           <div className="px-4 py-3 border-b border-[#a885ff]">
             <p className="font-semibold cursor-pointer">{user.displayName}</p>
-            <p className="text-sm text-[#E3DFFF] truncate cursor-pointer">{user.email}</p>
+            <p className="text-sm text-[#E3DFFF] truncate cursor-pointer">
+              {user.email}
+            </p>
           </div>
           <button
             onClick={() => {

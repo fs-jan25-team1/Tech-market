@@ -105,7 +105,7 @@ export const MobileSidebar = ({
             <div className="relative flex justify-center" ref={dropdownRef}>
               <button
                 onClick={() => setUserMenuOpen((prev) => !prev)}
-                className="w-10 h-10 rounded-full overflow-hidden"
+                className="w-10 h-10 rounded-full overflow-hidden cursor-pointer"
               >
                 <UserAvatar user={user} />
               </button>
@@ -115,7 +115,7 @@ export const MobileSidebar = ({
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-12 right-0 bg-[#905BFF] text-white rounded-xl shadow-lg w-44 z-50"
+                  className="absolute top-12 right-0 bg-[#905BFF] text-white rounded-xl shadow-lg w-44 z-50 cursor-pointer"
                 >
                   <div className="px-4 py-3 border-b border-[#a885ff]">
                     <p className="font-semibold truncate">{user.displayName}</p>
@@ -129,7 +129,7 @@ export const MobileSidebar = ({
                       setUserMenuOpen(false);
                       onClose();
                     }}
-                    className="w-full text-left px-4 py-2 text-white rounded-b-xl text-sm"
+                    className="w-full text-left px-4 py-2 text-white rounded-b-xl text-sm cursor-pointer"
                   >
                     {loading ? <Loader /> : 'Logout'}
                   </button>

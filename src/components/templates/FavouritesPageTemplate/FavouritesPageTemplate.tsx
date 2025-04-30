@@ -5,7 +5,9 @@ import { ProductCardType } from '@/types/ProductCardType';
 export const FavouritesPageTemplate = () => {
   const items = useAppSelector((store) => store.favourites.items);
   const displayedProducts: ProductCardType[] = items;
-  console.log('Favourites items:', items);
+
+  const isEmpty = displayedProducts.length === 0;
+
   return (
     <div
       className="grid grid-cols-4 gap-4 
@@ -36,29 +38,44 @@ export const FavouritesPageTemplate = () => {
       >
         {items.length} models
       </div>
-      <div
-        className="col-span-full grid 
-          grid-cols-1 gap-x-4 gap-y-10
-          justify-items-center
-          min-[400px]:grid-cols-2
-          sm:grid-cols-2
-          md:grid-cols-3
-          lg:grid-cols-4"
-      >
-        {displayedProducts.map((product) => (
-          <ProductCard
-            key={product.id}
-            id={product.id}
-            name={product.name}
-            priceRegular={product.fullPrice}
-            priceDiscount={product.price}
-            img={product.image}
-            screen={product.screen}
-            capacity={product.capacity}
-            ram={product.ram}
-          />
-        ))}
-      </div>
+
+      {isEmpty ? (
+        <div
+          className="col-span-full flex flex-col items-center justify-center text-center text-[#F1F2F9]
+      h-[50vh] sm:h-[60vh] lg:h-[40vh]"
+        >
+          <div className="text-[20px] sm:text-[24px] font-semibold mb-4">
+            Your favourites list is empty 👀
+          </div>
+          <p className="text-[14px] sm:text-[16px] text-[#B0B3C6]">
+            Browse products and add them to your favourites
+          </p>
+        </div>
+      ) : (
+        <div
+          className="col-span-full grid 
+            grid-cols-1 gap-x-4 gap-y-10
+            justify-items-center
+            min-[400px]:grid-cols-2
+            sm:grid-cols-2
+            md:grid-cols-3
+            lg:grid-cols-4"
+        >
+          {displayedProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              priceRegular={product.fullPrice}
+              priceDiscount={product.price}
+              img={product.image}
+              screen={product.screen}
+              capacity={product.capacity}
+              ram={product.ram}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

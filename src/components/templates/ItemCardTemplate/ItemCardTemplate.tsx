@@ -21,6 +21,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/autoplay';
 import { CategoryType } from '@/types/CategoryType';
+import { useSelector } from 'react-redux';
+import {
+  selectProductCategory,
+  setCurrentCategory,
+} from '@/features/productsSlice';
 
 export const ItemCard = () => {
   const dispatch = useAppDispatch();
@@ -45,7 +50,6 @@ export const ItemCard = () => {
 
   useEffect(() => {
     if (product) {
-      // selectedCapacity
       if (product.capacity && product.capacityAvailable) {
         const initialCapacity = product.capacityAvailable.includes(
           product.capacity,
@@ -54,8 +58,6 @@ export const ItemCard = () => {
           : product.capacityAvailable[0];
         setSelectedCapacity(initialCapacity);
       }
-
-      // selectedColor
       if (product.color && product.colorsAvailable) {
         const initialColor = product.colorsAvailable.includes(product.color)
           ? product.color
@@ -64,6 +66,17 @@ export const ItemCard = () => {
       }
     }
   }, [product]);
+
+  const category = useSelector(selectProductCategory);
+
+  useEffect(() => {
+    if (
+      product?.basicInfo?.category &&
+      category !== product.basicInfo.category
+    ) {
+      dispatch(setCurrentCategory(product.basicInfo.category));
+    }
+  }, [product, category, dispatch]);
 
   const [selectedColor, setSelectedColor] = useState('');
   const [selectedCapacity, setSelectedCapacity] = useState('');

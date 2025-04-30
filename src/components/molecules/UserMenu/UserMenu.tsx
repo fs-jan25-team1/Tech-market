@@ -25,17 +25,17 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
       </button>
 
       {open && (
-        <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-lg shadow-lg z-50">
+        <div className="absolute right-0 mt-2 w-48 bg-violet-500 text-white rounded-lg shadow-lg z-50">
           <div className="px-4 py-3 border-b border-gray-200">
             <p className="font-semibold">{user.displayName}</p>
-            <p className="text-sm text-gray-600 truncate">{user.email}</p>
+            <p className="text-sm text-gray-100 truncate">{user.email}</p>
           </div>
           <button
             onClick={() => {
               onLogout();
               setOpen(false);
             }}
-            className="block w-full px-4 py-2 text-sm text-left hover:bg-gray-100 transition-colors"
+            className="block w-full px-4 py-2 text-sm text-left text-white bg-violet-400 hover:bg-violet-500 transition-colors rounded-b-lg"
           >
             Logout
           </button>

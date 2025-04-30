@@ -165,7 +165,9 @@ export const ItemCard = () => {
                       spaceBetween={10}
                       navigation={false}
                       onSwiper={setMainSwiper}
-                      onSlideChange={(swiper) => setActiveImageIndex(swiper.activeIndex)}
+                      onSlideChange={(swiper) =>
+                        setActiveImageIndex(swiper.activeIndex)
+                      }
                       modules={[Navigation, Autoplay]}
                       autoplay={{
                         delay: 3000,

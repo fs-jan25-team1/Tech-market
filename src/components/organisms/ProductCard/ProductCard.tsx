@@ -123,6 +123,7 @@ export const ProductCard = ({
 
   return (
     <div
+      id="cards"
       className="
       bg-[#161827] text-[#F1F2F9]
       w-full h-full

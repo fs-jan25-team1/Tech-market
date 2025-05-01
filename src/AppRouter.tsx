@@ -9,6 +9,8 @@ import { ItemCard as ItemCardTemplate } from './components/templates/ItemCardTem
 import { ScrollToTop } from './components/ui/ScrollToTop';
 import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';
 import { CheckoutPage } from './modules/CheckoutPage';
+import ContactPage from './modules/ContactPage/ContactPage';
+import RightsPage from './modules/RightsPage/RightsPage';
 
 export const AppRouter = () => {
   return (
@@ -23,6 +25,8 @@ export const AppRouter = () => {
           <Route path="favorites" element={<FavoritesPage />} />
           <Route path="cart" element={<CartPage />} />
           <Route path="product/:productId" element={<ItemCardTemplate />} />
+          <Route path="contact" element={<ContactPage />} />
+          <Route path="rights" element={<RightsPage />} />
         </Route>
         <Route path="/checkout" element={<CheckoutPage />} />
       </Routes>

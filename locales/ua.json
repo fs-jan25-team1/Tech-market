@@ -1,0 +1,154 @@
+{
+  "header": {
+    "navItem": {
+      "home": "Головна",
+      "phones": "Телефони",
+      "tablets": "Планшети",
+      "accessories": "Аксесуари"
+    },
+    "mobileSidebar": {
+      "closeMenu": "Закрити меню",
+      "goToFavorites": "До улюблених",
+      "button": {
+        "signIn": "Увійти",
+        "logOut": "Вийти"
+      }
+    }
+  },
+  "welcomeModal": {
+    "welcome": "Ласкаво просимо!",
+    "register": "Зареєструйтесь зараз щоб отримати",
+    "discount": "знижку 5%",
+    "firstOrder": "на перше замовлення!",
+    "button": {
+      "later": "Можливо пізніше",
+      "register": "Створити аккаунт"
+    }
+  },
+  "breadcrumb": {
+    "label": "Крихта",
+    "phones": "Телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари"
+  },
+  "signUpForm": {
+    "error": {
+      "name": "Ім'я повинно містити не менше 3 символів.",
+      "surname": "Фамілія повинна містити не менше 2 символів.",
+      "unknown": "Виникла невідома помилка. Спробуйте ще раз пізніше."
+    },
+    "label": {
+      "signUp": "Зареєструватись",
+      "signIn": "Увійти"
+    },
+    "placeholder": {
+      "firstName": "Ім'я",
+      "lastName": "Фамілія",
+      "email": "Електронна пошта",
+      "password": "Пароль"
+    },
+    "button": {
+      "signUp": "Зареєструватись",
+      "signIn": "Увійти",
+      "signInWithGoogle": "Увійти через Google"
+    },
+    "text": {
+      "alreadyHaveAccount": "Вже маєте аккаунт?",
+      "dontHaveAccount": "Не маєте аккаунт?"
+    },
+    "link": {
+      "signIn": "Увійти",
+      "create": "Створити"
+    }
+  },
+  "signInForm": {
+    "error": {
+      "unknown": "An unknown error occurred. Please try again later."
+    },
+    "label": {
+      "signIn": "Увійти"
+    },
+    "placeholder": {
+      "email": "Електронна пошта",
+      "password": "Пароль"
+    },
+    "button": {
+      "signIn": "Увійти"
+    }
+  },
+  "userMenu": {
+    "button": {
+      "logOut": "Вийти"
+    }
+  },
+  "brandNewSlider": {
+    "label": "Нові моделі"
+  },
+  "footer": {
+    "gitub": "GitHub",
+    "contacts": "Контакти",
+    "rights": "Права",
+    "backToTop": "Повернутись на верх"
+  },
+  "hotPricesSlider": {
+    "label": "Гарячі ціни"
+  },
+  "productCard": {
+    "toast": {
+      "addedToFavorites": "додано до улюблених",
+      "removedFromFavorites": "прибрано з улюблених",
+      "addedToCart": "додано до кошика",
+      "removedFromCart": "прибрано з кошика"
+    },
+    "characteristics": {
+      "screen": "Екран",
+      "capacity": "Об'єм пам'яті",
+      "ram": "Оперативна пам'ять"
+    },
+    "button": {
+      "addToCart": "Додати до кошика",
+      "inCart": "У кошику"
+    }
+  },
+  "shopCategories": {
+    "label": "Магазин по категоріям",
+    "phones": "Телефони",
+    "tablets": "Планшети",
+    "accessories": "Аксесуари",
+    "models_one": "{{count}} модель",
+    "models_few": "{{count}} моделі",
+    "models_many": "{{count}} моделей"
+  },
+  "youMayLike": {
+    "label": "Вам може сподобатись"
+  },
+  "accessoriesPageTemplate": {
+    "dropdown_sort": {
+      "label": "Сортувати",
+      "newest": "Новинки",
+      "oldest": "Старі",
+      "cheapest": "Найдешевші",
+      "expensive": "Найдорожчі"
+    },
+    "dropdown_amount": {
+      "label": "Кількість на сторінці"
+    },
+    "label": "Аксесуари",
+    "models_one": "{{count}} модель",
+    "models_few": "{{count}} моделі",
+    "models_many": "{{count}} моделей"
+  },
+  "cartPageTemplate": {
+    "title": "Кошик",
+    "empty": {
+      "title": "Your cart is empty",
+      "text": "Add some products to your cart to see them here."
+    },
+    "button": {
+      "checkout": "Checkout"
+    },
+    "totalPrice": {
+      "label": "Total Price"
+    }
+  }
+}

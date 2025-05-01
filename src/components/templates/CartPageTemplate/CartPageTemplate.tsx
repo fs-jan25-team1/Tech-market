@@ -4,6 +4,7 @@ import { CartItem } from '@/components/organisms/CartItem/CartItem';
 import { Link } from 'react-router';
 import { useAppSelector } from '@/store/store';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const CartPageTemplate = () => {
   const [totalPrice, setTotalPrice] = useState(0);
@@ -12,6 +13,8 @@ export const CartPageTemplate = () => {
 
   const totalItems = cartItems.length;
   const user = useAppSelector((store) => store.auth.user);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     let price = cartItems.reduce(
@@ -46,7 +49,7 @@ export const CartPageTemplate = () => {
           min-[639px]:text-[48px] min-[1200px]:leading-[56px]
           text-[#F1F2F9] mb-2"
       >
-        Cart
+        {t('cartPageTemplate.title')}
       </h1>
 
       {cartItems.length === 0 ? (

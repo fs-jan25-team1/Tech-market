@@ -22,6 +22,8 @@ import { CategoryType } from '@/types/CategoryType';
 import { Loader } from '@/components/atoms/Loader/Loader';
 import { FilterStatus } from '@/types/FilterStatusType';
 
+import { useTranslation } from 'react-i18next';
+
 export const YouMayAlsoLikeSlider = () => {
   const [isBeginning, setIsBeginning] = useState(true);
   const [isEnd, setIsEnd] = useState(false);
@@ -34,6 +36,8 @@ export const YouMayAlsoLikeSlider = () => {
 
   const dispatch = useAppDispatch();
   const { productsList, isLoading } = useAppSelector((store) => store.products);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(
@@ -76,7 +80,7 @@ export const YouMayAlsoLikeSlider = () => {
         }}
         transition={{ duration: 1 }}
       >
-        You may also like
+        {t('youMayLike.label')}
       </motion.h2>
 
       <div className="col-span-full relative">

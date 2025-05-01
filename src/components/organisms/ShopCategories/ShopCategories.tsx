@@ -5,6 +5,7 @@ import { useInView } from 'react-intersection-observer';
 import { useEffect, useState } from 'react';
 import { getProducts } from '@/services/clientRequests';
 import { CategoryType } from '@/types/CategoryType';
+import { useTranslation } from 'react-i18next';
 
 export const ShopCategories = () => {
   const [phonesCount, setPhonesCount] = useState<number | null>(null);
@@ -12,6 +13,8 @@ export const ShopCategories = () => {
   const [accssesoriesCount, setAccssesoriesCount] = useState<number | null>(
     null,
   );
+
+  const { t } = useTranslation();
 
   const { ref, inView } = useInView({
     threshold: 0.2, //юзаем когда 20% элемента видно
@@ -47,7 +50,7 @@ export const ShopCategories = () => {
         }}
         transition={{ duration: 1 }}
       >
-        Shop by category
+        {t('shopCategories.label')}
       </motion.h2>
 
       <div className="col-span-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full justify-items-center">
@@ -62,9 +65,9 @@ export const ShopCategories = () => {
             alt="category-mobile-phones"
           />
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
-            Mobile phones
+            {t('shopCategories.phones')}
           </h4>
-          <h6 className="text-grey">{phonesCount} models</h6>
+          <h6 className="text-grey">{t('shopCategories.models', { count: phonesCount ?? 0 })}</h6>
         </Link>
 
         {/* Tablets */}
@@ -78,9 +81,9 @@ export const ShopCategories = () => {
             alt="category-tablets"
           />
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
-            Tablets
+            {t('shopCategories.tablets')}
           </h4>
-          <h6 className="text-[#F1F2F9]">{tabletsCount} models</h6>
+          <h6 className="text-[#F1F2F9]">{t('shopCategories.models', {count: tabletsCount ?? 0})}</h6>
         </Link>
 
         {/* Accessories */}
@@ -94,9 +97,9 @@ export const ShopCategories = () => {
             alt="category-accessories"
           />
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
-            Accessories
+            {t('shopCategories.accessories')}
           </h4>
-          <h6 className="text-grey">{accssesoriesCount} models</h6>
+          <h6 className="text-grey">{t('shopCategories.models', {count: accssesoriesCount ?? 0})}</h6>
         </Link>
       </div>
     </section>

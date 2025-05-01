@@ -1,0 +1,154 @@
+{
+  "header": {
+    "navItem": {
+      "home": "Home",
+      "phones": "Phones",
+      "tablets": "Tablets",
+      "accessories": "Accessories"
+    },
+    "mobileSidebar": {
+      "closeMenu": "Close menu",
+      "goToFavorites": "Go to favorites",
+      "button": {
+        "signIn": "Sign In",
+        "logOut": "Log Out"
+      }
+    }
+  },
+  "welcomeModal": {
+    "welcome": "Welcome!",
+    "register": "Register now to get",
+    "discount": "5% off",
+    "firstOrder": "your first order!",
+    "button": {
+      "later": "Maybe Later",
+      "register": "Register Now"
+    }
+  },
+  "breadcrumb": {
+    "label": "Breadcrumb",
+    "phones": "Phones",
+    "tablets": "Tablets",
+    "accessories": "Accessories"
+  },
+  "signUpForm": {
+    "error": {
+      "name": "First name must be at least 3 characters long.",
+      "surname": "Last name must be at least 2 characters long.",
+      "unknown": "An unknown error occurred. Please try again later."
+    },
+    "label": {
+      "signUp": "Sign Up",
+      "signIn": "Sign In"
+    },
+    "placeholder": {
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "email": "Email",
+      "password": "Password"
+    },
+    "button": {
+      "signUp": "Sign Up",
+      "signIn": "Sign In",
+      "signInWithGoogle": "Sign In with Google"
+    },
+    "text": {
+      "alreadyHaveAccount": "Already have an account?",
+      "dontHaveAccount": "Don't have an account?"
+    },
+    "link": {
+      "signIn": "Sign In",
+      "create": "Create one"
+    }
+  },
+  "signInForm": {
+    "error": {
+      "unknown": "An unknown error occurred. Please try again later."
+    },
+    "label": {
+      "signIn": "Sign In"
+    },
+    "placeholder": {
+      "email": "Email",
+      "password": "Password"
+    },
+    "button": {
+      "signIn": "Sign In"
+    }
+  },
+  "userMenu": {
+    "button": {
+      "logOut": "Log Out"
+    }
+  },
+  "brandNewSlider": {
+    "label": "Brand new models"
+  },
+  "footer": {
+    "gitub": "GitHub",
+    "contacts": "Contacts",
+    "rights": "Rights",
+    "backToTop": "Back to top"
+  },
+  "hotPricesSlider": {
+    "label": "Hot prices"
+  },
+  "productCard": {
+    "toast": {
+      "addedToFavorites": "added to favorites",
+      "removedFromFavorites": "removed from favorites",
+      "addedToCart": "added to cart",
+      "removedFromCart": "removed from cart"
+    },
+    "characteristics": {
+      "screen": "Screen",
+      "capacity": "Capacity",
+      "ram": "RAM"
+    },
+    "button": {
+      "addToCart": "Add to Cart",
+      "inCart": "In Cart"
+    }
+  },
+  "shopCategories": {
+    "label": "Shop by Category",
+    "phones": "Mobile phones",
+    "tablets": "Tablets",
+    "accessories": "Accessories",
+    "models_one": "{{count}} model",
+    "models_few": "{{count}} models",
+    "models_many": "{{count}} models"
+  },
+  "youMayLike": {
+    "label": "You may also like"
+  },
+  "accessoriesPageTemplate": {
+    "dropdown_sort": {
+      "label": "Sort by",
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "cheapest": "Cheapest",
+      "expensive": "Most Expensive"
+    },
+    "dropdown_amount": {
+      "label": "Items per page"
+    },
+    "label": "Accessories",
+    "models_one": "{{count}} model",
+    "models_few": "{{count}} models",
+    "models_many": "{{count}} models"
+  },
+  "cartPageTemplate": {
+    "title": "Cart",
+    "empty": {
+      "title": "Your cart is empty",
+      "text": "Add some products to your cart to see them here."
+    },
+    "button": {
+      "checkout": "Checkout"
+    },
+    "totalPrice": {
+      "label": "Total Price"
+    }
+  }
+}

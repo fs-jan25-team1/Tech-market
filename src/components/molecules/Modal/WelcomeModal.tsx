@@ -3,12 +3,14 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { AuthModal } from '@/components/organisms/AuthModal/AuthModal';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '@/shared/firebase';
+import { useTranslation } from 'react-i18next';
 
 export const WelcomeDiscountModal = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showAuth, setShowAuth] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [wasLoggedIn, setWasLoggedIn] = useState(false);
+  const { t } = useTranslation();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -53,18 +55,18 @@ export const WelcomeDiscountModal = () => {
               className="bg-[#1f1f1f] p-6 rounded-2xl shadow-xl max-w-md w-[90%] text-[#F1F2F9]"
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 className="text-2xl font-bold mb-3">Welcome!</h2>
+              <h2 className="text-2xl font-bold mb-3">{t('welcomeModal.welcome')}</h2>
               <p className="text-[#4A4D58] mb-6">
-                Register now and get{' '}
-                <span className="text-[#905BFF] font-semibold">5% off</span>{' '}
-                your first order!
+                {t('welcomeModal.register')}{' '}
+                <span className="text-[#905BFF] font-semibold">{t('welcomeModal.discount')}</span>{' '}
+                {t('welcomeModal.firstOrder')}
               </p>
               <div className="flex justify-end gap-3">
                 <button
                   onClick={handleClose}
                   className="px-4 py-2 rounded-lg bg-[#3B3E4A] hover:bg-[#4A4D58] text-white"
                 >
-                  Maybe Later
+                  {t('welcomeModal.button.later')}
                 </button>
                 <button
                   onClick={() => {
@@ -73,7 +75,7 @@ export const WelcomeDiscountModal = () => {
                   }}
                   className="px-4 py-2 rounded-lg bg-[#905BFF] hover:bg-[#7c4aff] text-white"
                 >
-                  Register Now
+                  {t('welcomeModal.button.register')}
                 </button>
               </div>
             </motion.div>

@@ -8,6 +8,7 @@ import { toast } from 'react-hot-toast';
 import { addFavourite, removeFavourite } from '@/features/favouritesSlice';
 import { addToCart, removeFromCart } from '@/features/cartSlice';
 import { useAppDispatch, useAppSelector } from '@/store/store';
+import { useTranslation } from 'react-i18next';
 
 type Props = Partial<CardInfoType> & {
   id?: number;
@@ -29,6 +30,8 @@ export const ProductCard = ({
   const isCurrentlyFavourite = favourites.some((item) => item.id === id);
   const isInCart = Object.values(cart).some((el) => el.product.id === id);
 
+  const { t } = useTranslation();
+
   const handleFavoritesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
@@ -36,7 +39,7 @@ export const ProductCard = ({
     if (isCurrentlyFavourite) {
       if (id) {
         dispatch(removeFavourite(id));
-        toast.success(`${name} removed from favorites`, {
+        toast.success(`${name} ${t('productCard.toast.removedFromFavorites')}`, {
           style: {
             background: '#161827',
             color: '#F1F2F9',
@@ -62,7 +65,7 @@ export const ProductCard = ({
             image: img,
           }),
         );
-        toast.success(`${name} added to favorites`, {
+        toast.success(`${name} ${t('productCard.toast.addedToFavorites')}`, {
           style: {
             background: '#161827',
             color: '#F1F2F9',
@@ -96,17 +99,23 @@ export const ProductCard = ({
 
     if (isInCart) {
       dispatch(removeFromCart({ productId: id }));
+      toast.success(`${name} ${t('productCard.toast.removedFromCart')}`, {
+        style: {
+          background: '#161827',
+          color: '#F1F2F9',
+          border: '1px solid #3B3E4A',
+        },
+      });
     } else {
       dispatch(addToCart({ product }));
+      toast.success(`${name} ${t('productCard.toast.addedToCart')}`, {
+        style: {
+          background: '#161827',
+          color: '#F1F2F9',
+          border: '1px solid #3B3E4A',
+        },
+      });
     }
-
-    toast.success(`${name} added to cart`, {
-      style: {
-        background: '#161827',
-        color: '#F1F2F9',
-        border: '1px solid #3B3E4A',
-      },
-    });
   };
 
   return (
@@ -149,14 +158,14 @@ export const ProductCard = ({
 
         <div className="text-[#89939A] text-xs flex flex-col justify-between w-full border-t border-[#3B3E4A] mb-3 sm:mb-[32px] pt-[16px]">
           <p className="flex justify-between mb-1 sm:mb-[8px]">
-            Screen: <span className="text-[#F1F2F9] font-[mont]">{screen}</span>
+            {t('productCard.characteristics.screen')}: <span className="text-[#F1F2F9] font-[mont]">{screen}</span>
           </p>
           <p className="flex justify-between mb-1 sm:mb-[8px]">
-            Capacity:{' '}
+            {t('productCard.characteristics.capacity')}:{' '}
             <span className="text-[#F1F2F9] font-[mont]">{capacity}</span>
           </p>
           <p className="flex justify-between mb-1 sm:mb-[8px]">
-            RAM: <span className="text-[#F1F2F9] font-[mont]">{ram}</span>
+            {t('productCard.characteristics.ram')}: <span className="text-[#F1F2F9] font-[mont]">{ram}</span>
           </p>
         </div>
       </Link>
@@ -164,7 +173,7 @@ export const ProductCard = ({
       <div className="flex items-center justify-between gap-1 sm:gap-2 w-full mt-auto">
         <div className="flex-grow">
           <Button
-            content={isInCart ? 'In cart' : 'Add to cart'}
+            content={isInCart ? t('productCard.button.inCart') : t('productCard.button.addToCart')}
             variant={ButtonTypes.primary}
             width={'100%'}
             className={`text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 ${isInCart ? 'active' : ''}`}

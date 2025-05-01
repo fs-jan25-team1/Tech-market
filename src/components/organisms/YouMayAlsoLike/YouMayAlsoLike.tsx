@@ -22,6 +22,8 @@ import { CategoryType } from '@/types/CategoryType';
 import { Loader } from '@/components/atoms/Loader/Loader';
 import { ProductDetails } from '@/types/ProductDetails';
 import { FilterStatus } from '@/types/FilterStatusType';
+
+import { useTranslation } from 'react-i18next';
 import { ProductCardType } from '@/types/ProductCardType';
 
 type Props = {
@@ -47,6 +49,8 @@ export const YouMayAlsoLikeSlider: React.FC<Props> = ({
 
   const dispatch = useAppDispatch();
   const { productsList, isLoading } = useAppSelector((state) => state.products);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(
@@ -95,7 +99,7 @@ export const YouMayAlsoLikeSlider: React.FC<Props> = ({
         }}
         transition={{ duration: 1 }}
       >
-        You may also like
+        {t('youMayLike.label')}
       </motion.h2>
 
       <div className="col-span-full relative">

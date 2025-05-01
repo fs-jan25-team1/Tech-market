@@ -1,4 +1,5 @@
 import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { useTranslation } from 'react-i18next';
 
 type TeamMember = {
   name: string;
@@ -35,10 +36,12 @@ const teamMembers: TeamMember[] = [
 ];
 
 const ContactPage = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="min-h-screen bg-[#0F111A] px-4 sm:px-10 py-10 text-[#F1F2F9]">
       <h1 className="text-3xl sm:text-4xl font-[montBold] text-center mb-12">
-        Our Team
+        {t('contactsPage.title')}
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">

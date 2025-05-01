@@ -4,12 +4,14 @@ import { Heart } from 'lucide-react';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { YouMayAlsoLikeSlider } from '@/components/organisms/YouMayAlsoLike/YouMayAlsoLike';
 import { toast } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import {
   fetchProductDetails,
-  clearProductDetails,
+  findProductId,
 } from '../../../features/productDetailsSlice';
+import { addFavourite, removeFavourite } from '@/features/favouritesSlice';
+import { addToCart, removeFromCart } from '@/features/cartSlice';
 import { Loader } from '@/components/atoms/Loader/Loader';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
@@ -18,9 +20,16 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/thumbs';
 import 'swiper/css/autoplay';
+import { CategoryType } from '@/types/CategoryType';
+import { useSelector } from 'react-redux';
+import {
+  selectProductCategory,
+  setCurrentCategory,
+} from '@/features/productsSlice';
 
 export const ItemCard = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { product, isLoading } = useAppSelector(
     (store) => store.productDetails,
   );
@@ -34,61 +43,137 @@ export const ItemCard = () => {
         }),
       );
     }
-
-    return () => {
-      dispatch(clearProductDetails());
-    };
   }, [productId, dispatch]);
 
+  const category = useSelector(selectProductCategory);
+
   useEffect(() => {
-    if (product) {
-      // selectedCapacity
-      if (product.capacity && product.capacityAvailable) {
-        const initialCapacity = product.capacityAvailable.includes(
-          product.capacity,
-        )
-          ? product.capacity
-          : product.capacityAvailable[0];
-        setSelectedCapacity(initialCapacity);
-      }
-
-      // selectedColor
-      if (product.color && product.colorsAvailable) {
-        const initialColor = product.colorsAvailable.includes(product.color)
-          ? product.color
-          : product.colorsAvailable[0];
-        setSelectedColor(initialColor);
-      }
+    if (
+      product?.basicInfo?.category &&
+      category !== product.basicInfo.category
+    ) {
+      dispatch(setCurrentCategory(product.basicInfo.category));
     }
-  }, [product]);
+  }, [product, category, dispatch]);
 
-  const [selectedColor, setSelectedColor] = useState('');
-  const [selectedCapacity, setSelectedCapacity] = useState('');
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [mainSwiper, setMainSwiper] = useState<SwiperType | null>(null);
+
+  const favourites = useAppSelector((store) => store.favourites.items);
+  const cart = useAppSelector((store) => store.cart.items);
+  const isCurrentlyFavourite = favourites.some((item) =>
+    productId ? item.id === +productId : 0,
+  );
+  const isInCart = Object.values(cart).some((el) =>
+    productId ? el.product.id === +productId : 0,
+  );
+
+  const handleFetchProduct = async (newProductId: string) => {
+    const result = await dispatch(findProductId({ newProductId }));
+    console.log(result);
+    if (findProductId.fulfilled.match(result)) {
+      navigate(`/product/${result.payload.id}`);
+    }
+  };
+
+  const handleColorClick = (color: string) => {
+    if (product?.namespaceId && product.color) {
+      const newItemId = `${product.namespaceId}-${product.capacity.toLowerCase().replace(/\s/g, '-')}-${color.toLowerCase().replace(/\s/g, '-')}`;
+      handleFetchProduct(newItemId);
+    }
+  };
+
+  const handleMemoryClick = (capacity: string) => {
+    if (product?.namespaceId && product.capacity) {
+      const newItemId = `${product.namespaceId}-${capacity.toLowerCase().replace(/\s/g, '-')}-${product.color.toLowerCase().replace(/\s/g, '-')}`;
+      handleFetchProduct(newItemId);
+    }
+  };
 
   const handleFavoritesClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
-    toast.success('Added to favorites', {
-      style: {
-        background: '#161827',
-        color: '#F1F2F9',
-        border: '1px solid #3B3E4A',
-      },
-    });
+
+    if (isCurrentlyFavourite) {
+      if (product?.basicInfo?.id) {
+        dispatch(removeFavourite(product.basicInfo.id));
+        toast.success(`${product.basicInfo.name} removed from favorites`, {
+          style: {
+            background: '#161827',
+            color: '#F1F2F9',
+            border: '1px solid #3B3E4A',
+          },
+        });
+      }
+    } else {
+      if (product?.basicInfo?.id) {
+        dispatch(
+          addFavourite({
+            id: product?.basicInfo?.id,
+            category: '',
+            itemId: '',
+            name: product.basicInfo.name,
+            fullPrice: product.basicInfo.fullPrice,
+            price: product.basicInfo.price,
+            screen: product.basicInfo.screen,
+            capacity: product.basicInfo.capacity,
+            color: product.basicInfo.color,
+            ram: product.basicInfo.ram,
+            year: product.basicInfo.year,
+            image: product.basicInfo.image,
+          }),
+        );
+        toast.success(`${product.basicInfo.name} added to favorites`, {
+          style: {
+            background: '#161827',
+            color: '#F1F2F9',
+            border: '1px solid #3B3E4A',
+          },
+        });
+      }
+    }
   };
 
   const handleAddToCartClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.stopPropagation();
     event.preventDefault();
-    toast.success('Added to cart', {
-      style: {
-        background: '#161827',
-        color: '#F1F2F9',
-        border: '1px solid #3B3E4A',
-      },
-    });
+
+    if (!product?.basicInfo?.id) return;
+
+    const productDetails = {
+      id: product.basicInfo.id,
+      category: '',
+      itemId: '',
+      name: product.basicInfo.name,
+      fullPrice: product.basicInfo.fullPrice,
+      price: product.basicInfo.price,
+      screen: product.basicInfo.screen,
+      capacity: product.basicInfo.capacity,
+      color: product.basicInfo.color,
+      ram: product.basicInfo.ram,
+      year: product.basicInfo.year,
+      image: product.basicInfo.image,
+    };
+
+    if (isInCart) {
+      dispatch(removeFromCart({ productId: product.basicInfo.id }));
+      toast.success(`${product.basicInfo.name} removed from cart`, {
+        style: {
+          background: '#161827',
+          color: '#F1F2F9',
+          border: '1px solid #3B3E4A',
+        },
+      });
+    } else {
+      dispatch(addToCart({ product: productDetails }));
+      toast.success(`${product.basicInfo.name} added to cart`, {
+        style: {
+          background: '#161827',
+          color: '#F1F2F9',
+          border: '1px solid #3B3E4A',
+        },
+      });
+    }
   };
 
   const handleThumbnailClick = (index: number) => {
@@ -102,7 +187,7 @@ export const ItemCard = () => {
   return (
     <section className="bg-[#0F1121] text-[#F1F2F9]">
       {isLoading ? (
-        <div className="col-span-full grid">
+        <div className="col-span-full grid min-h-[75vh]">
           <Loader />
         </div>
       ) : (
@@ -210,11 +295,11 @@ export const ItemCard = () => {
                             variant={ButtonTypes.selector}
                             bgColor={color}
                             className={`transition-all duration-200 ${
-                              selectedColor === color
+                              product.color === color
                                 ? '!border-2 !border-[#F1F2F9]'
                                 : 'border-2 border-[#3B3E4A]'
                             } hover:ring-2 hover:ring-white/40 hover:scale-105`}
-                            onClick={() => setSelectedColor(color)}
+                            onClick={() => handleColorClick(color)}
                           />
                         </div>
                       ))}
@@ -233,17 +318,17 @@ export const ItemCard = () => {
                             content={cap}
                             variant={ButtonTypes.secondary}
                             color={
-                              selectedCapacity === cap ? '#0F1121' : '#F1F2F9'
+                              product.capacity === cap ? '#0F1121' : '#F1F2F9'
                             }
                             className={`
                               px-2 h-8 w-full text-sm font-medium border transition-all duration-200 
                               ${
-                                selectedCapacity === cap
+                                product.capacity === cap
                                   ? 'bg-white border-white hover:border-white'
                                   : 'bg-transparent border-[#3B3E4A] hover:border-white hover:text-white'
                               }
                             `}
-                            onClick={() => setSelectedCapacity(cap)}
+                            onClick={() => handleMemoryClick(cap)}
                           />
                         </div>
                       ))}
@@ -268,12 +353,12 @@ export const ItemCard = () => {
                   <div className="mb-8">
                     <div className="flex gap-2 mb-8">
                       <Button
-                        content="Add to cart"
+                        content={isInCart ? 'In cart' : 'Add to cart'}
                         variant={ButtonTypes.primary}
                         iconSize={18}
                         height={48}
                         onClick={handleAddToCartClick}
-                        className="flex-1"
+                        className={`flex-1 ${isInCart ? 'active' : ''}`}
                       />
                       <Button
                         variant={ButtonTypes.favourite}
@@ -282,6 +367,7 @@ export const ItemCard = () => {
                         height={48}
                         width={48}
                         onClick={handleFavoritesClick}
+                        className={`${isCurrentlyFavourite ? 'active' : ''}`}
                       />
                     </div>
                   </div>
@@ -379,7 +465,7 @@ export const ItemCard = () => {
 
           {/* You may also like */}
           <div className="col-span-full">
-            <YouMayAlsoLikeSlider />
+            <YouMayAlsoLikeSlider category={CategoryType.phones} />
           </div>
         </div>
       )}

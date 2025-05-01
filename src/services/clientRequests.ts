@@ -47,6 +47,15 @@ export const getProductDetails = async (
   );
 
   const res = categoryProducts.find((p) => p.id === prod?.itemId);
-
+  if (prod && typeof prod !== 'undefined' && res) {
+    res.basicInfo = prod;
+  }
   return res ? res : null;
+};
+
+export const getItemId = async (itemId: string): Promise<number | null> => {
+  const allProducts: ProductCardType[] = await fetchData('/api/products.json');
+  const newItemId = allProducts.find((item) => item.itemId === itemId);
+
+  return newItemId ? newItemId.id : null;
 };

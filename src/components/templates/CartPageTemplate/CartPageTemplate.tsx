@@ -40,7 +40,8 @@ export const CartPageTemplate = () => {
       pt-6 pb-16
       min-[640px]:pt-10 min-[640px]:pb-16
       min-[1200px]:pt-10 min-[1200px]:pb-20 
-      gap-y-0"
+      gap-y-0
+      min-h-[70vh]"
     >
       <h1
         className="col-span-full
@@ -53,14 +54,25 @@ export const CartPageTemplate = () => {
       </h1>
 
       {cartItems.length === 0 ? (
-        <h2
-          className="col-span-full
-          font-[Mont] font-semibold
-          text-[22px] leading-[34px] tracking-normal
-          text-[#F1F2F9] mb-10"
+        <div
+          className="col-span-full flex flex-col items-center justify-center text-center text-[#F1F2F9]
+          h-[50vh] sm:h-[60vh] lg:h-[48vh]"
         >
-          No items in cart
-        </h2>
+          <h2 className="text-[22px] sm:text-[26px] font-semibold mb-4">
+            No items in cart 🛒
+          </h2>
+          <p className="text-[14px] sm:text-[16px] text-[#B0B3C6]">
+            Add some products to your cart to see them here
+          </p>
+          <Link to="/" className="mt-6">
+            <Button
+              variant={ButtonTypes.primary}
+              content="Browse products"
+              width={200}
+              height={40}
+            />
+          </Link>
+        </div>
       ) : (
         <>
           {/* Cart items */}
@@ -76,7 +88,6 @@ export const CartPageTemplate = () => {
             ))}
           </div>
 
-          {/* Checkout container */}
           {/* Checkout container */}
           <div className="col-span-full min-[1200px]:col-span-8 border-1 border-[#3B3E4A] p-6 self-start rounded-2xl bg-[#1D1F2B]">
             <div className="flex flex-col items-center text-center">

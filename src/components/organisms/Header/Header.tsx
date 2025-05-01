@@ -22,7 +22,7 @@ const Header = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const { t } = useTranslation();
-  const { theme, toogleTheme } = useTheme();
+  const { toogleTheme } = useTheme();
 
   const cartCount = useAppSelector(
     (store) => Object.keys(store.cart.items).length,

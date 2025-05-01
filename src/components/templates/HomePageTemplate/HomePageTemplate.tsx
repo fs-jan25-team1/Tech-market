@@ -4,8 +4,10 @@ import { BrandNewSlider } from '@/components/organisms/BrandNewSlider/BrandNewSl
 import { HotPricesSlider } from '@/components/organisms/HotPricesSlider/HotPricesSlider';
 import { ShopCategories } from '@/components/organisms/ShopCategories/ShopCategories';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export const HomePageTemplate = () => {
+  const { t } = useTranslation();
   return (
     <>
       <div className={styles.homePage}>
@@ -15,7 +17,7 @@ export const HomePageTemplate = () => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
         >
-          Welcome to nice gadgets store!
+          {t('homePageTemplate.greeting', { storeName: 'Nice Gadgets' })}
         </motion.h1>
         <div className="col-span-full lg:mb-[80px] sm:mb-[64px] mb-[56px]">
           <ImageSlider />

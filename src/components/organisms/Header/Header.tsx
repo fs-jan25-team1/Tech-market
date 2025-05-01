@@ -10,6 +10,7 @@ import { Modal } from '@/components/molecules/Modal/Modal';
 import { AuthForm } from '@/components/molecules/SingInForm/SingUpForm/SingUpForm';
 import { UserDropdown } from '@/components/molecules/UserMenu/UserMenu';
 import { Loader } from '@/components/atoms/Loader/Loader';
+import { useTranslation } from 'react-i18next';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,6 +18,7 @@ const Header = () => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(false);
   const location = useLocation();
+  const { t } = useTranslation();
 
   const cartCount = useAppSelector(
     (store) => Object.keys(store.cart.items).length,
@@ -36,10 +38,10 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { path: '/', label: 'Home' },
-    { path: '/phones', label: 'Phones' },
-    { path: '/tablets', label: 'Tablets' },
-    { path: '/accessories', label: 'Accessories' },
+    { path: '/', label: t('header.navItem.home') },
+    { path: '/phones', label: t('header.navItem.phones') },
+    { path: '/tablets', label: t('header.navItem.tablets') },
+    { path: '/accessories', label: t('header.navItem.accessories') },
   ];
 
   const handleLogout = async () => {
@@ -141,7 +143,7 @@ const Header = () => {
                   className="w-12 h-12 text-white bg-violet-600 hover:bg-violet-700 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
                   onClick={() => setIsAuthModalOpen(true)}
                 >
-                  Sign in
+                  {t('header.button.signIn')}
                 </Button>
               )}
             </div>

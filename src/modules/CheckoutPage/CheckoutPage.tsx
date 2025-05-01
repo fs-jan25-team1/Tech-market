@@ -6,6 +6,7 @@ import Button from '@/components/atoms/button/Button';
 import { ButtonTypes } from '@/types/ButtonTypes';
 import { clearCart } from '@/features/cartSlice';
 import { useAppDispatch } from '@/store/store';
+import { useTranslation } from 'react-i18next';
 
 export const CheckoutPage = () => {
   const dispatch = useAppDispatch();
@@ -45,6 +46,8 @@ export const CheckoutPage = () => {
     dispatch(clearCart());
   };
 
+  const { t } = useTranslation();
+
   return (
     <div
       className="checkoutPage relative grid grid-cols-4 gap-4 
@@ -62,11 +65,11 @@ export const CheckoutPage = () => {
       {showModal && (
         <div className="absolute inset-0 flex flex-col justify-center items-center bg-[#0f1121]/50 z-50 animate-fade-in">
           <div className="bg-[#f1f2f9] text-black px-8 py-6 rounded-2xl shadow-xl text-xl font-semibold">
-            <div className="mb-3">Thanks for shopping with us!</div>
+            <div className="mb-3">{t('checkoutPage.modal.title')}</div>
             <Link to={'/'}>
               <Button
                 variant={ButtonTypes.primary}
-                content={'Go back to shopping'}
+                content={t('checkoutPage.modal.button.goToHome')}
                 width="100%"
                 onClick={() => {
                   if (timeoutRef.current) {
@@ -82,7 +85,7 @@ export const CheckoutPage = () => {
 
       {/* Title */}
       <h1 className="col-span-4 min-[640px]:col-span-12 min-[1200px]:col-span-24 text-4xl font-bold mb-10">
-        Checkout
+        {t('checkoutPage.button.checkout')}
       </h1>
 
       {/* Card Preview */}
@@ -105,13 +108,13 @@ export const CheckoutPage = () => {
       >
         <div className="flex flex-col">
           <label htmlFor="number" className="mb-2 text-[#75767f] text-sm">
-            Card Number
+            {t('checkoutPage.form.cardNumber.label')}
           </label>
           <input
             type="text"
             name="number"
             id="number"
-            placeholder="1234 5678 9012 3456"
+            placeholder={t('checkoutPage.form.cardNumber.placeholder')}
             value={state.number}
             onChange={handleInputChange}
             onFocus={handleInputFocus}
@@ -121,13 +124,13 @@ export const CheckoutPage = () => {
 
         <div className="flex flex-col">
           <label htmlFor="name" className="mb-2 text-[#75767f] text-sm">
-            Cardholder Name
+            {t('checkoutPage.form.cardHolder.label')}
           </label>
           <input
             type="text"
             name="name"
             id="name"
-            placeholder="John Doe"
+            placeholder={t('checkoutPage.form.cardHolder.placeholder')}
             value={state.name}
             onChange={handleInputChange}
             onFocus={handleInputFocus}
@@ -138,13 +141,13 @@ export const CheckoutPage = () => {
         <div className="flex flex-col min-[1200px]:flex-row gap-4">
           <div className="flex-1 flex flex-col">
             <label htmlFor="expiry" className="mb-2 text-[#75767f] text-sm">
-              Expiry Date
+              {t('checkoutPage.form.expiry.label')}
             </label>
             <input
               type="text"
               name="expiry"
               id="expiry"
-              placeholder="MM/YY"
+              placeholder={t('checkoutPage.form.expiry.placeholder')}
               value={state.expiry}
               onChange={handleInputChange}
               onFocus={handleInputFocus}
@@ -154,13 +157,13 @@ export const CheckoutPage = () => {
 
           <div className="flex-1 flex flex-col">
             <label htmlFor="cvc" className="mb-2 text-[#75767f] text-sm">
-              CVC
+              {t('checkoutPage.form.cvc.label')}
             </label>
             <input
               type="text"
               name="cvc"
               id="cvc"
-              placeholder="CVC"
+              placeholder={t('checkoutPage.form.cvc.placeholder')}
               value={state.cvc}
               onChange={handleInputChange}
               onFocus={handleInputFocus}
@@ -171,7 +174,7 @@ export const CheckoutPage = () => {
 
         <Button
           variant={ButtonTypes.primary}
-          content={'Pay Now'}
+          content={t('checkoutPage.form.button.purchase')}
           width="100%"
         />
       </form>

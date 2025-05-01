@@ -5,6 +5,7 @@ import { Loader } from '@/components/atoms/Loader/Loader';
 import { User } from 'firebase/auth';
 import { motion } from 'framer-motion';
 import { UserAvatar } from '@/components/molecules/UserAvatar/UserAvatar';
+import { useTranslation } from 'react-i18next';
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -16,13 +17,6 @@ interface MobileSidebarProps {
   onLogout: () => void;
   onSignIn: () => void;
 }
-
-const navItems = [
-  { path: '/', label: 'Home' },
-  { path: '/phones', label: 'Phones' },
-  { path: '/tablets', label: 'Tablets' },
-  { path: '/accessories', label: 'Accessories' },
-];
 
 export const MobileSidebar = ({
   isOpen,
@@ -39,6 +33,15 @@ export const MobileSidebar = ({
   const isCart = location.pathname === '/cart';
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const { t } = useTranslation();
+
+  const navItems = [
+    { path: '/', label: t('header.navItem.home') },
+    { path: '/phones', label: t('header.navItem.phones') },
+    { path: '/tablets', label: t('header.navItem.tablets') },
+    { path: '/accessories', label: t('header.navItem.accessories') },
+  ];
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -68,7 +71,7 @@ export const MobileSidebar = ({
           </Link>
           <button
             onClick={onClose}
-            aria-label="Close menu"
+            aria-label={t('header.mobileSidebar.closeMenu')}
             className="text-secondary"
           >
             <X className="w-6 h-6" />
@@ -131,7 +134,11 @@ export const MobileSidebar = ({
                     }}
                     className="w-full text-left px-4 py-2 text-white rounded-b-xl text-sm cursor-pointer"
                   >
-                    {loading ? <Loader /> : 'Logout'}
+                    {loading ? (
+                      <Loader />
+                    ) : (
+                      t('header.mobileSidebar.button.signOut')
+                    )}
                   </button>
                 </motion.div>
               )}
@@ -144,7 +151,7 @@ export const MobileSidebar = ({
               }}
               className="w-full py-2 text-white bg-violet-600 hover:bg-violet-700 rounded-md text-sm font-semibold transition"
             >
-              Sign In
+              {t('header.mobileSidebar.button.signIn')}
             </button>
           )}
         </motion.div>
@@ -156,7 +163,7 @@ export const MobileSidebar = ({
         <Link
           to="/favorites"
           onClick={onClose}
-          aria-label="Go to favorites"
+          aria-label={t('header.mobileSidebar.goToFavorites')}
           className={`flex flex-col items-center justify-center w-1/2 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
             isFavorites
               ? 'border-b-2 border-b-[#F1F2F9]'

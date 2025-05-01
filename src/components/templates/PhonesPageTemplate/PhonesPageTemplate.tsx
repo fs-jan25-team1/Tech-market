@@ -12,13 +12,7 @@ import { useAppDispatch, useAppSelector } from '@/store/store';
 import { CategoryType } from '@/types/CategoryType';
 import { FilterStatus } from '@/types/FilterStatusType';
 import { ItemsPerPage } from '@/types/ItemsPerPageType';
-
-const DropdownSortBy = [
-  { value: 'newest', label: 'Newest' },
-  { value: 'oldest', label: 'Oldest' },
-  { value: 'cheapest', label: 'Cheapest' },
-  { value: 'mostExpensive', label: 'Most expensive' },
-];
+import { useTranslation } from 'react-i18next';
 
 const DropdownItemsOnPage = [
   { value: '16', label: '16' },
@@ -32,6 +26,21 @@ export const PhonesPageTemplate = () => {
     (store) => store.products,
   );
   const { sortBy } = filter;
+
+  const { t } = useTranslation();
+
+  const DropdownSortBy = [
+    { value: 'newest', label: t('phonesPageTemplate.dropdown_sort.newest') },
+    { value: 'oldest', label: t('phonesPageTemplate.dropdown_sort.oldest') },
+    {
+      value: 'cheapest',
+      label: t('phonesPageTemplate.dropdown_sort.cheapest'),
+    },
+    {
+      value: 'mostExpensive',
+      label: t('phonesPageTemplate.dropdown_sort.expensive'),
+    },
+  ];
 
   //PAGINATION
   const [currentPage, setCurrentPage] = useState(1);
@@ -71,7 +80,7 @@ export const PhonesPageTemplate = () => {
           min-[639px]:text-[48px] min-[1200px]:leading-[56px]
           text-[#F1F2F9] mb-2"
       >
-        Mobile phones
+        {t('phonesPageTemplate.title')}
       </div>
       <div
         className="col-span-full
@@ -79,7 +88,7 @@ export const PhonesPageTemplate = () => {
           text-[14px] leading-[21px] tracking-normal
           text-[#F1F2F9] mb-10"
       >
-        {productsList.length} models
+        {t('phonesPageTemplate.models', { count: productsList.length })}
       </div>
       <div
         className="col-span-full grid 
@@ -93,14 +102,14 @@ export const PhonesPageTemplate = () => {
             min-[1200px]:col-span-4"
         >
           <CustomDropdown
-            placeholder="Newest"
+            placeholder={t('phonesPageTemplate.dropdown_sort.newest')}
             options={DropdownSortBy}
             onValueChange={(value) => {
               dispatch(setStatus({ sortBy: value as FilterStatus }));
               setCurrentPage(1);
             }}
             size="medium"
-            name="Sort by"
+            name={t('phonesPageTemplate.dropdown_sort.label')}
           />
         </div>
         <div
@@ -116,7 +125,7 @@ export const PhonesPageTemplate = () => {
               setCurrentPage(1);
             }}
             size="small"
-            name="Items on page"
+            name={t('phonesPageTemplate.dropdown_amount.label')}
           />
         </div>
       </div>

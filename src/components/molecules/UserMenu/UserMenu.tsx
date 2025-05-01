@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { User } from 'firebase/auth';
 import { UserAvatar } from '@/components/molecules/UserAvatar/UserAvatar';
+import { useTranslation } from 'react-i18next';
 
 type UserDropdownProps = {
   user: User;
@@ -13,6 +14,8 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
 }) => {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -54,7 +57,7 @@ export const UserDropdown: React.FC<UserDropdownProps> = ({
             }}
             className="block w-full px-4 py-2 text-sm text-left bg-transparent text-white rounded-b-xl cursor-pointer"
           >
-            Logout
+            {t('userMenu.button.logOut')}
           </button>
         </div>
       )}

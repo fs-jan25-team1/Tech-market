@@ -32,7 +32,9 @@
     "label": "Крихта",
     "phones": "Телефони",
     "tablets": "Планшети",
-    "accessories": "Аксесуари"
+    "accessories": "Аксесуари",
+    "contact": "Контакти",
+    "rights": "Права"
   },
   "signUpForm": {
     "error": {
@@ -264,5 +266,12 @@
         "purchase": "Придбати"
       }
     }
+  },
+  "contactsPage": {
+    "title": "Наша команда"
+  },
+  "rightsPage": {
+    "message": "Цей проект з гордістю створено командою PlugMeHard© в освітніх та демонстраційних цілях.",
+    "reserved": "Усі права захищені."
   }
 }

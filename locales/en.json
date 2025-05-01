@@ -32,7 +32,9 @@
     "label": "Breadcrumb",
     "phones": "Phones",
     "tablets": "Tablets",
-    "accessories": "Accessories"
+    "accessories": "Accessories",
+    "contact": "Contact",
+    "rights": "Rights"
   },
   "signUpForm": {
     "error": {
@@ -264,5 +266,12 @@
         "purchase": "Purchase"
       }
     }
+  },
+  "contactsPage": {
+    "title": "Our team"
+  },
+  "rightsPage": {
+    "message": "This project was proudly created by the PlugMeHard© Team for educational and showcase purposes.",
+    "reserved": "All rights reserved."
   }
 }

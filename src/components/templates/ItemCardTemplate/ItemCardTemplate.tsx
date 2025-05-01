@@ -82,7 +82,7 @@ export const ItemCard = () => {
       handleFetchProduct(newItemId);
     }
   };
-  
+
   const handleMemoryClick = (capacity: string) => {
     if (product?.namespaceId && product.capacity) {
       const newItemId = `${product.namespaceId}-${capacity.toLowerCase().replace(/\s/g, '-')}-${product.color.toLowerCase().replace(/\s/g, '-')}`;

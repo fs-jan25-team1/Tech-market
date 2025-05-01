@@ -47,7 +47,7 @@ export const findProductId = createAsyncThunk<
   } catch (error) {
     return rejectWithValue('Failed to find product id');
   }
-})
+});
 
 const productDetailsSlice = createSlice({
   name: 'productDetails',

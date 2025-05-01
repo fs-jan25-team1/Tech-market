@@ -8,9 +8,12 @@ export const Footer = () => {
   const { t } = useTranslation();
 
   const footerItems = [
-    { name: t('footer.gitub'), link: 'https://github.com/' },
-    { name: t('footer.contacts'), link: 'https://github.com/' },
-    { name: t('footer.rights'), link: 'https://github.com/' },
+    {
+      name: t('footer.gitub'),
+      link: 'https://github.com/fs-jan25-team1/Tech-market',
+    },
+    { name: t('footer.contacts'), link: '/contact' },
+    { name: t('footer.rights'), link: '/rights' },
   ];
 
   const scrollToTop = () => {
@@ -43,17 +46,27 @@ export const Footer = () => {
             min-[1200px]:col-start-9 min-[1200px]:col-span-8 
             min-[1200px]:gap-[107px]"
         >
-          {footerItems.map((item) => (
-            <a
-              className="text-white hover:underline transition"
-              href={item.link}
-              key={item.name}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {item.name}
-            </a>
-          ))}
+          {footerItems.map((item) =>
+            item.link.startsWith('http') ? (
+              <a
+                className="text-white hover:underline transition"
+                href={item.link}
+                key={item.name}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {item.name}
+              </a>
+            ) : (
+              <Link
+                className="text-white hover:underline transition"
+                to={item.link}
+                key={item.name}
+              >
+                {item.name}
+              </Link>
+            ),
+          )}
         </div>
 
         <div

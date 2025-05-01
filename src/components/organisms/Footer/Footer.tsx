@@ -40,7 +40,7 @@ export const Footer = () => {
             min-[1200px]:col-start-9 min-[1200px]:col-span-8 
             min-[1200px]:gap-[107px]"
         >
-          {footerItems.map((item) => (
+          {footerItems.map((item) =>
             item.link.startsWith('http') ? (
               <a
                 className="text-white hover:underline transition"
@@ -59,8 +59,8 @@ export const Footer = () => {
               >
                 {item.name}
               </Link>
-            )
-          ))}
+            ),
+          )}
         </div>
 
         <div

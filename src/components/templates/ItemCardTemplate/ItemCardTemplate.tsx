@@ -12,7 +12,6 @@ import {
 } from '../../../features/productDetailsSlice';
 import { addFavourite, removeFavourite } from '@/features/favouritesSlice';
 import { addToCart, removeFromCart } from '@/features/cartSlice';
-import { Loader } from '@/components/atoms/Loader/Loader';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import type { Swiper as SwiperType } from 'swiper';
 import { Navigation, Autoplay } from 'swiper/modules';
@@ -26,6 +25,7 @@ import {
   selectProductCategory,
   setCurrentCategory,
 } from '@/features/productsSlice';
+import { ItemCardAnimation } from '@/components/atoms/Animation/Animation';
 import { useTranslation } from 'react-i18next';
 
 export const ItemCard = () => {
@@ -202,9 +202,7 @@ export const ItemCard = () => {
   return (
     <section className="bg-[#0F1121] text-[#F1F2F9]">
       {isLoading ? (
-        <div className="col-span-full grid min-h-[75vh]">
-          <Loader />
-        </div>
+        <ItemCardAnimation />
       ) : (
         <div
           className="grid grid-cols-4 gap-4 

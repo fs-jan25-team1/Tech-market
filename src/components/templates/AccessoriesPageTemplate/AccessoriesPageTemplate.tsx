@@ -19,12 +19,24 @@ export const AccessoriesPageTemplate = () => {
   const { t } = useTranslation();
 
   const DropdownSortBy = [
-    { value: 'newest', label: t('accessoriesPageTemplate.dropdown_sort.newest') },
-    { value: 'oldest', label: t('accessoriesPageTemplate.dropdown_sort.oldest') },
-    { value: 'cheapest', label: t('accessoriesPageTemplate.dropdown_sort.cheapest') },
-    { value: 'mostExpensive', label: t('accessoriesPageTemplate.dropdown_sort.expensive') },
+    {
+      value: 'newest',
+      label: t('accessoriesPageTemplate.dropdown_sort.newest'),
+    },
+    {
+      value: 'oldest',
+      label: t('accessoriesPageTemplate.dropdown_sort.oldest'),
+    },
+    {
+      value: 'cheapest',
+      label: t('accessoriesPageTemplate.dropdown_sort.cheapest'),
+    },
+    {
+      value: 'mostExpensive',
+      label: t('accessoriesPageTemplate.dropdown_sort.expensive'),
+    },
   ];
-  
+
   const DropdownItemsOnPage = [
     { value: '16', label: '16' },
     { value: '20', label: '20' },
@@ -83,7 +95,7 @@ export const AccessoriesPageTemplate = () => {
           text-[14px] leading-[21px] tracking-normal
           text-[#F1F2F9] mb-10"
       >
-        {t('accessoriesPageTemplate.models', {count: productsList.length,})}
+        {t('accessoriesPageTemplate.models', { count: productsList.length })}
       </div>
       <div
         className="col-span-full grid 

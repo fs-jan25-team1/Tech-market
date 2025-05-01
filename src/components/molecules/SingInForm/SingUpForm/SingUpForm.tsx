@@ -83,7 +83,9 @@ export const AuthForm = ({ onClose }: AuthFormProps) => {
   return (
     <div className="flex flex-col gap-4 w-full max-w-sm mx-auto p-6 bg-[#1f1f1f] rounded-2xl shadow-lg">
       <h2 className="text-2xl font-bold text-white text-center">
-        {isSignInMode ? t('signUpForm.label.signIn') : t('signUpForm.label.signUp')}
+        {isSignInMode
+          ? t('signUpForm.label.signIn')
+          : t('signUpForm.label.signUp')}
       </h2>
 
       <form onSubmit={handleSubmit} className="flex flex-col gap-4">
@@ -132,7 +134,13 @@ export const AuthForm = ({ onClose }: AuthFormProps) => {
           className="p-3 rounded-lg bg-violet-600 hover:bg-violet-700 text-white font-semibold transition-all"
           disabled={loading}
         >
-          {loading ? <Loader /> : isSignInMode ? t('signUpForm.button.signIn') : t('signUpForm.button.signUp')}
+          {loading ? (
+            <Loader />
+          ) : isSignInMode ? (
+            t('signUpForm.button.signIn')
+          ) : (
+            t('signUpForm.button.signUp')
+          )}
         </button>
       </form>
 

@@ -55,10 +55,14 @@ export const WelcomeDiscountModal = () => {
               className="bg-[#1f1f1f] p-6 rounded-2xl shadow-xl max-w-md w-[90%] text-[#F1F2F9]"
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 className="text-2xl font-bold mb-3">{t('welcomeModal.welcome')}</h2>
+              <h2 className="text-2xl font-bold mb-3">
+                {t('welcomeModal.welcome')}
+              </h2>
               <p className="text-[#4A4D58] mb-6">
                 {t('welcomeModal.register')}{' '}
-                <span className="text-[#905BFF] font-semibold">{t('welcomeModal.discount')}</span>{' '}
+                <span className="text-[#905BFF] font-semibold">
+                  {t('welcomeModal.discount')}
+                </span>{' '}
                 {t('welcomeModal.firstOrder')}
               </p>
               <div className="flex justify-end gap-3">

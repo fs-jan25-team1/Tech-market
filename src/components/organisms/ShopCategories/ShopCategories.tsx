@@ -67,7 +67,9 @@ export const ShopCategories = () => {
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
             {t('shopCategories.phones')}
           </h4>
-          <h6 className="text-grey">{t('shopCategories.models', { count: phonesCount ?? 0 })}</h6>
+          <h6 className="text-grey">
+            {t('shopCategories.models', { count: phonesCount ?? 0 })}
+          </h6>
         </Link>
 
         {/* Tablets */}
@@ -83,7 +85,9 @@ export const ShopCategories = () => {
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
             {t('shopCategories.tablets')}
           </h4>
-          <h6 className="text-[#F1F2F9]">{t('shopCategories.models', {count: tabletsCount ?? 0})}</h6>
+          <h6 className="text-[#F1F2F9]">
+            {t('shopCategories.models', { count: tabletsCount ?? 0 })}
+          </h6>
         </Link>
 
         {/* Accessories */}
@@ -99,7 +103,9 @@ export const ShopCategories = () => {
           <h4 className="mt-4 text-xl font-semibold transition-opacity duration-300 hover:opacity-80">
             {t('shopCategories.accessories')}
           </h4>
-          <h6 className="text-grey">{t('shopCategories.models', {count: accssesoriesCount ?? 0})}</h6>
+          <h6 className="text-grey">
+            {t('shopCategories.models', { count: accssesoriesCount ?? 0 })}
+          </h6>
         </Link>
       </div>
     </section>

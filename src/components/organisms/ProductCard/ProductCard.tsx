@@ -39,13 +39,16 @@ export const ProductCard = ({
     if (isCurrentlyFavourite) {
       if (id) {
         dispatch(removeFavourite(id));
-        toast.success(`${name} ${t('productCard.toast.removedFromFavorites')}`, {
-          style: {
-            background: '#161827',
-            color: '#F1F2F9',
-            border: '1px solid #3B3E4A',
+        toast.success(
+          `${name} ${t('productCard.toast.removedFromFavorites')}`,
+          {
+            style: {
+              background: '#161827',
+              color: '#F1F2F9',
+              border: '1px solid #3B3E4A',
+            },
           },
-        });
+        );
       }
     } else {
       if (id) {
@@ -158,14 +161,16 @@ export const ProductCard = ({
 
         <div className="text-[#89939A] text-xs flex flex-col justify-between w-full border-t border-[#3B3E4A] mb-3 sm:mb-[32px] pt-[16px]">
           <p className="flex justify-between mb-1 sm:mb-[8px]">
-            {t('productCard.characteristics.screen')}: <span className="text-[#F1F2F9] font-[mont]">{screen}</span>
+            {t('productCard.characteristics.screen')}:{' '}
+            <span className="text-[#F1F2F9] font-[mont]">{screen}</span>
           </p>
           <p className="flex justify-between mb-1 sm:mb-[8px]">
             {t('productCard.characteristics.capacity')}:{' '}
             <span className="text-[#F1F2F9] font-[mont]">{capacity}</span>
           </p>
           <p className="flex justify-between mb-1 sm:mb-[8px]">
-            {t('productCard.characteristics.ram')}: <span className="text-[#F1F2F9] font-[mont]">{ram}</span>
+            {t('productCard.characteristics.ram')}:{' '}
+            <span className="text-[#F1F2F9] font-[mont]">{ram}</span>
           </p>
         </div>
       </Link>
@@ -173,7 +178,11 @@ export const ProductCard = ({
       <div className="flex items-center justify-between gap-1 sm:gap-2 w-full mt-auto">
         <div className="flex-grow">
           <Button
-            content={isInCart ? t('productCard.button.inCart') : t('productCard.button.addToCart')}
+            content={
+              isInCart
+                ? t('productCard.button.inCart')
+                : t('productCard.button.addToCart')
+            }
             variant={ButtonTypes.primary}
             width={'100%'}
             className={`text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 ${isInCart ? 'active' : ''}`}

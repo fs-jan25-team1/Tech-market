@@ -12,6 +12,7 @@ import { UserDropdown } from '@/components/molecules/UserMenu/UserMenu';
 import { Loader } from '@/components/atoms/Loader/Loader';
 import { SettingsDropdown } from '@/components/molecules/SettingsDropdown/SettingsDropdown';
 import { useTranslation } from 'react-i18next';
+import i18n from '@/i18n';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -57,6 +58,12 @@ const Header = () => {
     }
   };
 
+  const toggleLanguage = () => {
+    const newLang = i18n.language === 'uk' ? 'en' : 'uk';
+    i18n.changeLanguage(newLang);
+    localStorage.setItem('lang', newLang);
+  };
+
   return (
     <header className="sticky top-0 z-50 w-full bg-black border-b border-[#3B3E4A] font-[montBold]">
       <div className="w-full pl-6 pr-0 lg:pl-12 flex items-center justify-between">
@@ -99,7 +106,7 @@ const Header = () => {
           <div className="hidden sm:flex items-center h-12 border-l border-[#3B3E4A]">
             <SettingsDropdown
               onToggleTheme={() => console.log('Toggle theme')}
-              onToggleLanguage={() => console.log('Toggle language')}
+              onToggleLanguage={toggleLanguage}
             />
             <NavLink
               to="/favorites"

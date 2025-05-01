@@ -6,6 +6,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { SunMoon, Globe, Settings } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useTranslation } from 'react-i18next';
 
 interface SettingsDropdownProps {
   onToggleTheme: () => void;
@@ -16,12 +17,13 @@ export const SettingsDropdown = ({
   onToggleTheme,
   onToggleLanguage,
 }: SettingsDropdownProps) => {
+  const { t } = useTranslation();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="w-12 h-12 border-l border-[#3B3E4A] flex items-center justify-center rounded-none"
+          className="w-12 h-12 border-l border-[#3B3E4A] flex items-center justify-center rounded-none cursor-pointer"
         >
           <Settings className="h-5 w-5 text-[#75767F] hover:text-[#F1F2F9] transition-colors" />
         </Button>
@@ -29,21 +31,21 @@ export const SettingsDropdown = ({
       <DropdownMenuContent
         side="bottom"
         align="end"
-        className="w-36 border border-[#3B3E4A] bg-[#1E1E1E] text-white"
+        className="w-36 border border-[#3B3E4A] bg-[#1E1E1E] text-[#F1F2F9]"
       >
         <DropdownMenuItem
           onClick={onToggleTheme}
           className="flex items-center gap-2 cursor-pointer hover:bg-[#2C2C2C]"
         >
           <SunMoon className="h-4 w-4" />
-          <span>Theme</span>
+          <span>{t('settingsDropdown.theme')}</span>
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={onToggleLanguage}
           className="flex items-center gap-2 cursor-pointer hover:bg-[#2C2C2C]"
         >
           <Globe className="h-4 w-4" />
-          <span>Language</span>
+          <span>{t('settingsDropdown.language')}</span>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

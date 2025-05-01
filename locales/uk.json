@@ -273,5 +273,9 @@
   "rightsPage": {
     "message": "Цей проект з гордістю створено командою PlugMeHard© в освітніх та демонстраційних цілях.",
     "reserved": "Усі права захищені."
+  },
+  "settingsDropdown": {
+    "theme": "Тема",
+    "language": "Мова"
   }
 }

@@ -1,7 +1,7 @@
 {
   "header": {
     "button": {
-      "signIn": "Увійти"
+      "signIn": "Sign In"
     },
     "navItem": {
       "home": "Home",
@@ -121,8 +121,7 @@
     "tablets": "Tablets",
     "accessories": "Accessories",
     "models_one": "{{count}} model",
-    "models_few": "{{count}} models",
-    "models_many": "{{count}} models"
+    "models_other": "{{count}} models"
   },
   "youMayLike": {
     "label": "You may also like"
@@ -140,8 +139,7 @@
     },
     "label": "Accessories",
     "models_one": "{{count}} model",
-    "models_few": "{{count}} models",
-    "models_many": "{{count}} models"
+    "models_other": "{{count}} models"
   },
   "cartPageTemplate": {
     "title": "Cart",
@@ -158,14 +156,12 @@
       "checkout": "Checkout"
     },
     "totalPrice_one": "Total price for {{count}} item",
-    "totalPrice_few": "Total price for {{count}} items",
-    "totalPrice_many": "Total price for {{count}} items"
+    "totalPrice_other": "Total price for {{count}} items"
   },
   "favouritesPageTemplate": {
     "title": "Favorites",
     "models_one": "{{count}} item",
-    "models_few": "{{count}} items",
-    "models_many": "{{count}} items",
+    "models_other": "{{count}} items",
     "empty": {
       "title": "Your favourites list is empty 👀",
       "text": "Add products to your favorites to see them here."
@@ -216,8 +212,7 @@
     },
     "title": "Mobile Phones",
     "models_one": "{{count}} model",
-    "models_few": "{{count}} models",
-    "models_many": "{{count}} models"
+    "models_other": "{{count}} models"
   },
   "tabletsPageTemplate": {
     "dropdown_sort": {
@@ -232,8 +227,7 @@
     },
     "title": "Tablets",
     "models_one": "{{count}} model",
-    "models_few": "{{count}} models",
-    "models_many": "{{count}} models"
+    "models_other": "{{count}} models"
   },
   "checkoutPage": {
     "modal": {
@@ -273,5 +267,9 @@
   "rightsPage": {
     "message": "This project was proudly created by the PlugMeHard© Team for educational and showcase purposes.",
     "reserved": "All rights reserved."
+  },
+  "settingsDropdown": {
+    "theme": "Theme",
+    "language": "Language"
   }
 }

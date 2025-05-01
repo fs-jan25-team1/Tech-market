@@ -1,5 +1,8 @@
 {
   "header": {
+    "button": {
+      "signIn": "Увійти"
+    },
     "navItem": {
       "home": "Home",
       "phones": "Phones",
@@ -141,14 +144,125 @@
   "cartPageTemplate": {
     "title": "Cart",
     "empty": {
-      "title": "Your cart is empty",
-      "text": "Add some products to your cart to see them here."
+      "title": "No items in cart 🛒",
+      "text": "Add some products to your cart to see them here.",
+      "button": {
+        "goToShop": "Browse products"
+      }
+    },
+    "discount": "{{count}}% discount applied",
+    "registerForDiscount": "Sign up to get {{count}}% off your first order!",
+    "button": {
+      "checkout": "Checkout"
+    },
+    "totalPrice_one": "Total price for {{count}} item",
+    "totalPrice_few": "Total price for {{count}} items",
+    "totalPrice_many": "Total price for {{count}} items"
+  },
+  "favouritesPageTemplate": {
+    "title": "Favorites",
+    "models_one": "{{count}} item",
+    "models_few": "{{count}} items",
+    "models_many": "{{count}} items",
+    "empty": {
+      "title": "Your favourites list is empty 👀",
+      "text": "Add products to your favorites to see them here."
+    }
+  },
+  "homePageTemplate": {
+    "greeting": "Welcome to {{storeName}} store!"
+  },
+  "itemCardTemplate": {
+    "toast": {
+      "addedToFavorites": "added to favorites",
+      "removedFromFavorites": "removed from favorites",
+      "addedToCart": "added to cart",
+      "removedFromCart": "removed from cart"
+    },
+    "noImage": "Images not available",
+    "availableColors": "Available colors",
+    "selectCapacity": "Select capacity",
+    "specs": {
+      "screen": "Screen",
+      "resolution": "Resolution",
+      "processor": "Processor",
+      "ram": "RAM"
+    },
+    "aboutProduct": "About product",
+    "techSpecs": {
+      "label": "Tech specs",
+      "screen": "Screen",
+      "resolution": "Resolution",
+      "processor": "Processor",
+      "ram": "RAM",
+      "memory": "Built-in memory",
+      "camera": "Camera",
+      "zoom": "Zoom",
+      "cell": "Cell"
+    }
+  },
+  "phonesPageTemplate": {
+    "dropdown_sort": {
+      "label": "Sort by",
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "cheapest": "Cheapest",
+      "expensive": "Most Expensive"
+    },
+    "dropdown_amount": {
+      "label": "Items per page"
+    },
+    "title": "Mobile Phones",
+    "models_one": "{{count}} model",
+    "models_few": "{{count}} models",
+    "models_many": "{{count}} models"
+  },
+  "tabletsPageTemplate": {
+    "dropdown_sort": {
+      "label": "Sort by",
+      "newest": "Newest",
+      "oldest": "Oldest",
+      "cheapest": "Cheapest",
+      "expensive": "Most Expensive"
+    },
+    "dropdown_amount": {
+      "label": "Items per page"
+    },
+    "title": "Tablets",
+    "models_one": "{{count}} model",
+    "models_few": "{{count}} models",
+    "models_many": "{{count}} models"
+  },
+  "checkoutPage": {
+    "modal": {
+      "title": "Thank you for your purchase!",
+      "button": {
+        "goToHome": "Go to Home"
+      }
     },
     "button": {
       "checkout": "Checkout"
     },
-    "totalPrice": {
-      "label": "Total Price"
+    "form": {
+      "cardNumber": {
+        "label": "Card Number",
+        "placeholder": "XXXX-XXXX-XXXX-XXXX"
+      },
+      "cardHolder": {
+        "label": "Card Holder",
+        "placeholder": "John Doe"
+      },
+      "expiry": {
+        "label": "Expiry Date",
+        "placeholder": "MM/YY"
+      },
+      "cvc": {
+        "label": "CVC",
+        "placeholder": "XXX"
+      },
+      "button": {
+        "purchase": "Purchase"
+      }
     }
   }
 }

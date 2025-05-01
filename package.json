@@ -12,7 +12,8 @@
     "fix-style": "npm run lint & npm run format",
     "preview": "vite preview",
     "deploy": "npm run build && gh-pages -d dist",
-    "prepare": "husky"
+    "prepare": "husky",
+    "lint:fix": "prettier --write . && eslint . --ext .js,.ts,.jsx,.tsx --fix"
   },
   "dependencies": {
     "@radix-ui/react-select": "^2.2.2",

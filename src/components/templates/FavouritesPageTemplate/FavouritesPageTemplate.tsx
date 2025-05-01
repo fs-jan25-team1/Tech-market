@@ -1,12 +1,15 @@
 import { ProductCard } from '@/components/organisms/ProductCard/ProductCard';
 import { useAppSelector } from '@/store/store';
 import { ProductCardType } from '@/types/ProductCardType';
+import { useTranslation } from 'react-i18next';
 
 export const FavouritesPageTemplate = () => {
   const items = useAppSelector((store) => store.favourites.items);
   const displayedProducts: ProductCardType[] = items;
 
   const isEmpty = displayedProducts.length === 0;
+
+  const { t } = useTranslation();
 
   return (
     <div
@@ -28,7 +31,7 @@ export const FavouritesPageTemplate = () => {
           min-[639px]:text-[48px] min-[1200px]:leading-[56px]
           text-[#F1F2F9] mb-2"
       >
-        Favourites
+        {t('favouritesPageTemplate.title')}
       </div>
       <div
         className="col-span-full
@@ -36,7 +39,7 @@ export const FavouritesPageTemplate = () => {
           text-[14px] leading-[21px] tracking-normal
           text-[#F1F2F9] mb-10"
       >
-        {items.length} models
+        {t('favouritesPageTemplate.models', { count: items.length })}
       </div>
 
       {isEmpty ? (
@@ -45,10 +48,10 @@ export const FavouritesPageTemplate = () => {
       h-[50vh] sm:h-[60vh] lg:h-[40vh]"
         >
           <div className="text-[20px] sm:text-[24px] font-semibold mb-4">
-            Your favourites list is empty 👀
+            {t('favouritesPageTemplate.empty.title')}
           </div>
           <p className="text-[14px] sm:text-[16px] text-[#B0B3C6]">
-            Browse products and add them to your favourites
+            {t('favouritesPageTemplate.empty.text')}
           </p>
         </div>
       ) : (

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Heart, ShoppingCart, X } from 'lucide-react';
+import { Heart, ShoppingCart, X, Sun, Globe } from 'lucide-react';
 import { Loader } from '@/components/atoms/Loader/Loader';
 import { User } from 'firebase/auth';
 import { motion } from 'framer-motion';
@@ -10,23 +10,27 @@ import { useTranslation } from 'react-i18next';
 interface MobileSidebarProps {
   isOpen: boolean;
   onClose: () => void;
-  favoritesCount?: number;
-  cartCount?: number;
   user: User | null;
   loading: boolean;
   onLogout: () => void;
   onSignIn: () => void;
+  onToggleTheme: () => void;
+  onToggleLanguage: () => void;
+  favoritesCount: number;
+  cartCount: number;
 }
 
 export const MobileSidebar = ({
   isOpen,
   onClose,
-  favoritesCount = 0,
-  cartCount = 0,
   user,
   loading,
   onLogout,
   onSignIn,
+  onToggleTheme,
+  onToggleLanguage,
+  favoritesCount,
+  cartCount,
 }: MobileSidebarProps) => {
   const location = useLocation();
   const isFavorites = location.pathname === '/favorites';
@@ -52,7 +56,6 @@ export const MobileSidebar = ({
         setUserMenuOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -157,56 +160,63 @@ export const MobileSidebar = ({
         </motion.div>
       </div>
 
-      {/* Bottom Section (Favorites and Cart) */}
-      <div className="flex items-center justify-center h-20 border-t border-[#3B3E4A]">
+      {/* Bottom Section */}
+      <div className="flex items-center justify-between h-20 border-t border-[#3B3E4A]">
         {/* Favorites */}
         <Link
           to="/favorites"
           onClick={onClose}
           aria-label={t('header.mobileSidebar.goToFavorites')}
-          className={`flex flex-col items-center justify-center w-1/2 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
+          className={`flex flex-col items-center justify-center w-1/4 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
             isFavorites
               ? 'border-b-2 border-b-[#F1F2F9]'
               : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
           }`}
         >
-          <div className="relative flex items-center justify-center h-full group">
-            <Heart
-              className={`w-6 h-6 ${
-                isFavorites ? 'text-[#F1F2F9]' : 'text-[#75767F]'
-              } group-hover:text-[#F1F2F9] transition-colors`}
-            />
-            {favoritesCount > 0 && (
-              <span className="top-[6px] right-[6px] bg-[#EB5757] text-white text-[8px] leading-[10px] font-bold rounded-full min-w-[14px] h-[14px] flex items-center justify-center px-[2px]">
-                {favoritesCount}
-              </span>
-            )}
-          </div>
+          <Heart className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
+          {favoritesCount > 0 && (
+            <span className="absolute top-1 right-1 text-[10px] bg-red-500 text-white rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[4px]">
+              {favoritesCount}
+            </span>
+          )}
         </Link>
 
         {/* Cart */}
         <Link
           to="/cart"
           onClick={onClose}
-          className={`flex flex-col items-center justify-center w-1/2 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
+          aria-label={t('header.mobileSidebar.goToCart')}
+          className={`flex flex-col items-center justify-center w-1/4 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
             isCart
               ? 'border-b-2 border-b-[#F1F2F9]'
               : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
           }`}
         >
-          <div className="relative flex items-center justify-center h-full group">
-            <ShoppingCart
-              className={`w-6 h-6 ${
-                isCart ? 'text-[#F1F2F9]' : 'text-[#75767F]'
-              } group-hover:text-[#F1F2F9] transition-colors`}
-            />
-            {cartCount > 0 && (
-              <span className="top-[6px] right-[6px] bg-[#EB5757] text-white text-[10px] leading-[11px] font-bold rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[2px]">
-                {cartCount}
-              </span>
-            )}
-          </div>
+          <ShoppingCart className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
+          {cartCount > 0 && (
+            <span className="absolute top-1 right-1 text-[10px] bg-red-500 text-white rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[4px]">
+              {cartCount}
+            </span>
+          )}
         </Link>
+
+        {/* Theme Toggle */}
+        <button
+          onClick={onToggleTheme}
+          aria-label={t('header.mobileSidebar.toggleTheme')}
+          className="flex flex-col items-center justify-center w-1/4 h-full border-r border-[#3B3E4A] transition-colors"
+        >
+          <Sun className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
+        </button>
+
+        {/* Language Toggle */}
+        <button
+          onClick={onToggleLanguage}
+          aria-label={t('header.mobileSidebar.toggleLanguage')}
+          className="flex flex-col items-center justify-center w-1/4 h-full transition-colors"
+        >
+          <Globe className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
+        </button>
       </div>
     </aside>
   );

@@ -10,6 +10,7 @@ import { Modal } from '@/components/molecules/Modal/Modal';
 import { AuthForm } from '@/components/molecules/SingInForm/SingUpForm/SingUpForm';
 import { UserDropdown } from '@/components/molecules/UserMenu/UserMenu';
 import { Loader } from '@/components/atoms/Loader/Loader';
+import { SettingsDropdown } from '@/components/molecules/SettingsDropdown/SettingsDropdown';
 import { useTranslation } from 'react-i18next';
 
 const Header = () => {
@@ -96,6 +97,10 @@ const Header = () => {
 
         <div className="flex items-center">
           <div className="hidden sm:flex items-center h-12 border-l border-[#3B3E4A]">
+            <SettingsDropdown
+              onToggleTheme={() => console.log('Toggle theme')}
+              onToggleLanguage={() => console.log('Toggle language')}
+            />
             <NavLink
               to="/favorites"
               className="flex items-center justify-center h-full w-[48px] border-l border-[#3B3E4A]"
@@ -169,6 +174,8 @@ const Header = () => {
         loading={loading}
         onLogout={handleLogout}
         onSignIn={() => setIsAuthModalOpen(true)}
+        onToggleTheme={() => console.log('Toggle theme')}
+        onToggleLanguage={() => console.log('Toggle language')}
       />
 
       {isAuthModalOpen && (

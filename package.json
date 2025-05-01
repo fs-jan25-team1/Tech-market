@@ -16,6 +16,7 @@
     "lint:fix": "prettier --write . && eslint . --ext .js,.ts,.jsx,.tsx --fix"
   },
   "dependencies": {
+    "@radix-ui/react-dropdown-menu": "^2.1.12",
     "@radix-ui/react-select": "^2.2.2",
     "@radix-ui/react-slot": "^1.2.0",
     "@reduxjs/toolkit": "^2.7.0",

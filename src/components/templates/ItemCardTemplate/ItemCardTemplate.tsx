@@ -26,6 +26,7 @@ import {
   selectProductCategory,
   setCurrentCategory,
 } from '@/features/productsSlice';
+import { useTranslation } from 'react-i18next';
 
 export const ItemCard = () => {
   const dispatch = useAppDispatch();
@@ -34,6 +35,8 @@ export const ItemCard = () => {
     (store) => store.productDetails,
   );
   const { productId } = useParams<{ productId: string }>();
+
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (productId) {
@@ -97,13 +100,16 @@ export const ItemCard = () => {
     if (isCurrentlyFavourite) {
       if (product?.basicInfo?.id) {
         dispatch(removeFavourite(product.basicInfo.id));
-        toast.success(`${product.basicInfo.name} removed from favorites`, {
-          style: {
-            background: '#161827',
-            color: '#F1F2F9',
-            border: '1px solid #3B3E4A',
+        toast.success(
+          `${product.basicInfo.name} ${t('itemCardTemplate.toast.removedFromFavorites')}`,
+          {
+            style: {
+              background: '#161827',
+              color: '#F1F2F9',
+              border: '1px solid #3B3E4A',
+            },
           },
-        });
+        );
       }
     } else {
       if (product?.basicInfo?.id) {
@@ -123,13 +129,16 @@ export const ItemCard = () => {
             image: product.basicInfo.image,
           }),
         );
-        toast.success(`${product.basicInfo.name} added to favorites`, {
-          style: {
-            background: '#161827',
-            color: '#F1F2F9',
-            border: '1px solid #3B3E4A',
+        toast.success(
+          `${product.basicInfo.name} ${t('itemCardTemplate.toast.addedToFavorites')}`,
+          {
+            style: {
+              background: '#161827',
+              color: '#F1F2F9',
+              border: '1px solid #3B3E4A',
+            },
           },
-        });
+        );
       }
     }
   };
@@ -157,22 +166,28 @@ export const ItemCard = () => {
 
     if (isInCart) {
       dispatch(removeFromCart({ productId: product.basicInfo.id }));
-      toast.success(`${product.basicInfo.name} removed from cart`, {
-        style: {
-          background: '#161827',
-          color: '#F1F2F9',
-          border: '1px solid #3B3E4A',
+      toast.success(
+        `${product.basicInfo.name} ${t('itemCardTemplate.toast.removedFromCart')}`,
+        {
+          style: {
+            background: '#161827',
+            color: '#F1F2F9',
+            border: '1px solid #3B3E4A',
+          },
         },
-      });
+      );
     } else {
       dispatch(addToCart({ product: productDetails }));
-      toast.success(`${product.basicInfo.name} added to cart`, {
-        style: {
-          background: '#161827',
-          color: '#F1F2F9',
-          border: '1px solid #3B3E4A',
+      toast.success(
+        `${product.basicInfo.name} ${t('itemCardTemplate.toast.addedToCart')}`,
+        {
+          style: {
+            background: '#161827',
+            color: '#F1F2F9',
+            border: '1px solid #3B3E4A',
+          },
         },
-      });
+      );
     }
   };
 
@@ -272,7 +287,7 @@ export const ItemCard = () => {
                     </Swiper>
                   ) : (
                     <div className="w-full h-full border border-[#3B3E4A] flex items-center justify-center text-[#89939A]">
-                      No images available
+                      {t('itemCardTemplate.noImage')}
                     </div>
                   )}
                 </div>
@@ -286,7 +301,7 @@ export const ItemCard = () => {
                   {/* Colors */}
                   <div className="mb-6 border-b border-[#3B3E4A] pb-6">
                     <p className="text-sm text-[#89939A] mb-2">
-                      Available colors
+                      {t('itemCardTemplate.availableColors')}
                     </p>
                     <div className="inline-grid grid-cols-6 gap-2">
                       {product?.colorsAvailable.map((color) => (
@@ -309,7 +324,7 @@ export const ItemCard = () => {
                   {/* Capacity */}
                   <div className="mb-8 border-b border-[#3B3E4A] pb-6">
                     <p className="text-sm text-[#89939A] mb-2">
-                      Select capacity
+                      {t('itemCardTemplate.selectCapacity')}
                     </p>
                     <div className="inline-grid grid-cols-5 gap-2">
                       {product?.capacityAvailable.map((cap) => (
@@ -375,25 +390,33 @@ export const ItemCard = () => {
                   {/* Short tech specs */}
                   <div className="flex flex-col gap-1 text-xs sm:text-sm text-[#89939A]">
                     <div className="flex justify-between gap-2 text-[12px]">
-                      <span className="min-w-[80px]">Screen:</span>
+                      <span className="min-w-[80px]">
+                        {t('itemCardTemplate.specs.screen')}:
+                      </span>
                       <span className="text-white max-w-[200px] text-right break-words">
                         {product?.screen}
                       </span>
                     </div>
                     <div className="flex justify-between gap-2">
-                      <span className="min-w-[80px]">Resolution:</span>
+                      <span className="min-w-[80px]">
+                        {t('itemCardTemplate.specs.resolution')}:
+                      </span>
                       <span className="text-white max-w-[200px] text-right break-words">
                         {product?.resolution}
                       </span>
                     </div>
                     <div className="flex justify-between gap-2">
-                      <span className="min-w-[80px]">Processor:</span>
+                      <span className="min-w-[80px]">
+                        {t('itemCardTemplate.specs.processor')}:
+                      </span>
                       <span className="text-white max-w-[200px] text-right break-words">
                         {product?.processor}
                       </span>
                     </div>
                     <div className="flex justify-between gap-2">
-                      <span className="min-w-[80px]">RAM:</span>
+                      <span className="min-w-[80px]">
+                        {t('itemCardTemplate.specs.ram')}:
+                      </span>
                       <span className="text-white max-w-[200px] text-right break-words">
                         {product?.ram}
                       </span>
@@ -408,7 +431,7 @@ export const ItemCard = () => {
           <div className="col-span-full grid grid-cols-4  min-[1200px]:grid-cols-24 gap-4 mb-20">
             <div className="col-span-full min-[640px]:col-span-7 min-[1200px]:col-span-12">
               <p className="col-span-full text-[22px] font-semibold border-b border-[#3B3E4A] pb-4 mb-8">
-                About
+                {t('itemCardTemplate.aboutProduct')}
               </p>
               <div className="col-span-full text-sm text-[#89939A] leading-relaxed">
                 {product?.description.map((desc, i) => (
@@ -424,39 +447,39 @@ export const ItemCard = () => {
 
             <div className="col-span-full min-[640px]:col-span-5 min-[1200px]:col-span-11 min-[1200px]:col-start-14">
               <p className="text-[22px] font-semibold border-b border-[#3B3E4A] pb-4 mb-8">
-                Tech specs
+                {t('itemCardTemplate.techSpecs.label')}
               </p>
               <ul className="text-[14px] text-[#89939A] space-y-2">
                 <li className="flex justify-between">
-                  <span>Screen</span>
+                  <span>{t('itemCardTemplate.techSpecs.screen')}</span>
                   <span className="text-white">{product?.screen}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Resolution</span>
+                  <span>{t('itemCardTemplate.techSpecs.resolution')}</span>
                   <span className="text-white">{product?.resolution}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Processor</span>
+                  <span>{t('itemCardTemplate.techSpecs.processor')}</span>
                   <span className="text-white">{product?.processor}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>RAM</span>
+                  <span>{t('itemCardTemplate.techSpecs.ram')}</span>
                   <span className="text-white">{product?.ram}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Built-in memory</span>
+                  <span>{t('itemCardTemplate.techSpecs.memory')}</span>
                   <span className="text-white">{product?.capacity}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Camera</span>
+                  <span>{t('itemCardTemplate.techSpecs.camera')}</span>
                   <span className="text-white">{product?.camera}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Zoom</span>
+                  <span>{t('itemCardTemplate.techSpecs.zoom')}</span>
                   <span className="text-white">{product?.zoom}</span>
                 </li>
                 <li className="flex justify-between">
-                  <span>Cell</span>
+                  <span>{t('itemCardTemplate.techSpecs.cell')}</span>
                   <span className="text-white">{product?.cell}</span>
                 </li>
               </ul>

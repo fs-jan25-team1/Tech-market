@@ -2,12 +2,18 @@ import { Link } from 'react-router-dom';
 import Button from '@/components/atoms/button/Button';
 import { ButtonTypes } from '../../../types/ButtonTypes';
 import { ChevronUp } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export const Footer = () => {
+  const { t } = useTranslation();
+
   const footerItems = [
-    { name: 'Github', link: 'https://github.com/fs-jan25-team1/Tech-market' },
-    { name: 'Contacts', link: '/contact' },
-    { name: 'Rights', link: '/rights' },
+    {
+      name: t('footer.gitub'),
+      link: 'https://github.com/fs-jan25-team1/Tech-market',
+    },
+    { name: t('footer.contacts'), link: '/contact' },
+    { name: t('footer.rights'), link: '/rights' },
   ];
 
   const scrollToTop = () => {
@@ -69,7 +75,7 @@ export const Footer = () => {
               min-[1200px]:col-start-22 min-[1200px]:col-span-3 min-[1200px]:justify-end"
           onClick={scrollToTop}
         >
-          <span className="text-white">Back to top</span>
+          <span className="text-white">{t('footer.backToTop')}</span>
           <Button variant={ButtonTypes.arrow} className="" icon={ChevronUp} />
         </div>
       </div>

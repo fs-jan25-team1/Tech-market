@@ -5,6 +5,7 @@ import { Loader } from '@/components/atoms/Loader/Loader';
 import { User } from 'firebase/auth';
 import { motion } from 'framer-motion';
 import { UserAvatar } from '@/components/molecules/UserAvatar/UserAvatar';
+import { useTranslation } from 'react-i18next';
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -18,13 +19,6 @@ interface MobileSidebarProps {
   favoritesCount: number;
   cartCount: number;
 }
-
-const navItems = [
-  { path: '/', label: 'Home' },
-  { path: '/phones', label: 'Phones' },
-  { path: '/tablets', label: 'Tablets' },
-  { path: '/accessories', label: 'Accessories' },
-];
 
 export const MobileSidebar = ({
   isOpen,
@@ -44,6 +38,15 @@ export const MobileSidebar = ({
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  const { t } = useTranslation();
+
+  const navItems = [
+    { path: '/', label: t('header.navItem.home') },
+    { path: '/phones', label: t('header.navItem.phones') },
+    { path: '/tablets', label: t('header.navItem.tablets') },
+    { path: '/accessories', label: t('header.navItem.accessories') },
+  ];
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -53,7 +56,6 @@ export const MobileSidebar = ({
         setUserMenuOpen(false);
       }
     };
-
     document.addEventListener('mousedown', handleClickOutside);
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
@@ -72,7 +74,7 @@ export const MobileSidebar = ({
           </Link>
           <button
             onClick={onClose}
-            aria-label="Close menu"
+            aria-label={t('header.mobileSidebar.closeMenu')}
             className="text-secondary"
           >
             <X className="w-6 h-6" />
@@ -135,7 +137,11 @@ export const MobileSidebar = ({
                     }}
                     className="w-full text-left px-4 py-2 text-white rounded-b-xl text-sm cursor-pointer"
                   >
-                    {loading ? <Loader /> : 'Logout'}
+                    {loading ? (
+                      <Loader />
+                    ) : (
+                      t('header.mobileSidebar.button.signOut')
+                    )}
                   </button>
                 </motion.div>
               )}
@@ -148,19 +154,19 @@ export const MobileSidebar = ({
               }}
               className="w-full py-2 text-white bg-violet-600 hover:bg-violet-700 rounded-md text-sm font-semibold transition"
             >
-              Sign In
+              {t('header.mobileSidebar.button.signIn')}
             </button>
           )}
         </motion.div>
       </div>
 
-      {/* Bottom Section (Favorites, Cart, Theme, Language) */}
+      {/* Bottom Section */}
       <div className="flex items-center justify-between h-20 border-t border-[#3B3E4A]">
         {/* Favorites */}
         <Link
           to="/favorites"
           onClick={onClose}
-          aria-label="Go to favorites"
+          aria-label={t('header.mobileSidebar.goToFavorites')}
           className={`flex flex-col items-center justify-center w-1/4 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
             isFavorites
               ? 'border-b-2 border-b-[#F1F2F9]'
@@ -169,7 +175,7 @@ export const MobileSidebar = ({
         >
           <Heart className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
           {favoritesCount > 0 && (
-            <span className="absolute top-0 right-0 text-xs text-white bg-red-500 rounded-full px-2 py-1">
+            <span className="absolute top-1 right-1 text-[10px] bg-red-500 text-white rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[4px]">
               {favoritesCount}
             </span>
           )}
@@ -179,6 +185,7 @@ export const MobileSidebar = ({
         <Link
           to="/cart"
           onClick={onClose}
+          aria-label={t('header.mobileSidebar.goToCart')}
           className={`flex flex-col items-center justify-center w-1/4 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
             isCart
               ? 'border-b-2 border-b-[#F1F2F9]'
@@ -187,7 +194,7 @@ export const MobileSidebar = ({
         >
           <ShoppingCart className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
           {cartCount > 0 && (
-            <span className="absolute top-0 right-0 text-xs text-white bg-red-500 rounded-full px-2 py-1">
+            <span className="absolute top-1 right-1 text-[10px] bg-red-500 text-white rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[4px]">
               {cartCount}
             </span>
           )}
@@ -196,6 +203,7 @@ export const MobileSidebar = ({
         {/* Theme Toggle */}
         <button
           onClick={onToggleTheme}
+          aria-label={t('header.mobileSidebar.toggleTheme')}
           className="flex flex-col items-center justify-center w-1/4 h-full border-r border-[#3B3E4A] transition-colors"
         >
           <Sun className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
@@ -204,6 +212,7 @@ export const MobileSidebar = ({
         {/* Language Toggle */}
         <button
           onClick={onToggleLanguage}
+          aria-label={t('header.mobileSidebar.toggleLanguage')}
           className="flex flex-col items-center justify-center w-1/4 h-full transition-colors"
         >
           <Globe className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />

@@ -13,20 +13,36 @@ import { CategoryType } from '@/types/CategoryType';
 import { FilterStatus } from '@/types/FilterStatusType';
 import { ItemsPerPage } from '@/types/ItemsPerPageType';
 
-const DropdownSortBy = [
-  { value: 'newest', label: 'Newest' },
-  { value: 'oldest', label: 'Oldest' },
-  { value: 'cheapest', label: 'Cheapest' },
-  { value: 'mostExpensive', label: 'Most expensive' },
-];
-
-const DropdownItemsOnPage = [
-  { value: '16', label: '16' },
-  { value: '20', label: '20' },
-  { value: '24', label: '24' },
-];
+import { useTranslation } from 'react-i18next';
 
 export const AccessoriesPageTemplate = () => {
+  const { t } = useTranslation();
+
+  const DropdownSortBy = [
+    {
+      value: 'newest',
+      label: t('accessoriesPageTemplate.dropdown_sort.newest'),
+    },
+    {
+      value: 'oldest',
+      label: t('accessoriesPageTemplate.dropdown_sort.oldest'),
+    },
+    {
+      value: 'cheapest',
+      label: t('accessoriesPageTemplate.dropdown_sort.cheapest'),
+    },
+    {
+      value: 'mostExpensive',
+      label: t('accessoriesPageTemplate.dropdown_sort.expensive'),
+    },
+  ];
+
+  const DropdownItemsOnPage = [
+    { value: '16', label: '16' },
+    { value: '20', label: '20' },
+    { value: '24', label: '24' },
+  ];
+
   const dispatch = useAppDispatch();
   const { productsList, isLoading, filter } = useAppSelector(
     (store) => store.products,
@@ -71,7 +87,7 @@ export const AccessoriesPageTemplate = () => {
           min-[639px]:text-[48px] min-[1200px]:leading-[56px]
           text-[#F1F2F9] mb-2"
       >
-        Accessories
+        {t('accessoriesPageTemplate.label')}
       </div>
       <div
         className="col-span-full
@@ -79,7 +95,7 @@ export const AccessoriesPageTemplate = () => {
           text-[14px] leading-[21px] tracking-normal
           text-[#F1F2F9] mb-10"
       >
-        {productsList.length} models
+        {t('accessoriesPageTemplate.models', { count: productsList.length })}
       </div>
       <div
         className="col-span-full grid 
@@ -93,13 +109,13 @@ export const AccessoriesPageTemplate = () => {
             min-[1200px]:col-span-4"
         >
           <CustomDropdown
-            placeholder="Newest"
+            placeholder={t('accessoriesPageTemplate.dropdown_sort.newest')}
             options={DropdownSortBy}
             onValueChange={(value) =>
               dispatch(setStatus({ sortBy: value as FilterStatus }))
             }
             size="medium"
-            name="Sort by"
+            name={t('accessoriesPageTemplate.dropdown_sort.label')}
           />
         </div>
         <div
@@ -115,7 +131,7 @@ export const AccessoriesPageTemplate = () => {
               setCurrentPage(1);
             }}
             size="small"
-            name="Items on page"
+            name={t('accessoriesPageTemplate.dropdown_amount.label')}
           />
         </div>
       </div>

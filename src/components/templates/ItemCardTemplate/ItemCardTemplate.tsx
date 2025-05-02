@@ -200,11 +200,12 @@ export const ItemCard = () => {
   };
 
   return (
-    <section className="bg-[#0F1121] text-[#F1F2F9]">
+    <section id="itemPageContent" className="bg-[#0F1121] text-[#F1F2F9]">
       {isLoading ? (
         <ItemCardAnimation />
       ) : (
         <div
+          id="itemPageContent"
           className="grid grid-cols-4 gap-4 
             min-[640px]:grid-cols-12
             min-[1200px]:grid-cols-24 px-4
@@ -229,7 +230,10 @@ export const ItemCard = () => {
           </div>
 
           {/* Content */}
-          <div className="col-span-full grid grid-cols-4 min-[640px]:grid-cols-12 min-[1200px]:grid-cols-24 gap-4 mb-14 min-[640px]:mb-16 min-[1200px]:mb-20">
+          <div
+            id="itemPageContent"
+            className="col-span-full grid grid-cols-4 min-[640px]:grid-cols-12 min-[1200px]:grid-cols-24 gap-4 mb-14 min-[640px]:mb-16 min-[1200px]:mb-20"
+          >
             {/* Gallery (Thumbnails + Main image) */}
             <div className="col-span-full min-[640px]:col-span-7 min-[1200px]:col-span-12 mb-10">
               <div className="grid grid-cols-4 min-[640px]:grid-cols-7 min-[1200px]:grid-cols-12 gap-4">
@@ -320,11 +324,20 @@ export const ItemCard = () => {
                   </div>
 
                   {/* Capacity */}
-                  <div className="mb-8 border-b border-[#3B3E4A] pb-6">
-                    <p className="text-sm text-[#89939A] mb-2">
+                  <div
+                    id="itemPageCapacity"
+                    className="mb-8 border-b border-[#3B3E4A] pb-6"
+                  >
+                    <p
+                      id="itemPageCapacity"
+                      className="text-sm text-[#89939A] mb-2"
+                    >
                       {t('itemCardTemplate.selectCapacity')}
                     </p>
-                    <div className="inline-grid grid-cols-5 gap-2">
+                    <div
+                      id="itemPageCapacity"
+                      className="inline-grid grid-cols-5 gap-2"
+                    >
                       {product?.capacityAvailable.map((cap) => (
                         <div key={cap} className="col-span-1">
                           <Button
@@ -351,7 +364,10 @@ export const ItemCard = () => {
                   {/* Price */}
                   <div className="inline-grid grid-cols-2 gap-2 items-center text-lg mb-4">
                     <div className="col-span-1">
-                      <span className="text-white font-[montBold]">
+                      <span
+                        id="itemPageCapacity"
+                        className="text-white font-[montBold]"
+                      >
                         {product?.priceDiscount} $
                       </span>
                     </div>
@@ -391,7 +407,10 @@ export const ItemCard = () => {
                       <span className="min-w-[80px]">
                         {t('itemCardTemplate.specs.screen')}:
                       </span>
-                      <span className="text-white max-w-[200px] text-right break-words">
+                      <span
+                        id="itemPageCapacity"
+                        className="text-white max-w-[200px] text-right break-words"
+                      >
                         {product?.screen}
                       </span>
                     </div>
@@ -399,7 +418,10 @@ export const ItemCard = () => {
                       <span className="min-w-[80px]">
                         {t('itemCardTemplate.specs.resolution')}:
                       </span>
-                      <span className="text-white max-w-[200px] text-right break-words">
+                      <span
+                        id="itemPageCapacity"
+                        className="text-white max-w-[200px] text-right break-words"
+                      >
                         {product?.resolution}
                       </span>
                     </div>
@@ -407,7 +429,10 @@ export const ItemCard = () => {
                       <span className="min-w-[80px]">
                         {t('itemCardTemplate.specs.processor')}:
                       </span>
-                      <span className="text-white max-w-[200px] text-right break-words">
+                      <span
+                        id="itemPageCapacity"
+                        className="text-white max-w-[200px] text-right break-words"
+                      >
                         {product?.processor}
                       </span>
                     </div>
@@ -415,7 +440,10 @@ export const ItemCard = () => {
                       <span className="min-w-[80px]">
                         {t('itemCardTemplate.specs.ram')}:
                       </span>
-                      <span className="text-white max-w-[200px] text-right break-words">
+                      <span
+                        id="itemPageCapacity"
+                        className="text-white max-w-[200px] text-right break-words"
+                      >
                         {product?.ram}
                       </span>
                     </div>
@@ -428,7 +456,10 @@ export const ItemCard = () => {
           {/* About and Tech specs */}
           <div className="col-span-full grid grid-cols-4  min-[1200px]:grid-cols-24 gap-4 mb-20">
             <div className="col-span-full min-[640px]:col-span-7 min-[1200px]:col-span-12">
-              <p className="col-span-full text-[22px] font-semibold border-b border-[#3B3E4A] pb-4 mb-8">
+              <p
+                id="itemPageCapacity"
+                className="col-span-full text-[22px] font-semibold border-b border-[#3B3E4A] pb-4 mb-8"
+              >
                 {t('itemCardTemplate.aboutProduct')}
               </p>
               <div className="col-span-full text-sm text-[#89939A] leading-relaxed">
@@ -450,42 +481,58 @@ export const ItemCard = () => {
               <ul className="text-[14px] text-[#89939A] space-y-2">
                 <li className="flex justify-between">
                   <span>{t('itemCardTemplate.techSpecs.screen')}</span>
-                  <span className="text-white">{product?.screen}</span>
+                  <span id="itemPageCapacity" className="text-white">
+                    {product?.screen}
+                  </span>
                 </li>
                 <li className="flex justify-between">
                   <span>{t('itemCardTemplate.techSpecs.resolution')}</span>
-                  <span className="text-white">{product?.resolution}</span>
+                  <span id="itemPageCapacity" className="text-white">
+                    {product?.resolution}
+                  </span>
                 </li>
                 <li className="flex justify-between">
                   <span>{t('itemCardTemplate.techSpecs.processor')}</span>
-                  <span className="text-white">{product?.processor}</span>
+                  <span id="itemPageCapacity" className="text-white">
+                    {product?.processor}
+                  </span>
                 </li>
                 <li className="flex justify-between">
                   <span>{t('itemCardTemplate.techSpecs.ram')}</span>
-                  <span className="text-white">{product?.ram}</span>
+                  <span id="itemPageCapacity" className="text-white">
+                    {product?.ram}
+                  </span>
                 </li>
                 <li className="flex justify-between">
                   <span>{t('itemCardTemplate.techSpecs.memory')}</span>
-                  <span className="text-white">{product?.capacity}</span>
+                  <span id="itemPageCapacity" className="text-white">
+                    {product?.capacity}
+                  </span>
                 </li>
                 <li className="flex justify-between">
                   <span>{t('itemCardTemplate.techSpecs.camera')}</span>
-                  <span className="text-white">{product?.camera}</span>
+                  <span id="itemPageCapacity" className="text-white">
+                    {product?.camera}
+                  </span>
                 </li>
                 <li className="flex justify-between">
                   <span>{t('itemCardTemplate.techSpecs.zoom')}</span>
-                  <span className="text-white">{product?.zoom}</span>
+                  <span id="itemPageCapacity" className="text-white">
+                    {product?.zoom}
+                  </span>
                 </li>
                 <li className="flex justify-between">
                   <span>{t('itemCardTemplate.techSpecs.cell')}</span>
-                  <span className="text-white">{product?.cell}</span>
+                  <span id="itemPageCapacity" className="text-white">
+                    {product?.cell}
+                  </span>
                 </li>
               </ul>
             </div>
           </div>
 
           {/* You may also like */}
-          <div className="col-span-full">
+          <div id="itemPageContent" className="col-span-full">
             <YouMayAlsoLikeSlider category={CategoryType.phones} />
           </div>
         </div>

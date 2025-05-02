@@ -60,3 +60,37 @@ html.dark footer {
 html.dark #cards {
   background-color: lightgray !important;
 }
+
+html.dark #phonesPageTitle,
+html.dark #tabletsPageTitle,
+html.dark #accessoriesPageTitle,
+html.dark #favPageTitle {
+  color: black
+}
+
+html.dark #itemPageContent {
+  background-color: whitesmoke;
+}
+
+html.dark #itemPageCapacity {
+  color: black;
+}
+
+
+html.dark #breadcrumb-nav {
+  color: black;
+  background-color: whitesmoke;
+}
+html.dark #breadcrumb-home-link,
+html.dark [id^="breadcrumb-link-"] {
+  color: black;
+}
+html.dark #breadcrumb-home-link:hover,
+html.dark [id^="breadcrumb-link-"]:hover {
+  color: gray;
+}
+html.dark [id^="breadcrumb-current-"],
+html.dark [id^="breadcrumb-separator-"],
+html.dark #breadcrumb-home-separator {
+  color: gray;
+}

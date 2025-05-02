@@ -3,7 +3,12 @@ import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '@/shared/firebase';
 import { Button } from '@/components/ui/button';
 import { useAppDispatch, useAppSelector } from '@/store/store';
-import { Heart, ShoppingCart, Menu } from 'lucide-react';
+import {
+  Heart,
+  ShoppingCart,
+  Menu,
+  CircleUserRound,
+} from 'lucide-react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { MobileSidebar } from './MobileSidebar';
 import { Modal } from '@/components/molecules/Modal/Modal';
@@ -112,16 +117,17 @@ const Header = () => {
             ))}
           </nav>
         </div>
-
-        <div className="flex items-center">
-          <div className="hidden sm:flex items-center h-12 border-l border-[#3B3E4A]">
-            <div className="h-full flex items-center justify-center w-[48px] border-l border-[#3B3E4A] cursor-pointer">
+        {/* Buttons */}
+        <div className="flex items-center pr-6 lg:pr-12">
+          {/* Theme and Language */}
+          <div className="hidden sm:flex items-center h-12 border-l border-[#3B3E4A] ">
+            <div className="h-full flex items-center justify-center w-[48px] border-l border-[#3B3E4A]">
               <ThemeToggle />
             </div>
-            <div className="h-full flex items-center justify-center w-[48px] border-l border-[#3B3E4A] cursor-pointer">
+            <div className="h-full flex items-center justify-center w-[48px] border-l border-[#3B3E4A]">
               <LanguageSwitcher />
             </div>
-
+            {/* Favorites */}
             <NavLink
               to="/favorites"
               className="flex items-center justify-center h-full w-[48px] border-l border-[#3B3E4A]"
@@ -135,7 +141,7 @@ const Header = () => {
                 )}
               </div>
             </NavLink>
-
+            {/* Cart */}
             <NavLink
               to="/cart"
               className="relative flex items-center justify-center h-full w-[48px] border-l border-[#3B3E4A]"
@@ -155,8 +161,8 @@ const Header = () => {
                 )}
               </div>
             </NavLink>
-
-            <div className="relative flex items-center justify-center h-full border-l border-[#3B3E4A]">
+            {/* Sign in */}
+            <div className="relative flex items-center justify-center border-l border-r border-[#3B3E4A] !box-border">
               {loading ? (
                 <div className="w-12 h-12 flex items-center justify-center">
                   <Loader />
@@ -166,10 +172,11 @@ const Header = () => {
               ) : (
                 <Button
                   variant="ghost"
-                  className="h-12 w-auto text-white bg-violet-600 hover:bg-violet-700 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center pr-6 lg:pr-12"
+                  className="!box-border h-12 text-white hover:bg-violet-700 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
                   onClick={() => setIsAuthModalOpen(true)}
                 >
-                  {t('header.button.signIn')}
+                  {/* {t('header.button.signIn')} */}
+                  <CircleUserRound className="!w-6 !h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
                 </Button>
               )}
             </div>

@@ -4,7 +4,6 @@ import { Moon, Sun } from 'lucide-react';
 export const ThemeToggle = () => {
   const [theme, setTheme] = useState<'light' | 'dark'>('dark');
 
-  // Устанавливаем тему при загрузке
   useEffect(() => {
     const storedTheme = localStorage.getItem('theme') as
       | 'light'
@@ -29,7 +28,7 @@ export const ThemeToggle = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="flex items-center justify-center h-full w-[48px] hover:bg-[#1F1F1F] transition-colors"
+      className="flex items-center justify-center h-full w-[48px] hover:bg-[#1F1F1F] transition-colors cursor-pointer"
       aria-label="Toggle Theme"
     >
       {theme === 'dark' ? (

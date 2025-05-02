@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import i18n from '@/i18n';
 import { Globe } from 'lucide-react';
 
 export const LanguageSwitcher = () => {
   const [open, setOpen] = useState(false);
   const currentLang = i18n.language;
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const changeLang = (lang: string) => {
     i18n.changeLanguage(lang);
@@ -17,11 +18,25 @@ export const LanguageSwitcher = () => {
     uk: '🇺🇦',
   };
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   return (
-    <div className="relative">
+    <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-center h-full w-[48px] hover:bg-[#1F1F1F] transition-colors"
+        className="flex items-center justify-center h-full w-[48px] hover:bg-[#1F1F1F] transition-colors cursor-pointer"
         aria-label="Change Language"
       >
         <Globe className="w-5 h-5 text-[#75767F]" />

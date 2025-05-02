@@ -58,15 +58,15 @@ html.dark footer {
 }
 
 html.dark #nav-item {
-  color: lightgray
+  color: lightgray;
 }
 
 html.dark #nav-item:hover {
-  color: white
+  color: white;
 }
 
 html.dark #nav-item:active {
-  color: white
+  color: white;
 }
 
 html.dark #cards {

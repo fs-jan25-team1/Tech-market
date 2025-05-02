@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '@/shared/firebase';
 import { Button } from '@/components/ui/button';
-import { useAppSelector } from '@/store/store';
+import { useAppDispatch, useAppSelector } from '@/store/store';
 import { Heart, ShoppingCart, Menu } from 'lucide-react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { MobileSidebar } from './MobileSidebar';
@@ -14,6 +14,8 @@ import { SettingsDropdown } from '@/components/molecules/SettingsDropdown/Settin
 import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n';
 import { useTheme } from '@/hooks/useTheme';
+import { setStatus } from '@/features/productsSlice';
+import { FilterStatus } from '@/types/FilterStatusType';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,6 +25,7 @@ const Header = () => {
   const location = useLocation();
   const { t } = useTranslation();
   const { toogleTheme } = useTheme();
+  const dispatch = useAppDispatch();
 
   const cartCount = useAppSelector(
     (store) => Object.keys(store.cart.items).length,
@@ -81,8 +84,12 @@ const Header = () => {
           <nav className="hidden sm:flex relative h-12 flex-1 gap-8">
             {navItems.map(({ path, label }) => (
               <NavLink
+                onClick={() =>
+                  dispatch(setStatus({ sortBy: FilterStatus.newest }))
+                }
                 key={path}
                 to={path}
+                id="nav-item"
                 className={({ isActive }) =>
                   `relative flex items-center h-full text-sm font-semibold uppercase transition-colors ${
                     isActive

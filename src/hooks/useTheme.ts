@@ -1,17 +1,32 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 
 const THEME_KEY = 'theme';
 
+type Theme = 'light' | 'dark';
+
+const getInitialTheme = (): Theme => {
+  if (typeof window !== 'undefined') {
+    const storedTheme = localStorage.getItem(THEME_KEY);
+    return storedTheme === 'dark' ? 'dark' : 'light';
+  }
+  return 'light';
+};
+
 export const useTheme = () => {
-  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
-    const storedTheme = localStorage.getItem(THEME_KEY) as
-      | 'light'
-      | 'dark'
-      | null;
-    return storedTheme || 'light';
-  });
+  const [theme, setTheme] = useState<Theme>('light');
+  const [isMounted, setIsMounted] = useState(false);
+
+  useLayoutEffect(() => {
+    const initial = getInitialTheme();
+    setTheme(initial);
+    const root = window.document.documentElement;
+    root.classList.toggle('dark', initial === 'dark');
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
+    if (!isMounted) return;
+
     const root = window.document.documentElement;
 
     if (theme === 'dark') {
@@ -21,11 +36,11 @@ export const useTheme = () => {
     }
 
     localStorage.setItem(THEME_KEY, theme);
-  }, [theme]);
+  }, [theme, isMounted]);
 
-  const toogleTheme = () => {
+  const toggleTheme = () => {
     setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  return { theme, toogleTheme };
+  return { theme, toggleTheme };
 };

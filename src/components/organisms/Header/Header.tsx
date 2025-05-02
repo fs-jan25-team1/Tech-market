@@ -127,7 +127,10 @@ const Header = () => {
               className="flex items-center justify-center h-full w-[48px] border-l border-[#3B3E4A]"
             >
               <div className="relative flex items-center justify-center w-full h-full group">
-                <Heart className="w-5 h-5 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
+                <Heart
+                  id="header-link"
+                  className="w-5 h-5 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors"
+                />
                 {favoritesCount > 0 && (
                   <span className="absolute top-[6px] right-[6px] bg-[#EB5757] text-white text-[8px] leading-[10px] font-bold rounded-full min-w-[14px] h-[14px] flex items-center justify-center px-[2px]">
                     {favoritesCount}
@@ -142,6 +145,7 @@ const Header = () => {
             >
               <div className="relative flex items-center justify-center w-full h-full group">
                 <ShoppingCart
+                  id="header-link"
                   className={`h-5 w-5 ${
                     location.pathname === '/cart'
                       ? 'text-[#F1F2F9]'

@@ -19,7 +19,7 @@ const teamMembers: TeamMember[] = [
     name: 'Maksym Bilous',
     photo: '/img/team/Maksym .jpg',
     github: 'https://github.com/maxbilfed',
-    linkedin: 'https://www.linkedin.com/in/dmytro-kashchenko-1983981a9/',
+    linkedin: 'https://www.linkedin.com/in/maksym-bil-fedev/',
   },
   {
     name: 'Daria Radtkina',

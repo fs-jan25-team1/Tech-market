@@ -12,7 +12,7 @@ export const Breadcrumb = ({ productName }: { productName?: string }) => {
   return (
     <nav
       id="breadcrumb-nav"
-      className="grid grid-cols-1 pt-6
+      className="grid grid-cols-1 pt-6 px-4
         min-[640px]:px-8
         min-[1200px]:px-0
         min-[1200px]:max-w-[1136px] mx-auto

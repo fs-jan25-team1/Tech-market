@@ -30,3 +30,33 @@ body {
     background-position: 200% 0;
   }
 }
+
+html.dark,
+html.dark body {
+  background-color: whitesmoke !important;
+  color: black !important;
+}
+
+html.dark h1,
+html.dark h2,
+html.dark h3,
+html.dark h4,
+html.dark h5,
+html.dark h6 {
+  color: black !important;
+}
+
+html.dark {
+  background-color: lightgray !important;
+  color: black !important;
+}
+
+html.dark header,
+html.dark footer {
+  background-color: black !important;
+  color: white !important;
+}
+
+html.dark #cards {
+  background-color: lightgray !important;
+}

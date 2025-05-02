@@ -13,6 +13,7 @@ import { Loader } from '@/components/atoms/Loader/Loader';
 import { SettingsDropdown } from '@/components/molecules/SettingsDropdown/SettingsDropdown';
 import { useTranslation } from 'react-i18next';
 import i18n from '@/i18n';
+import { useTheme } from '@/hooks/useTheme';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,6 +22,7 @@ const Header = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const { t } = useTranslation();
+  const { toogleTheme } = useTheme();
 
   const cartCount = useAppSelector(
     (store) => Object.keys(store.cart.items).length,
@@ -105,7 +107,7 @@ const Header = () => {
         <div className="flex items-center">
           <div className="hidden sm:flex items-center h-12 border-l border-[#3B3E4A]">
             <SettingsDropdown
-              onToggleTheme={() => console.log('Toggle theme')}
+              onToggleTheme={toogleTheme}
               onToggleLanguage={toggleLanguage}
             />
             <NavLink
@@ -181,8 +183,8 @@ const Header = () => {
         loading={loading}
         onLogout={handleLogout}
         onSignIn={() => setIsAuthModalOpen(true)}
-        onToggleTheme={() => console.log('Toggle theme')}
-        onToggleLanguage={() => console.log('Toggle language')}
+        onToggleTheme={toogleTheme}
+        onToggleLanguage={toggleLanguage}
       />
 
       {isAuthModalOpen && (

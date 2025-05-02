@@ -74,6 +74,7 @@ export const PhonesPageTemplate = () => {
     >
       {/* needs to update with dinamic routing */}
       <div
+        id="phonesPageTitle"
         className="col-span-full
           font-[Mont] font-extrabold
           text-[32px] leading-[41px] tracking-[-0.01em]
@@ -83,6 +84,7 @@ export const PhonesPageTemplate = () => {
         {t('phonesPageTemplate.title')}
       </div>
       <div
+        id="phonesPageTitle"
         className="col-span-full
           font-[Mont] font-semibold
           text-[14px] leading-[21px] tracking-normal

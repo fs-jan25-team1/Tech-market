@@ -25,6 +25,7 @@ export const FavouritesPageTemplate = () => {
         gap-y-0"
     >
       <div
+        id="favPageTitle"
         className="col-span-full
           font-[Mont] font-extrabold
           text-[32px] leading-[41px] tracking-[-0.01em]
@@ -34,6 +35,7 @@ export const FavouritesPageTemplate = () => {
         {t('favouritesPageTemplate.title')}
       </div>
       <div
+        id="favPageTitle"
         className="col-span-full
           font-[Mont] font-semibold
           text-[14px] leading-[21px] tracking-normal
@@ -44,6 +46,7 @@ export const FavouritesPageTemplate = () => {
 
       {isEmpty ? (
         <div
+          id="favPageTitle"
           className="col-span-full flex flex-col items-center justify-center text-center text-[#F1F2F9]
       h-[50vh] sm:h-[60vh] lg:h-[40vh]"
         >

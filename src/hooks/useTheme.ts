@@ -8,7 +8,7 @@ export const useTheme = () => {
       | 'light'
       | 'dark'
       | null;
-    return storedTheme || 'dark';
+    return storedTheme || 'light';
   });
 
   useEffect(() => {

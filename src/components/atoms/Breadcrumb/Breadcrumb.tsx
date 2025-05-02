@@ -11,43 +11,46 @@ export const Breadcrumb = ({ productName }: { productName?: string }) => {
 
   return (
     <nav
+      id="breadcrumb-nav"
       className="grid grid-cols-1 pt-6
         min-[640px]:px-8
         min-[1200px]:px-0
         min-[1200px]:max-w-[1136px] mx-auto
-        text-sm text-muted-foreground"
+        text-sm"
       aria-label={t('breadcrumb.label')}
     >
-      <ol className="flex flex-wrap items-center gap-2">
-        <li className="flex items-center gap-2">
-          <Link
-            to="/"
-            className="text-[#F1F2F9] hover:text-[#75767F] transition-colors"
-          >
+      <ol className="flex flex-wrap items-center gap-2" id="breadcrumb-list">
+        <li className="flex items-center gap-2" id="breadcrumb-home">
+          <Link to="/" className="transition-colors" id="breadcrumb-home-link">
             <Home className="w-4 h-4" />
           </Link>
           {breadcrumbItems.length > 0 && (
-            <span className="text-[#75767F]">
-              {<ChevronRight className="w-4 h-4" />}
+            <span id="breadcrumb-home-separator">
+              <ChevronRight className="w-4 h-4" />
             </span>
           )}
         </li>
 
         {breadcrumbItems.map((crumb, index) => (
-          <li key={index} className="flex items-center gap-2 capitalize">
+          <li
+            key={index}
+            className="flex items-center gap-2 capitalize"
+            id={`breadcrumb-item-${index}`}
+          >
             {!crumb.isLast ? (
               <Link
                 to={crumb.path}
-                className="text-[#F1F2F9] hover:text-[#75767F] transition-colors"
+                className="transition-colors"
+                id={`breadcrumb-link-${index}`}
               >
                 {crumb.name}
               </Link>
             ) : (
-              <span className="text-[#75767F]">{crumb.name}</span>
+              <span id={`breadcrumb-current-${index}`}>{crumb.name}</span>
             )}
             {!crumb.isLast && (
-              <span className="text-[#75767F]">
-                {<ChevronRight className="w-4 h-4" />}
+              <span id={`breadcrumb-separator-${index}`}>
+                <ChevronRight className="w-4 h-4" />
               </span>
             )}
           </li>

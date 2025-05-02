@@ -87,6 +87,7 @@ export const YouMayAlsoLikeSlider: React.FC<Props> = ({
 
   return (
     <section
+      id="itemPageContent"
       className={`${styles.youMayAlsoLike} bg-[#0F1121] py-10 overflow-hidden`}
     >
       <motion.h2

@@ -24,7 +24,7 @@ export const LanguageSwitcher = () => {
         className="flex items-center justify-center h-full w-[48px] hover:bg-[#1F1F1F] transition-colors"
         aria-label="Change Language"
       >
-        <Globe className="w-5 h-5 text-[#75767F]" />
+        <Globe id="header-link" className="w-5 h-5 text-[#75767F]" />
       </button>
       {open && (
         <div

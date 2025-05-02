@@ -65,7 +65,10 @@ export const MobileSidebar = ({
   if (!isOpen) return null;
 
   return (
-    <aside className="fixed inset-0 z-50 flex flex-col justify-between bg-black sm:hidden">
+    <aside
+      id="mobile-sidebar"
+      className="fixed inset-0 z-50 flex flex-col justify-between bg-black sm:hidden"
+    >
       {/* Top */}
       <div className="p-6">
         <div className="flex items-center justify-between mb-8">
@@ -88,6 +91,7 @@ export const MobileSidebar = ({
               key={path}
               to={path}
               onClick={onClose}
+              id="mobile_links"
               className={({ isActive }) =>
                 `text-sm font-semibold uppercase tracking-wide transition-colors pb-1 border-b-2 ${
                   isActive

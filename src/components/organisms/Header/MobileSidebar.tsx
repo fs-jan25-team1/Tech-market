@@ -160,57 +160,56 @@ export const MobileSidebar = ({
         </motion.div>
       </div>
 
-{/* Bottom Section */}
-<div className="flex items-center justify-between h-20 border-t border-[#3B3E4A]">
-  {/* Favorites */}
-  <Link
-    to="/favorites"
-    onClick={onClose}
-    aria-label={t('header.mobileSidebar.goToFavorites')}
-    className={`flex flex-col items-center justify-center w-1/4 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
-      isFavorites
-        ? 'border-b-2 border-b-[#F1F2F9]'
-        : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
-    }`}
-  >
-    <Heart className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
-    {favoritesCount > 0 && (
-      <span className="absolute top-1 right-1 text-[10px] bg-red-500 text-white rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[4px]">
-        {favoritesCount}
-      </span>
-    )}
-  </Link>
+      {/* Bottom Section */}
+      <div className="flex items-center justify-between h-20 border-t border-[#3B3E4A]">
+        {/* Favorites */}
+        <Link
+          to="/favorites"
+          onClick={onClose}
+          aria-label={t('header.mobileSidebar.goToFavorites')}
+          className={`flex flex-col items-center justify-center w-1/4 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
+            isFavorites
+              ? 'border-b-2 border-b-[#F1F2F9]'
+              : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
+          }`}
+        >
+          <Heart className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
+          {favoritesCount > 0 && (
+            <span className="absolute top-1 right-1 text-[10px] bg-red-500 text-white rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[4px]">
+              {favoritesCount}
+            </span>
+          )}
+        </Link>
 
-  {/* Cart */}
-  <Link
-    to="/cart"
-    onClick={onClose}
-    aria-label={t('header.mobileSidebar.goToCart')}
-    className={`flex flex-col items-center justify-center w-1/4 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
-      isCart
-        ? 'border-b-2 border-b-[#F1F2F9]'
-        : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
-    }`}
-  >
-    <ShoppingCart className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
-    {cartCount > 0 && (
-      <span className="absolute top-1 right-1 text-[10px] bg-red-500 text-white rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[4px]">
-        {cartCount}
-      </span>
-    )}
-  </Link>
+        {/* Cart */}
+        <Link
+          to="/cart"
+          onClick={onClose}
+          aria-label={t('header.mobileSidebar.goToCart')}
+          className={`flex flex-col items-center justify-center w-1/4 h-full relative border-r border-[#3B3E4A] transition-all duration-300 ${
+            isCart
+              ? 'border-b-2 border-b-[#F1F2F9]'
+              : 'border-b-2 border-b-transparent hover:border-b-[#F1F2F9]'
+          }`}
+        >
+          <ShoppingCart className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
+          {cartCount > 0 && (
+            <span className="absolute top-1 right-1 text-[10px] bg-red-500 text-white rounded-full min-w-[16px] h-[16px] flex items-center justify-center px-[4px]">
+              {cartCount}
+            </span>
+          )}
+        </Link>
 
-  {/* Theme Toggle */}
-  <div className="flex items-center justify-center w-1/4 h-full border-r border-[#3B3E4A] cursor-pointer">
-    <ThemeToggle />
-  </div>
+        {/* Theme Toggle */}
+        <div className="flex items-center justify-center w-1/4 h-full border-r border-[#3B3E4A] cursor-pointer">
+          <ThemeToggle />
+        </div>
 
-  {/* Language Toggle */}
-  <div className="flex items-center justify-center w-1/4 h-full cursor-pointer border-l border-[#3B3E4A]">
-    <LanguageSwitcher />
-  </div>
-</div>
-
+        {/* Language Toggle */}
+        <div className="flex items-center justify-center w-1/4 h-full cursor-pointer border-l border-[#3B3E4A]">
+          <LanguageSwitcher />
+        </div>
+      </div>
     </aside>
   );
 };

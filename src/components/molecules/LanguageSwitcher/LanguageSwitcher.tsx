@@ -27,9 +27,11 @@ export const LanguageSwitcher = () => {
         <Globe className="w-5 h-5 text-[#75767F]" />
       </button>
       {open && (
-        <div className="absolute right-0 w-28 bg-black border border-[#3B3E4A] rounded-md shadow-lg z-50
+        <div
+          className="absolute right-0 w-28 bg-black border border-[#3B3E4A] rounded-md shadow-lg z-50
                   mt-[-8px] bottom-full mb-2
-                  sm:mt-2 sm:bottom-auto sm:top-full sm:mb-0">
+                  sm:mt-2 sm:bottom-auto sm:top-full sm:mb-0"
+        >
           {Object.entries(flags).map(([lang, flag]) => (
             <button
               key={lang}

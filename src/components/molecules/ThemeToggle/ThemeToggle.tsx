@@ -6,8 +6,13 @@ export const ThemeToggle = () => {
 
   // Устанавливаем тему при загрузке
   useEffect(() => {
-    const storedTheme = localStorage.getItem('theme') as 'light' | 'dark' | null;
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const storedTheme = localStorage.getItem('theme') as
+      | 'light'
+      | 'dark'
+      | null;
+    const prefersDark = window.matchMedia(
+      '(prefers-color-scheme: dark)',
+    ).matches;
 
     const currentTheme = storedTheme || (prefersDark ? 'dark' : 'light');
     setTheme(currentTheme);

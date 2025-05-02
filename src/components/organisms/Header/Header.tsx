@@ -25,8 +25,12 @@ const Header = () => {
   const { t } = useTranslation();
   const dispatch = useAppDispatch();
 
-  const cartCount = useAppSelector((store) => Object.keys(store.cart.items).length);
-  const favoritesCount = useAppSelector((store) => store.favourites.items.length);
+  const cartCount = useAppSelector(
+    (store) => Object.keys(store.cart.items).length,
+  );
+  const favoritesCount = useAppSelector(
+    (store) => store.favourites.items.length,
+  );
 
   useEffect(() => {
     setLoading(true);

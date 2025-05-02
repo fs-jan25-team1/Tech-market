@@ -1,11 +1,13 @@
 import { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Heart, ShoppingCart, X, Sun, Globe } from 'lucide-react';
+import { Heart, ShoppingCart, X } from 'lucide-react';
 import { Loader } from '@/components/atoms/Loader/Loader';
 import { User } from 'firebase/auth';
 import { motion } from 'framer-motion';
 import { UserAvatar } from '@/components/molecules/UserAvatar/UserAvatar';
 import { useTranslation } from 'react-i18next';
+import { ThemeToggle } from '@/components/molecules/ThemeToggle/ThemeToggle';
+import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher/LanguageSwitcher';
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -27,8 +29,6 @@ export const MobileSidebar = ({
   loading,
   onLogout,
   onSignIn,
-  onToggleTheme,
-  onToggleLanguage,
   favoritesCount,
   cartCount,
 }: MobileSidebarProps) => {
@@ -121,7 +121,7 @@ export const MobileSidebar = ({
                   initial={{ opacity: 0, y: 4 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.2 }}
-                  className="absolute top-12 right-0 bg-[#905BFF] text-white rounded-xl shadow-lg w-44 z-50 cursor-pointer"
+                  className="absolute bottom-12 right-0 bg-[#905BFF] text-white rounded-xl shadow-lg w-44 z-50 cursor-pointer"
                 >
                   <div className="px-4 py-3 border-b border-[#a885ff]">
                     <p className="font-semibold truncate">{user.displayName}</p>
@@ -201,22 +201,14 @@ export const MobileSidebar = ({
         </Link>
 
         {/* Theme Toggle */}
-        <button
-          onClick={onToggleTheme}
-          aria-label={t('header.mobileSidebar.toggleTheme')}
-          className="flex flex-col items-center justify-center w-1/4 h-full border-r border-[#3B3E4A] transition-colors"
-        >
-          <Sun className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
-        </button>
+        <div className="flex items-center justify-center w-1/4 h-full border-r border-[#3B3E4A] cursor-pointer">
+          <ThemeToggle />
+        </div>
 
         {/* Language Toggle */}
-        <button
-          onClick={onToggleLanguage}
-          aria-label={t('header.mobileSidebar.toggleLanguage')}
-          className="flex flex-col items-center justify-center w-1/4 h-full transition-colors"
-        >
-          <Globe className="w-6 h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
-        </button>
+        <div className="flex items-center justify-center w-1/4 h-full cursor-pointer border-l border-[#3B3E4A]">
+          <LanguageSwitcher />
+        </div>
       </div>
     </aside>
   );

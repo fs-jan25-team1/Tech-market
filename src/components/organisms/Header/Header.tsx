@@ -10,10 +10,9 @@ import { Modal } from '@/components/molecules/Modal/Modal';
 import { AuthForm } from '@/components/molecules/SingInForm/SingUpForm/SingUpForm';
 import { UserDropdown } from '@/components/molecules/UserMenu/UserMenu';
 import { Loader } from '@/components/atoms/Loader/Loader';
-import { SettingsDropdown } from '@/components/molecules/SettingsDropdown/SettingsDropdown';
+import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher/LanguageSwitcher';
+import { ThemeToggle } from '@/components/molecules/ThemeToggle/ThemeToggle';
 import { useTranslation } from 'react-i18next';
-import i18n from '@/i18n';
-import { useTheme } from '@/hooks/useTheme';
 import { setStatus } from '@/features/productsSlice';
 import { FilterStatus } from '@/types/FilterStatusType';
 
@@ -24,7 +23,6 @@ const Header = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
   const { t } = useTranslation();
-  const { toogleTheme } = useTheme();
   const dispatch = useAppDispatch();
 
   const cartCount = useAppSelector(
@@ -40,6 +38,8 @@ const Header = () => {
       setUser(currentUser);
       setLoading(false);
     });
+
+    document.documentElement.classList.add('dark');
 
     return () => unsubscribe();
   }, []);
@@ -63,11 +63,13 @@ const Header = () => {
     }
   };
 
-  const toggleLanguage = () => {
-    const newLang = i18n.language === 'uk' ? 'en' : 'uk';
-    i18n.changeLanguage(newLang);
-    localStorage.setItem('lang', newLang);
-  };
+  function handleToggleTheme(): void {
+    throw new Error('Function not implemented.');
+  }
+
+  function handleToggleLanguage(): void {
+    throw new Error('Function not implemented.');
+  }
 
   return (
     <header className="sticky top-0 z-50 w-full bg-black border-b border-[#3B3E4A] font-[montBold]">
@@ -113,10 +115,13 @@ const Header = () => {
 
         <div className="flex items-center">
           <div className="hidden sm:flex items-center h-12 border-l border-[#3B3E4A]">
-            <SettingsDropdown
-              onToggleTheme={toogleTheme}
-              onToggleLanguage={toggleLanguage}
-            />
+            <div className="h-full flex items-center justify-center w-[48px] border-l border-[#3B3E4A] cursor-pointer">
+              <ThemeToggle />
+            </div>
+            <div className="h-full flex items-center justify-center w-[48px] border-l border-[#3B3E4A] cursor-pointer">
+              <LanguageSwitcher />
+            </div>
+
             <NavLink
               to="/favorites"
               className="flex items-center justify-center h-full w-[48px] border-l border-[#3B3E4A]"
@@ -161,7 +166,7 @@ const Header = () => {
               ) : (
                 <Button
                   variant="ghost"
-                  className="w-12 h-12 text-white bg-violet-600 hover:bg-violet-700 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
+                  className="h-12 w-auto text-white bg-violet-600 hover:bg-violet-700 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center pr-6 lg:pr-12"
                   onClick={() => setIsAuthModalOpen(true)}
                 >
                   {t('header.button.signIn')}
@@ -190,8 +195,8 @@ const Header = () => {
         loading={loading}
         onLogout={handleLogout}
         onSignIn={() => setIsAuthModalOpen(true)}
-        onToggleTheme={toogleTheme}
-        onToggleLanguage={toggleLanguage}
+        onToggleTheme={handleToggleTheme}
+        onToggleLanguage={handleToggleLanguage}
       />
 
       {isAuthModalOpen && (

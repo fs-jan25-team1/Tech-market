@@ -3,12 +3,7 @@ import { signOut, onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '@/shared/firebase';
 import { Button } from '@/components/ui/button';
 import { useAppDispatch, useAppSelector } from '@/store/store';
-import {
-  Heart,
-  ShoppingCart,
-  Menu,
-  CircleUserRound,
-} from 'lucide-react';
+import { Heart, ShoppingCart, Menu, CircleUserRound } from 'lucide-react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { MobileSidebar } from './MobileSidebar';
 import { Modal } from '@/components/molecules/Modal/Modal';

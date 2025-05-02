@@ -43,7 +43,7 @@ html.dark h3,
 html.dark h4,
 html.dark h5,
 html.dark h6 {
-  color: black !important;
+  color: #323542 !important;
 }
 
 html.dark {
@@ -53,8 +53,20 @@ html.dark {
 
 html.dark header,
 html.dark footer {
-  background-color: black !important;
+  background-color: #a378ff !important;
   color: white !important;
+}
+
+html.dark #nav-item {
+  color: lightgray
+}
+
+html.dark #nav-item:hover {
+  color: white
+}
+
+html.dark #nav-item:active {
+  color: white
 }
 
 html.dark #cards {

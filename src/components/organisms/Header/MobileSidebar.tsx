@@ -85,25 +85,24 @@ export const MobileSidebar = ({
         </div>
 
         {/* Navigation */}
-<nav className="flex flex-col items-center gap-6 text-center mb-6">
-  {navItems.map(({ path, label }) => (
-    <NavLink
-      key={path}
-      to={path}
-      onClick={onClose}
-      className={({ isActive }) =>
-        `group text-sm font-semibold uppercase tracking-wide transition-colors pb-1 border-b-2 ${
-          isActive
-            ? 'text-[#F1F2F9] border-[#F1F2F9]'
-            : 'text-[#75767F] border-transparent hover:text-[#F1F2F9] hover:border-[#F1F2F9]'
-        }`
-      }
-    >
-      {label}
-    </NavLink>
-  ))}
-</nav>
-
+        <nav className="flex flex-col items-center gap-6 text-center mb-6">
+          {navItems.map(({ path, label }) => (
+            <NavLink
+              key={path}
+              to={path}
+              onClick={onClose}
+              className={({ isActive }) =>
+                `group text-sm font-semibold uppercase tracking-wide transition-colors pb-1 border-b-2 ${
+                  isActive
+                    ? 'text-[#F1F2F9] border-[#F1F2F9]'
+                    : 'text-[#75767F] border-transparent hover:text-[#F1F2F9] hover:border-[#F1F2F9]'
+                }`
+              }
+            >
+              {label}
+            </NavLink>
+          ))}
+        </nav>
 
         {/* Auth Section */}
         <motion.div

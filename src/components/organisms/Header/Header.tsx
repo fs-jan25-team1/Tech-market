@@ -91,7 +91,6 @@ const Header = () => {
                 }
                 key={path}
                 to={path}
-                id="nav-item"
                 className={({ isActive }) =>
                   `relative flex items-center h-full text-sm font-semibold uppercase transition-colors ${
                     isActive
@@ -171,7 +170,7 @@ const Header = () => {
               ) : (
                 <Button
                   variant="ghost"
-                  className="!box-border h-12 text-white hover:bg-violet-700 transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
+                  className="group !box-border h-12 text-white transition-transform cursor-pointer rounded-none text-xs flex items-center justify-center"
                   onClick={() => setIsAuthModalOpen(true)}
                 >
                   {/* {t('header.button.signIn')} */}

@@ -143,7 +143,7 @@ export const MobileSidebar = ({
                     {loading ? (
                       <Loader />
                     ) : (
-                      t('header.mobileSidebar.button.signOut')
+                      t('header.mobileSidebar.button.logOut')
                     )}
                   </button>
                 </motion.div>

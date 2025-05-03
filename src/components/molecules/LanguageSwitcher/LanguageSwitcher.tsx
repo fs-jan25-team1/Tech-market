@@ -36,11 +36,12 @@ export const LanguageSwitcher = () => {
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-center h-full w-[48px] hover:bg-[#1F1F1F] transition-colors cursor-pointer"
+        className="flex items-center justify-center h-full w-[48px] cursor-pointer group"
         aria-label="Change Language"
       >
-        <Globe id="header-link" className="w-5 h-5 text-[#75767F]" />
+        <Globe className="w-5 h-5 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
       </button>
+
       {open && (
         <div
           className="absolute right-0 w-28 bg-black border border-[#3B3E4A] rounded-md shadow-lg z-50

@@ -93,11 +93,11 @@ html.dark #user:hover {
   color: #323542;
 }
 
-html.dark [id^="capacityButton-"] {
+html.dark [id^='capacityButton-'] {
   color: black !important;
 }
 
-html.dark [id^="capacityButton-"]:hover {
+html.dark [id^='capacityButton-']:hover {
   background-color: lightgray;
 }
 

@@ -39,7 +39,10 @@ const ContactPage = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="min-h-screen bg-[#0F111A] px-4 sm:px-10 py-10 text-[#F1F2F9]">
+    <div
+      id="contact-page"
+      className="min-h-screen bg-[#0F111A] px-4 sm:px-10 py-10 text-[#F1F2F9]"
+    >
       <h1 className="text-3xl sm:text-4xl font-[montBold] text-center mb-12">
         {t('contactsPage.title')}
       </h1>
@@ -47,6 +50,7 @@ const ContactPage = () => {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8">
         {teamMembers.map((member, idx) => (
           <div
+            id="contact-page-user"
             key={idx}
             className="bg-[#161827] hover:shadow-lg hover:scale-[1.02] transition-all duration-300 rounded-xl overflow-hidden cursor-pointer flex flex-col items-center text-center p-6 h-full"
           >

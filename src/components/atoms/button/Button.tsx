@@ -16,6 +16,7 @@ type Props = {
   iconSize?: number;
   bgColor?: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  id?: string;
 };
 
 const Button: React.FC<Props> = ({
@@ -30,6 +31,7 @@ const Button: React.FC<Props> = ({
   iconSize, // Size of an icon, default is 20
   bgColor, // Background color of the button, used for color selector buttons
   onClick,
+  id,
 }) => {
   // Create classes depending on the button properties
   const buttonClasses = `
@@ -41,6 +43,7 @@ const Button: React.FC<Props> = ({
 
   return (
     <button
+      id={id}
       className={buttonClasses}
       disabled={disabled}
       style={{ backgroundColor: bgColor, width, height, color }}

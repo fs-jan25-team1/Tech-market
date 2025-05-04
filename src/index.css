@@ -77,6 +77,30 @@ html.dark #nav-item {
   color: lightgray;
 }
 
+html.dark #lang {
+  color: white;
+}
+
+html.dark #lang:hover {
+  color: #323542;
+}
+
+html.dark #user {
+  color: white;
+}
+
+html.dark #user:hover {
+  color: #323542;
+}
+
+html.dark [id^="capacityButton-"] {
+  color: black !important;
+}
+
+html.dark [id^="capacityButton-"]:hover {
+  background-color: lightgray;
+}
+
 html.dark #nav-item:hover {
   color: white;
 }
@@ -120,4 +144,20 @@ html.dark [id^='breadcrumb-current-'],
 html.dark [id^='breadcrumb-separator-'],
 html.dark #breadcrumb-home-separator {
   color: gray;
+}
+
+html.dark #contact-page {
+  background-color: whitesmoke;
+}
+
+html.dark #contact-page-user {
+  background-color: lightgray;
+}
+
+html.dark #rights-page {
+  background-color: whitesmoke;
+}
+
+html.dark #righs-page-text {
+  color: black;
 }

@@ -174,7 +174,10 @@ const Header = () => {
                   onClick={() => setIsAuthModalOpen(true)}
                 >
                   {/* {t('header.button.signIn')} */}
-                  <CircleUserRound className="!w-6 !h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
+                  <CircleUserRound
+                    id="user"
+                    className="!w-6 !h-6 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors"
+                  />
                 </Button>
               )}
             </div>

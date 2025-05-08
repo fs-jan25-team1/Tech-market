@@ -340,6 +340,7 @@ export const ItemCard = () => {
                       {product?.capacityAvailable.map((cap) => (
                         <div key={cap} className="col-span-1">
                           <Button
+                            id={`capacityButton-${cap}`}
                             content={cap}
                             variant={ButtonTypes.secondary}
                             color={

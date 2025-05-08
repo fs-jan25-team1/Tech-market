@@ -39,7 +39,10 @@ export const LanguageSwitcher = () => {
         className="flex items-center justify-center h-full w-[48px] cursor-pointer group"
         aria-label="Change Language"
       >
-        <Globe className="w-5 h-5 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors" />
+        <Globe
+          id="lang"
+          className="w-5 h-5 text-[#75767F] group-hover:text-[#F1F2F9] transition-colors"
+        />
       </button>
 
       {open && (

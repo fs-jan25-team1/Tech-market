@@ -29,21 +29,21 @@ export const CustomDropdown: React.FC<Props> = ({
   name,
 }) => {
   return (
-    <div className="inline-block">
-      <label className="mb-1 block whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.08em] text-gray-400">
+    <div className="inline-block w-full">
+      <label className="mb-1 block whitespace-nowrap text-[12px] text-[#75767F] font-bold tracking-[0.08em]">
         {name}
       </label>
       <Select onValueChange={onValueChange}>
         <SelectTrigger
           className={clsx(
-            'flex w-full items-center justify-between rounded border px-3 py-2 text-white transition-colors outline-none',
+            'flex w-full items-center justify-between border text-[14px] leading-[21px] px-3 py-[10px] text-white transition-colors outline-none',
             'bg-[#323542] border-transparent',
             'focus:border-[#905BFF] data-[state=open]:border-[#905BFF]',
-            {
-              'text-sm h-8': size === 'small',
-              'text-base h-10': size === 'medium',
-              'text-lg h-12': size === 'large',
-            },
+            // {
+            //   'text-sm h-8': size === 'small',
+            //   'text-base h-10': size === 'medium',
+            //   'text-lg h-14': size === 'large',
+            // },
           )}
         >
           <SelectValue placeholder={placeholder} />
@@ -51,7 +51,7 @@ export const CustomDropdown: React.FC<Props> = ({
 
         <SelectContent
           className={clsx(
-            'mt-1 max-h-72 w-full overflow-y-auto rounded border border-[#3B3E4A] bg-[#0F1121] py-2 text-gray-400 shadow-lg',
+            'mt-1 max-h-72 w-full overflow-y-auto border border-[#3B3E4A] bg-[#0F1121] py-2 text-gray-400 shadow-lg',
             {
               'text-sm': size === 'small',
               'text-base': size === 'medium',
@@ -64,7 +64,7 @@ export const CustomDropdown: React.FC<Props> = ({
               key={option.value}
               value={option.value}
               className={clsx(
-                'block w-full cursor-pointer px-3 py-1.5 transition-colors rounded',
+                'block w-full cursor-pointer px-3 py-1.5 transition-colors',
                 'text-gray-400',
                 'hover:bg-[#323542] hover:text-white',
                 'focus:bg-[#323542] focus:text-white',

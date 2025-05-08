@@ -99,9 +99,9 @@ export const PhonesPageTemplate = () => {
           min-[1200px]:grid-cols-[repeat(24,min-content)] pb-6"
       >
         <div
-          className="col-span-2 
-            min-[640px]:col-span-4
-            min-[1200px]:col-span-4"
+          className="col-span-2 w-[136px]
+            min-[640px]:col-span-4 min-[640px]:w-[187px]
+            min-[1200px]:col-span-4 min-[1200px]:w-[187px]"
         >
           <CustomDropdown
             placeholder={t('phonesPageTemplate.dropdown_sort.newest')}
@@ -115,7 +115,7 @@ export const PhonesPageTemplate = () => {
           />
         </div>
         <div
-          className="col-span-2 
+          className="col-span-2 w-[136px]
             min-[640px]:col-span-3
             min-[1200px]:col-span-3"
         >

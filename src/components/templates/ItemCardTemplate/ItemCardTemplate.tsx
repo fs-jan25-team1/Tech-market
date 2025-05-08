@@ -73,7 +73,6 @@ export const ItemCard = () => {
 
   const handleFetchProduct = async (newProductId: string) => {
     const result = await dispatch(findProductId({ newProductId }));
-    console.log(result);
     if (findProductId.fulfilled.match(result)) {
       navigate(`/product/${result.payload.id}`);
     }
@@ -387,7 +386,8 @@ export const ItemCard = () => {
                         iconSize={18}
                         height={48}
                         onClick={handleAddToCartClick}
-                        className={`flex-1 ${isInCart ? 'active' : ''}`}
+                        isInCart={isInCart}
+                        className='flex-1'
                       />
                       <Button
                         variant={ButtonTypes.favourite}

@@ -186,7 +186,7 @@ export const ProductCard = ({
             }
             variant={ButtonTypes.primary}
             width={'100%'}
-            className={`text-xs sm:text-sm px-2 py-1 sm:px-4 sm:py-2 ${isInCart ? 'active' : ''}`}
+            isInCart={isInCart}
             onClick={handleAddToCartClick}
           />
         </div>

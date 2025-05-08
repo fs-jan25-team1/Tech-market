@@ -239,7 +239,7 @@ export const CheckoutPage = () => {
             )}
           </div>
 
-          <div className="flex-1 flex flex-col">
+          <div className="flex flex-col w-full sm:w-auto sm:max-w-[160px]">
             <label htmlFor="cvc" className="mb-2 text-[#75767f] text-sm">
               {t('checkoutPage.form.cvc.label')}
             </label>
@@ -251,7 +251,7 @@ export const CheckoutPage = () => {
               value={state.cvc}
               onChange={handleInputChange}
               onFocus={handleInputFocus}
-              className="p-3 rounded-lg bg-[#323542] border border-[#3b3e4a] focus:outline-none focus:ring-2 focus:ring-[#905bff] text-[#f1f2f9]"
+              className="w-full p-3 rounded-lg bg-[#323542] border border-[#3b3e4a] focus:outline-none focus:ring-2 focus:ring-[#905bff] text-[#f1f2f9]"
             />
             {errors.cvc && (
               <p className="text-red-500 text-xs mt-2">{errors.cvc}</p>

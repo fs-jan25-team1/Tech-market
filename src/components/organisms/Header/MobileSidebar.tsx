@@ -8,7 +8,6 @@ import { UserAvatar } from '@/components/molecules/UserAvatar/UserAvatar';
 import { useTranslation } from 'react-i18next';
 import { ThemeToggle } from '@/components/molecules/ThemeToggle/ThemeToggle';
 import { LanguageSwitcher } from '@/components/molecules/LanguageSwitcher/LanguageSwitcher';
-
 interface MobileSidebarProps {
   isOpen: boolean;
   onClose: () => void;
@@ -21,7 +20,6 @@ interface MobileSidebarProps {
   favoritesCount: number;
   cartCount: number;
 }
-
 export const MobileSidebar = ({
   isOpen,
   onClose,
@@ -37,16 +35,13 @@ export const MobileSidebar = ({
   const isCart = location.pathname === '/cart';
   const [userMenuOpen, setUserMenuOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
-
   const { t } = useTranslation();
-
   const navItems = [
     { path: '/', label: t('header.navItem.home') },
     { path: '/phones', label: t('header.navItem.phones') },
     { path: '/tablets', label: t('header.navItem.tablets') },
     { path: '/accessories', label: t('header.navItem.accessories') },
   ];
-
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -61,9 +56,7 @@ export const MobileSidebar = ({
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
   if (!isOpen) return null;
-
   return (
     <aside
       id="mobile-sidebar"
@@ -83,7 +76,6 @@ export const MobileSidebar = ({
             <X className="w-6 h-6" />
           </button>
         </div>
-
         {/* Navigation */}
         <nav className="flex flex-col items-center gap-6 text-center mb-6">
           {navItems.map(({ path, label }) => (
@@ -103,7 +95,6 @@ export const MobileSidebar = ({
             </NavLink>
           ))}
         </nav>
-
         {/* Auth Section */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
@@ -118,7 +109,6 @@ export const MobileSidebar = ({
               >
                 <UserAvatar user={user} />
               </button>
-
               {userMenuOpen && (
                 <motion.div
                   initial={{ opacity: 0, y: 4 }}
@@ -162,7 +152,6 @@ export const MobileSidebar = ({
           )}
         </motion.div>
       </div>
-
       {/* Bottom Section */}
       <div className="flex items-center justify-between h-20 border-t border-[#3B3E4A]">
         {/* Favorites */}
@@ -183,7 +172,6 @@ export const MobileSidebar = ({
             </span>
           )}
         </Link>
-
         {/* Cart */}
         <Link
           to="/cart"

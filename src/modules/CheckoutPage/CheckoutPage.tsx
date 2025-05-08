@@ -19,7 +19,7 @@ const isExpiryValid = (expiry: string) => {
   const currentDate = new Date();
   const currentMonth = currentDate.getMonth() + 1;
   const currentYear = currentDate.getFullYear() % 100;
-  return (year > currentYear) || (year === currentYear && month >= currentMonth);
+  return year > currentYear || (year === currentYear && month >= currentMonth);
 };
 
 const validateCVC = (cvc: string) => {
@@ -50,31 +50,25 @@ export const CheckoutPage = () => {
 
   const handleInputChange = (evt: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = evt.target;
-  
+
     if (name === 'name') {
       if (/^[\p{L}\s]*$/u.test(value)) {
         setState((prev) => ({ ...prev, [name]: value }));
       }
-    }
-  
-    else if (name === 'number') {
+    } else if (name === 'number') {
       const rawValue = value.replace(/\D/g, '').slice(0, 16);
       const formatted = rawValue.replace(/(.{4})/g, '$1 ').trim();
       setState((prev) => ({ ...prev, [name]: formatted }));
-    }
-
-    else if (name === 'expiry') {
+    } else if (name === 'expiry') {
       let rawValue = value.replace(/\D/g, '').slice(0, 4);
       if (rawValue.length >= 3) {
         rawValue = `${rawValue.slice(0, 2)}/${rawValue.slice(2)}`;
       }
       setState((prev) => ({ ...prev, [name]: rawValue }));
-    }
-    else if (name === 'cvc' && /^[0-9]*$/.test(value)) {
+    } else if (name === 'cvc' && /^[0-9]*$/.test(value)) {
       setState((prev) => ({ ...prev, [name]: value.slice(0, 3) }));
     }
   };
-  
 
   const handleInputFocus = (evt: React.FocusEvent<HTMLInputElement>) => {
     setState((prev) => ({ ...prev, focus: evt.target.name }));
@@ -96,7 +90,11 @@ export const CheckoutPage = () => {
       newErrors.name = 'Cardholder name should only contain letters';
     }
 
-    if (!state.expiry || !validateExpiry(state.expiry) || !isExpiryValid(state.expiry)) {
+    if (
+      !state.expiry ||
+      !validateExpiry(state.expiry) ||
+      !isExpiryValid(state.expiry)
+    ) {
       isValid = false;
       newErrors.expiry = 'Invalid or expired date';
     }
@@ -116,7 +114,8 @@ export const CheckoutPage = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="checkoutPage relative grid grid-cols-4 gap-4 
+    <div
+      className="checkoutPage relative grid grid-cols-4 gap-4 
       sm:grid-cols-12
       lg:grid-cols-24 px-4
       sm:px-6
@@ -139,13 +138,15 @@ export const CheckoutPage = () => {
             'w-72 h-44 bg-gradient-to-br from-[#323542] to-[#161827] rounded-xl p-4 relative shadow-xl transform transition-all duration-500',
             {
               'rotate-y-180': state.focus === 'cvc',
-            }
+            },
           )}
         >
           <div className="absolute inset-0 flex flex-col justify-between p-4 text-white">
             {state.focus !== 'cvc' && (
               <div className="mt-6">
-                <div className="text-lg font-semibold">{state.number || '•••• •••• •••• ••••'}</div>
+                <div className="text-lg font-semibold">
+                  {state.number || '•••• •••• •••• ••••'}
+                </div>
               </div>
             )}
 
@@ -168,7 +169,7 @@ export const CheckoutPage = () => {
               {
                 'rotate-y-0': state.focus === 'cvc',
                 'opacity-0': state.focus !== 'cvc',
-              }
+              },
             )}
           >
             <div className="text-center">{state.cvc || '•••'}</div>
@@ -195,7 +196,9 @@ export const CheckoutPage = () => {
             onFocus={handleInputFocus}
             className="p-3 rounded-lg bg-[#323542] border border-[#3b3e4a] focus:outline-none focus:ring-2 focus:ring-[#905bff] text-[#f1f2f9]"
           />
-          {errors.number && <p className="text-red-500 text-xs mt-2">{errors.number}</p>}
+          {errors.number && (
+            <p className="text-red-500 text-xs mt-2">{errors.number}</p>
+          )}
         </div>
 
         <div className="flex flex-col mb-4">
@@ -211,53 +214,59 @@ export const CheckoutPage = () => {
             onChange={handleInputChange}
             onFocus={handleInputFocus}
             className="p-3 rounded-lg bg-[#323542] border border-[#3b3e4a] focus:outline-none focus:ring-2 focus:ring-[#905bff] text-[#f1f2f9]"
-/>
-{errors.name && <p className="text-red-500 text-xs mt-2">{errors.name}</p>}
-</div>
-<div className="flex flex-col sm:flex-row gap-4 mb-4">
-      <div className="flex-1 flex flex-col">
-        <label htmlFor="expiry" className="mb-2 text-[#75767f] text-sm">
-          {t('checkoutPage.form.expiry.label')}
-        </label>
-        <input
-          type="text"
-          name="expiry"
-          id="expiry"
-          placeholder={t('checkoutPage.form.expiry.placeholder')}
-          value={state.expiry}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          className="p-3 rounded-lg bg-[#323542] border border-[#3b3e4a] focus:outline-none focus:ring-2 focus:ring-[#905bff] text-[#f1f2f9]"
-        />
-        {errors.expiry && <p className="text-red-500 text-xs mt-2">{errors.expiry}</p>}
-      </div>
+          />
+          {errors.name && (
+            <p className="text-red-500 text-xs mt-2">{errors.name}</p>
+          )}
+        </div>
+        <div className="flex flex-col sm:flex-row gap-4 mb-4">
+          <div className="flex-1 flex flex-col">
+            <label htmlFor="expiry" className="mb-2 text-[#75767f] text-sm">
+              {t('checkoutPage.form.expiry.label')}
+            </label>
+            <input
+              type="text"
+              name="expiry"
+              id="expiry"
+              placeholder={t('checkoutPage.form.expiry.placeholder')}
+              value={state.expiry}
+              onChange={handleInputChange}
+              onFocus={handleInputFocus}
+              className="p-3 rounded-lg bg-[#323542] border border-[#3b3e4a] focus:outline-none focus:ring-2 focus:ring-[#905bff] text-[#f1f2f9]"
+            />
+            {errors.expiry && (
+              <p className="text-red-500 text-xs mt-2">{errors.expiry}</p>
+            )}
+          </div>
 
-      <div className="flex-1 flex flex-col">
-        <label htmlFor="cvc" className="mb-2 text-[#75767f] text-sm">
-          {t('checkoutPage.form.cvc.label')}
-        </label>
-        <input
-          type="text"
-          name="cvc"
-          id="cvc"
-          placeholder={t('checkoutPage.form.cvc.placeholder')}
-          value={state.cvc}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          className="p-3 rounded-lg bg-[#323542] border border-[#3b3e4a] focus:outline-none focus:ring-2 focus:ring-[#905bff] text-[#f1f2f9]"
+          <div className="flex-1 flex flex-col">
+            <label htmlFor="cvc" className="mb-2 text-[#75767f] text-sm">
+              {t('checkoutPage.form.cvc.label')}
+            </label>
+            <input
+              type="text"
+              name="cvc"
+              id="cvc"
+              placeholder={t('checkoutPage.form.cvc.placeholder')}
+              value={state.cvc}
+              onChange={handleInputChange}
+              onFocus={handleInputFocus}
+              className="p-3 rounded-lg bg-[#323542] border border-[#3b3e4a] focus:outline-none focus:ring-2 focus:ring-[#905bff] text-[#f1f2f9]"
+            />
+            {errors.cvc && (
+              <p className="text-red-500 text-xs mt-2">{errors.cvc}</p>
+            )}
+          </div>
+        </div>
+
+        <Button
+          variant={ButtonTypes.primary}
+          content={t('checkoutPage.form.button.purchase')}
+          width="100%"
         />
-        {errors.cvc && <p className="text-red-500 text-xs mt-2">{errors.cvc}</p>}
-      </div>
+      </form>
     </div>
-
-    <Button
-      variant={ButtonTypes.primary}
-      content={t('checkoutPage.form.button.purchase')}
-      width="100%"
-    />
-  </form>
-</div>
-);
+  );
 };
 
 export default CheckoutPage;

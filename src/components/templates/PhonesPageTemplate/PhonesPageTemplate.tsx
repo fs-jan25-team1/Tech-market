@@ -93,7 +93,7 @@ export const PhonesPageTemplate = () => {
         {t('phonesPageTemplate.models', { count: productsList.length })}
       </div>
       <div
-          className="col-span-full grid 
+        className="col-span-full grid 
           grid-cols-4 
           sm:grid-cols-12 
           xl:grid-cols-24 

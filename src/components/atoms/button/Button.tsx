@@ -4,6 +4,7 @@ import { LucideIcon } from 'lucide-react';
 import clsx from 'clsx';
 
 type Props = {
+  id?: string;
   content?: string | number;
   color?: string;
   variant: ButtonTypes;

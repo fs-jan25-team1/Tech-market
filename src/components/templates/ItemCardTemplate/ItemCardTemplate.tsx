@@ -387,7 +387,7 @@ export const ItemCard = () => {
                         height={48}
                         onClick={handleAddToCartClick}
                         isInCart={isInCart}
-                        className='flex-1'
+                        className="flex-1"
                       />
                       <Button
                         variant={ButtonTypes.favourite}

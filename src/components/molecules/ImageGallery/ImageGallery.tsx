@@ -47,7 +47,9 @@ export const ImageGallery = ({
                 key={i}
                 onClick={() => handleThumbnailClick(i)}
                 className={`col-span-1 aspect-square cursor-pointer border ${
-                  internalIndex === i ? 'border-[#F1F2F9] border-2' : 'border-[#3B3E4A]'
+                  internalIndex === i
+                    ? 'border-[#F1F2F9] border-2'
+                    : 'border-[#3B3E4A]'
                 }`}
               >
                 <img

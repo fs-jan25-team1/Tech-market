@@ -10,7 +10,12 @@ interface Props {
   buttonText: string;
 }
 
-export const CartFavouriteButtons = ({ isInCart, isFavourite, toggleCart, toggleFavourite }: Props) => (
+export const CartFavouriteButtons = ({
+  isInCart,
+  isFavourite,
+  toggleCart,
+  toggleFavourite,
+}: Props) => (
   <div className="flex gap-2 mb-8">
     <Button
       content={isInCart ? 'In cart' : 'Add to cart'}

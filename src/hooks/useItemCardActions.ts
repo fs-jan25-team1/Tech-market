@@ -5,11 +5,11 @@ import { addFavourite, removeFavourite } from '@/features/favouritesSlice';
 import { addToCart, removeFromCart } from '@/features/cartSlice';
 import { findProductId } from '@/features/productDetailsSlice';
 import { useTranslation } from 'react-i18next';
-import { ProductDetails } from '@/types/ProductDetails'; 
+import { ProductDetails } from '@/types/ProductDetails';
 
 export const useItemCardActions = (
   product: ProductDetails | null | undefined,
-  productId: string | undefined
+  productId: string | undefined,
 ) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -19,11 +19,11 @@ export const useItemCardActions = (
   const cart = useAppSelector((state) => state.cart.items);
 
   const isFavourite = favourites.some((item) =>
-    productId ? item.id === +productId : false
+    productId ? item.id === +productId : false,
   );
 
   const isInCart = Object.values(cart).some((el) =>
-    productId ? el.product.id === +productId : false
+    productId ? el.product.id === +productId : false,
   );
 
   const handleFetchProduct = async (newProductId: string) => {
@@ -46,7 +46,10 @@ export const useItemCardActions = (
     if (product?.namespaceId && product.capacity) {
       const newId = `${product.namespaceId}-${capacity
         .toLowerCase()
-        .replace(/\s/g, '-')}-${product.color.toLowerCase().replace(/\s/g, '-')}`;
+        .replace(
+          /\s/g,
+          '-',
+        )}-${product.color.toLowerCase().replace(/\s/g, '-')}`;
       handleFetchProduct(newId);
     }
   };
@@ -61,13 +64,15 @@ export const useItemCardActions = (
       dispatch(removeFavourite(product.basicInfo.id));
       toast.success(
         `${product.basicInfo.name} ${t('itemCardTemplate.toast.removedFromFavorites')}`,
-        toastStyle
+        toastStyle,
       );
     } else {
-      dispatch(addFavourite({ ...product.basicInfo, category: '', itemId: '' }));
+      dispatch(
+        addFavourite({ ...product.basicInfo, category: '', itemId: '' }),
+      );
       toast.success(
         `${product.basicInfo.name} ${t('itemCardTemplate.toast.addedToFavorites')}`,
-        toastStyle
+        toastStyle,
       );
     }
   };
@@ -82,13 +87,17 @@ export const useItemCardActions = (
       dispatch(removeFromCart({ productId: product.basicInfo.id }));
       toast.success(
         `${product.basicInfo.name} ${t('itemCardTemplate.toast.removedFromCart')}`,
-        toastStyle
+        toastStyle,
       );
     } else {
-      dispatch(addToCart({ product: { ...product.basicInfo, category: '', itemId: '' } }));
+      dispatch(
+        addToCart({
+          product: { ...product.basicInfo, category: '', itemId: '' },
+        }),
+      );
       toast.success(
         `${product.basicInfo.name} ${t('itemCardTemplate.toast.addedToCart')}`,
-        toastStyle
+        toastStyle,
       );
     }
   };

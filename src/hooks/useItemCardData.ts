@@ -21,7 +21,10 @@ export const useItemCardData = () => {
   }, [productId, dispatch]);
 
   useEffect(() => {
-    if (product?.basicInfo?.category && category !== product.basicInfo.category) {
+    if (
+      product?.basicInfo?.category &&
+      category !== product.basicInfo.category
+    ) {
       dispatch(setCurrentCategory(product.basicInfo.category));
     }
   }, [product, category, dispatch]);

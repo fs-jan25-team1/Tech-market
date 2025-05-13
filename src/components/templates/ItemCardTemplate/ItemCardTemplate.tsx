@@ -93,6 +93,49 @@ export const ItemCard = () => {
                         buttonText={isInCart ? 'In cart' : 'Add to cart'}
                       />
                     </div>
+                    
+                  {/* Short tech specs */}
+                  <div className="flex flex-col gap-1 text-xs sm:text-sm text-[#89939A] border-t border-[#3B3E4A] pt-4 mt-4">
+                    <div className="flex justify-between gap-2">
+                      <span className="min-w-[80px]">
+                        {t('itemCardTemplate.specs.screen')}:
+                      </span>
+
+                      <span className="text-white text-right break-words">
+                        {product?.screen}
+                      </span>
+                    </div>
+
+                    <div className="flex justify-between gap-2">
+                      <span className="min-w-[80px]">
+                        {t('itemCardTemplate.specs.resolution')}:
+                      </span>
+
+                      <span className="text-white text-right break-words">
+                        {product?.resolution}
+                      </span>
+                    </div>
+                    
+                    <div className="flex justify-between gap-2">
+                      <span className="min-w-[80px]">
+                        {t('itemCardTemplate.specs.processor')}:
+                      </span>
+                      
+                      <span className="text-white text-right break-words">
+                        {product?.processor}
+                      </span>
+                    </div>
+                    
+                    <div className="flex justify-between gap-2">
+                      <span className="min-w-[80px]">
+                        {t('itemCardTemplate.specs.ram')}:
+                      </span>
+                      
+                      <span className="text-white text-right break-words">
+                        {product?.ram}
+                      </span>
+                    </div>
+                  </div>
                   </div>
                 </div>
               </div>

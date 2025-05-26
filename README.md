@@ -8,13 +8,13 @@
 
 ## ⚙️ Tech Stack
 
-- **React** – Frontend framework  
-- **Redux Toolkit** – Global state management  
-- **Tailwind CSS** – Utility-first CSS framework  
-- **shadcn/ui** – Beautiful, accessible components built on Tailwind  
-- **Firebase Authentication** – Secure user login and registration  
-- **Framer Motion** – Animation and transitions  
-- **Swiper** – Responsive sliders and carousels  
+- **React** – Frontend framework
+- **Redux Toolkit** – Global state management
+- **Tailwind CSS** – Utility-first CSS framework
+- **shadcn/ui** – Beautiful, accessible components built on Tailwind
+- **Firebase Authentication** – Secure user login and registration
+- **Framer Motion** – Animation and transitions
+- **Swiper** – Responsive sliders and carousels
 - **react-i18next** – Multi-language support
 
 ---
@@ -52,8 +52,3 @@ VITE_FIREBASE_APP_ID=your_app_id
 ```bash
 npm run dev
 ```
-
-
-
-
-

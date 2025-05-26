@@ -177,7 +177,7 @@ export const ProductCard = ({
       </Link>
 
       <div className="flex items-center justify-between gap-1 sm:gap-2 w-full mt-auto">
-        <div className="flex-grow" id='button-cart-item'>
+        <div className="flex-grow" id="button-cart-item">
           <Button
             content={
               isInCart

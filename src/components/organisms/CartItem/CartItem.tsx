@@ -34,7 +34,10 @@ export const CartItem: React.FC<Props> = ({ id, img, name, price }) => {
   };
 
   return (
-    <div id='cart-item' className="bg-[#161827] text-[#F1F2F9] justify-between max-w-screen min-w-[288px] p-4 sm:p-6 flex flex-col cursor-pointer gap-4 mb-4 sm:flex-row sm:h-32 sm:items-center">
+    <div
+      id="cart-item"
+      className="bg-[#161827] text-[#F1F2F9] justify-between max-w-screen min-w-[288px] p-4 sm:p-6 flex flex-col cursor-pointer gap-4 mb-4 sm:flex-row sm:h-32 sm:items-center"
+    >
       <div className="flex flex-row items-center gap-6">
         <Button
           variant={ButtonTypes.numbered}

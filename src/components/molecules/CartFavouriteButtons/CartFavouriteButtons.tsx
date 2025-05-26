@@ -18,7 +18,7 @@ export const CartFavouriteButtons = ({
 }: Props) => (
   <div className="flex gap-2 mb-8">
     <Button
-      id='button-cart-details'
+      id="button-cart-details"
       content={isInCart ? 'In cart' : 'Add to cart'}
       variant={ButtonTypes.primary}
       iconSize={18}

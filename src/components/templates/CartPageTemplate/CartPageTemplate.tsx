@@ -66,7 +66,7 @@ export const CartPageTemplate = () => {
           </p>
           <Link to="/" className="mt-6">
             <Button
-              id='cart-item-button'
+              id="cart-item-button"
               variant={ButtonTypes.primary}
               content={t('cartPageTemplate.empty.button.goToShop')}
               width={200}
@@ -90,7 +90,10 @@ export const CartPageTemplate = () => {
           </div>
 
           {/* Checkout container */}
-          <div id='cart-item' className="col-span-full min-[1200px]:col-span-8 border-1 border-[#3B3E4A] p-6 self-start rounded-2xl bg-[#1D1F2B]">
+          <div
+            id="cart-item"
+            className="col-span-full min-[1200px]:col-span-8 border-1 border-[#3B3E4A] p-6 self-start rounded-2xl bg-[#1D1F2B]"
+          >
             <div className="flex flex-col items-center text-center">
               {user ? (
                 <>
@@ -123,8 +126,8 @@ export const CartPageTemplate = () => {
               <div className="h-[1px] bg-[#3B3E4A] w-full my-4"></div>
 
               <Link to="/checkout" className="w-full">
-                  <Button
-                  id='button-cart-details'
+                <Button
+                  id="button-cart-details"
                   variant={ButtonTypes.primary}
                   content={t('cartPageTemplate.button.checkout')}
                   width={'100%'}

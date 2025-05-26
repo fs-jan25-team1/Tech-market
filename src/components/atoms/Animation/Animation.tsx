@@ -3,9 +3,7 @@ export const ItemCardAnimation = () => {
     <div className="grid grid-cols-4 gap-4 min-[640px]:grid-cols-12 min-[1200px]:grid-cols-24 px-4 min-[640px]:px-8 min-[1200px]:px-0 min-[1200px]:max-w-[1136px] mx-auto pt-14 pb-4 min-[640px]:pt-18 min-[640px]:pb-6 min-[1200px]:pt-18 min-[1200px]:pb-10 gap-y-0">
       {/* Title */}
       <div className="col-span-full mb-8 min-[640px]:mb-10 text-[#F1F2F9] font-[montBold] leading-tight text-[22px] min-[640px]:text-[32px]">
-        <h1
-          className=" relative overflow-hidden text-transparent select-none w-full h-8 min-[640px]:h-10 rounded animate-[shimmer_2s_ease-in-out_infinite] skeleton"
-        ></h1>
+        <h1 className=" relative overflow-hidden text-transparent select-none w-full h-8 min-[640px]:h-10 rounded animate-[shimmer_2s_ease-in-out_infinite] skeleton"></h1>
       </div>
 
       {/* Content */}
@@ -16,27 +14,15 @@ export const ItemCardAnimation = () => {
             {/* Thumbnails */}
             <div className="col-span-full min-[640px]:col-span-1 min-[640px]:col-start-1 min-[1200px]:col-span-2 order-2 min-[640px]:order-1">
               <div className="grid grid-cols-4 min-[640px]:grid-cols-1 gap-2">
-                <div
-                  className="skeleton col-span-1 aspect-square cursor-pointer border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-            
-                ></div>
-                <div
-                  className="skeleton col-span-1 aspect-square cursor-pointer border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                  
-                ></div>
-                <div
-                  className="skeleton col-span-1 aspect-square cursor-pointer border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                 
-                ></div>
+                <div className="skeleton col-span-1 aspect-square cursor-pointer border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
+                <div className="skeleton col-span-1 aspect-square cursor-pointer border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
+                <div className="skeleton col-span-1 aspect-square cursor-pointer border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
               </div>
             </div>
 
             {/* Main image */}
             <div className="col-span-full min-[640px]:col-span-6 min-[640px]:col-start-2 min-[1200px]:col-span-10 min-[1200px]:col-start-3 order-1 min-[640px]:order-2 aspect-square flex items-center justify-center">
-              <div
-                className="skeleton w-full h-full border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                
-              ></div>
+              <div className="skeleton w-full h-full border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
             </div>
           </div>
         </div>
@@ -47,48 +33,24 @@ export const ItemCardAnimation = () => {
             <div className="col-span-full">
               {/* Colors */}
               <div className="mb-6 border-b border-[#181a29] pb-6">
-                <p
-                  className="skeleton text-sm text-[#89939A] mb-2 relative overflow-hidden text-transparent select-none w-full h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                  
-                ></p>
+                <p className="skeleton text-sm text-[#89939A] mb-2 relative overflow-hidden text-transparent select-none w-full h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></p>
                 <div className="inline-grid grid-cols-6 gap-2">
                   <div className="col-span-1 grid grid-cols-3 gap-10">
-                    <div
-                      className="skeleton rounded-full h-8 w-8 border-2 border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                      
-                    ></div>
-                    <div
-                      className="skeleton rounded-full h-8 w-8 border-2 border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                      
-                    ></div>
-                    <div
-                      className="skeleton rounded-full h-8 w-8 border-2 border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                      
-                    ></div>
+                    <div className="skeleton rounded-full h-8 w-8 border-2 border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
+                    <div className="skeleton rounded-full h-8 w-8 border-2 border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
+                    <div className="skeleton rounded-full h-8 w-8 border-2 border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
                   </div>
                 </div>
               </div>
 
               {/* Capacity */}
               <div className="mb-8 border-b border-[#181a29] pb-6">
-                <p
-                  className="skeleton text-sm text-[#89939A] mb-2 relative overflow-hidden text-transparent select-none w-full h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                  
-                ></p>
+                <p className="skeleton text-sm text-[#89939A] mb-2 relative overflow-hidden text-transparent select-none w-full h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></p>
                 <div className="inline-grid grid-cols-5 gap-2">
                   <div className="col-span-1 grid grid-cols-3 gap-17">
-                    <div
-                      className="skeleton px-2 h-8 w-[55px] text-sm font-medium border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                      
-                    ></div>
-                    <div
-                      className="skeleton px-2 h-8 w-[55px] text-sm font-medium border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                      
-                    ></div>
-                    <div
-                      className="skeleton px-2 h-8 w-[55px] text-sm font-medium border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                      
-                    ></div>
+                    <div className="skeleton px-2 h-8 w-[55px] text-sm font-medium border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
+                    <div className="skeleton px-2 h-8 w-[55px] text-sm font-medium border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
+                    <div className="skeleton px-2 h-8 w-[55px] text-sm font-medium border border-[#181a29] relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
                   </div>
                 </div>
               </div>
@@ -96,74 +58,38 @@ export const ItemCardAnimation = () => {
               {/* Price */}
               <div className="inline-grid grid-cols-2 gap-2 items-center text-lg mb-4">
                 <div className="col-span-1">
-                  <span
-                    className="skeleton text-white font-[montBold] relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></span>
+                  <span className="skeleton text-white font-[montBold] relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
                 </div>
                 <div className="col-span-1">
-                  <span
-                    className="skeleton text-[#4A4C5B] line-through text-base relative overflow-hidden text-transparent select-none w-full h-5 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></span>
+                  <span className="skeleton text-[#4A4C5B] line-through text-base relative overflow-hidden text-transparent select-none w-full h-5 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
                 </div>
               </div>
 
               {/* Buttons */}
               <div className="mb-8">
                 <div className="flex gap-2 mb-8">
-                  <div
-                    className="skeleton flex-1 h-12 relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></div>
-                  <div
-                    className="skeleton h-12 w-12 relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></div>
+                  <div className="skeleton flex-1 h-12 relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
+                  <div className="skeleton h-12 w-12 relative overflow-hidden text-transparent select-none rounded animate-[shimmer_2s_ease-in-out_infinite]"></div>
                 </div>
               </div>
 
               {/* Short tech specs */}
               <div className="flex flex-col gap-1 text-xs sm:text-sm text-[#89939A]">
                 <div className="flex justify-between gap-2 text-[12px]">
-                  <span
-                    className="skeleton min-w-[80px] relative overflow-hidden text-transparent select-none w-[80px] h-3 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></span>
-                  <span
-                    className="skeleton text-white max-w-[200px] text-right break-words relative overflow-hidden text-transparent select-none w-[200px] h-3 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></span>
+                  <span className="skeleton min-w-[80px] relative overflow-hidden text-transparent select-none w-[80px] h-3 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
+                  <span className="skeleton text-white max-w-[200px] text-right break-words relative overflow-hidden text-transparent select-none w-[200px] h-3 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
                 </div>
                 <div className="flex justify-between gap-2">
-                  <span
-                    className="skeleton min-w-[80px] relative overflow-hidden text-transparent select-none w-[80px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></span>
-                  <span
-                    className="skeleton text-white max-w-[200px] text-right break-words relative overflow-hidden text-transparent select-none w-[200px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></span>
+                  <span className="skeleton min-w-[80px] relative overflow-hidden text-transparent select-none w-[80px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
+                  <span className="skeleton text-white max-w-[200px] text-right break-words relative overflow-hidden text-transparent select-none w-[200px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
                 </div>
                 <div className="flex justify-between gap-2">
-                  <span
-                    className="skeleton min-w-[80px] relative overflow-hidden text-transparent select-none w-[80px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></span>
-                  <span
-                    className="skeleton text-white max-w-[200px] text-right break-words relative overflow-hidden text-transparent select-none w-[200px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></span>
+                  <span className="skeleton min-w-[80px] relative overflow-hidden text-transparent select-none w-[80px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
+                  <span className="skeleton text-white max-w-[200px] text-right break-words relative overflow-hidden text-transparent select-none w-[200px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
                 </div>
                 <div className="flex justify-between gap-2">
-                  <span
-                    className="skeleton min-w-[80px] relative overflow-hidden text-transparent select-none w-[80px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></span>
-                  <span
-                    className="skeleton text-white max-w-[200px] text-right break-words relative overflow-hidden text-transparent select-none w-[200px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                    
-                  ></span>
+                  <span className="skeleton min-w-[80px] relative overflow-hidden text-transparent select-none w-[80px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
+                  <span className="skeleton text-white max-w-[200px] text-right break-words relative overflow-hidden text-transparent select-none w-[200px] h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
                 </div>
               </div>
             </div>
@@ -174,56 +100,26 @@ export const ItemCardAnimation = () => {
       {/* About and Tech specs */}
       <div className="col-span-full grid grid-cols-4 min-[1200px]:grid-cols-24 gap-4 mb-20">
         <div className="col-span-full min-[640px]:col-span-7 min-[1200px]:col-span-12">
-          <p
-            className="skeleton col-span-full text-[22px] font-semibold border-b border-[#181a29] pb-4 mb-8 relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-            
-          ></p>
+          <p className="skeleton col-span-full text-[22px] font-semibold border-b border-[#181a29] pb-4 mb-8 relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"></p>
           <div className="col-span-full text-sm text-[#89939A] leading-relaxed">
             <div className="mb-8">
-              <h4
-                className="skeleton text-white text-base font-semibold text-[20px] mb-4 relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                
-              ></h4>
-              <p
-                className="skeleton text-[14px] relative overflow-hidden text-transparent select-none w-full h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                
-              ></p>
-              <h4
-                className="skeleton mt-6 text-white text-base font-semibold text-[20px] mb-4 relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                
-              ></h4>
-              <p
-                className="skeleton text-[14px] relative overflow-hidden text-transparent select-none w-full h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-               
-              ></p>
-              <h4
-                className="skeleton mt-6 text-white text-base font-semibold text-[20px] mb-4 relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-               
-              ></h4>
-              <p
-                className="skeleton text-[14px] relative overflow-hidden text-transparent select-none w-full h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                
-              ></p>
+              <h4 className="skeleton text-white text-base font-semibold text-[20px] mb-4 relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"></h4>
+              <p className="skeleton text-[14px] relative overflow-hidden text-transparent select-none w-full h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></p>
+              <h4 className="skeleton mt-6 text-white text-base font-semibold text-[20px] mb-4 relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"></h4>
+              <p className="skeleton text-[14px] relative overflow-hidden text-transparent select-none w-full h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></p>
+              <h4 className="skeleton mt-6 text-white text-base font-semibold text-[20px] mb-4 relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"></h4>
+              <p className="skeleton text-[14px] relative overflow-hidden text-transparent select-none w-full h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></p>
             </div>
           </div>
         </div>
 
         <div className="col-span-full min-[640px]:col-span-5 min-[1200px]:col-span-11 min-[1200px]:col-start-14">
-          <p
-            className="skeleton text-[22px] font-semibold border-b border-[#181a29] pb-4 mb-8 relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-            
-          ></p>
+          <p className="skeleton text-[22px] font-semibold border-b border-[#181a29] pb-4 mb-8 relative overflow-hidden text-transparent select-none w-full h-6 rounded animate-[shimmer_2s_ease-in-out_infinite]"></p>
           <ul className="text-[14px] text-[#89939A] space-y-2">
             {[...Array(8)].map((_, i) => (
               <li key={i} className="flex justify-between">
-                <span
-                  className="skeleton relative overflow-hidden text-transparent select-none w-24 h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                  
-                ></span>
-                <span
-                  className="skeleton text-white relative overflow-hidden text-transparent select-none w-40 h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"
-                  
-                ></span>
+                <span className="skeleton relative overflow-hidden text-transparent select-none w-24 h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
+                <span className="skeleton text-white relative overflow-hidden text-transparent select-none w-40 h-4 rounded animate-[shimmer_2s_ease-in-out_infinite]"></span>
               </li>
             ))}
           </ul>

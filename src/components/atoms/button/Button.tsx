@@ -20,6 +20,7 @@ type Props = {
 };
 
 const Button: React.FC<Props> = ({
+  id = '',
   content,
   color,
   variant = ButtonTypes.primary,
@@ -90,6 +91,7 @@ const Button: React.FC<Props> = ({
         disabledClasses,
         className,
       )}
+      id={id}
       disabled={disabled}
       style={style}
       onClick={handleClick}

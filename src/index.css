@@ -47,22 +47,22 @@ html.dark h6 {
 }
 
 html.dark {
-  background-color: #a378ff !important;
+  background-color: #0f0f11 !important;
   color: black !important;
 }
 
 html.dark header,
 html.dark footer {
-  background-color: #a378ff !important;
+  background-color: #0f0f11 !important;
   color: white !important;
 }
 
 html.dark #mobile-sidebar {
-  background-color: #a378ff;
+  background-color: whitesmoke;
 }
 
 html.dark #mobile_links {
-  color: white;
+  color: #0f0f11;
 }
 
 html.dark #header-link {
@@ -90,7 +90,7 @@ html.dark #user {
 }
 
 html.dark #user:hover {
-  color: #323542;
+  color: #323542 !important;
 }
 
 html.dark [id^='capacityButton-'] {
@@ -110,7 +110,7 @@ html.dark #nav-item:active {
 }
 
 html.dark #cards {
-  background-color: lightgray !important;
+  background-color: white !important;
 }
 
 html.dark #phonesPageTitle,
@@ -124,8 +124,79 @@ html.dark #itemPageContent {
   background-color: whitesmoke;
 }
 
+html.dark #itemPageContent span {
+  color: #0f0f11;
+}
+
+html.dark #cart-item {
+  background-color: #ebeced;
+}
+
+html.dark #cart-item-button {
+  background-color: #323542;
+}
+
+html.dark .capacity-color {
+  color: #0f0f11 !important;
+  border: none !important;
+  background-color: whitesmoke !important;
+}
+
+html.dark .capacity-color-active {
+  color: #0f0f11 !important;
+  border: 1px solid #323542 !important;
+  background-color: #ebeced !important;
+}
+
+html.dark .capacity-color:hover {
+  background-color: #ebeced !important;
+}
+
+html.dark .capacity-color-active:hover {
+  background-color: #ebeced !important;
+}
+
 html.dark #itemPageCapacity {
   color: black;
+}
+
+html.dark #button-cart-item button {
+  background-color: #505659;
+}
+
+html.dark #button-cart-details {
+  background-color: #505659;
+}
+
+#pagination-active {
+  background-color: #9747ff !important;
+}
+
+html.dark #pagination-active {
+  background-color: #505659 !important;
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    #181a29 25%,
+    #2a2c3b 50%,
+    #4a4c5b 75%,
+    #2a2c3b 100%
+  );
+  background-size: 200% 100%;
+}
+
+html.dark .skeleton {
+  background: linear-gradient(
+    90deg,
+    #d0d2dc 25%,
+    #e0e2ec 50%,
+    #f5f6fa 75%,
+    #e0e2ec 100%
+  );
+  background-size: 200% 100%;
+  border: none !important;
 }
 
 html.dark #breadcrumb-nav {
@@ -134,16 +205,16 @@ html.dark #breadcrumb-nav {
 }
 html.dark #breadcrumb-home-link,
 html.dark [id^='breadcrumb-link-'] {
-  color: black;
+  color: #525659;
 }
 html.dark #breadcrumb-home-link:hover,
 html.dark [id^='breadcrumb-link-']:hover {
-  color: gray;
+  color: #0f0f11;
 }
 html.dark [id^='breadcrumb-current-'],
 html.dark [id^='breadcrumb-separator-'],
 html.dark #breadcrumb-home-separator {
-  color: gray;
+  color: #0f0f11;
 }
 
 html.dark #contact-page {

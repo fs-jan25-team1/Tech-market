@@ -61,10 +61,10 @@ export const Pagination: React.FC<Props> = ({
           const page = i + 1;
           return (
             <Button
+              id={page === currentPage ? 'pagination-active' : ''}
               key={page}
               variant={ButtonTypes.numbered}
               content={page}
-              bgColor={page === currentPage ? '#9747FF' : ''}
               onClick={handlePageClick(page)}
             />
           );

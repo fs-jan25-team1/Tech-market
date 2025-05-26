@@ -22,8 +22,8 @@ export const CapacitySelector = ({
             color={selectedCapacity === cap ? '#0F1121' : '#F1F2F9'}
             className={`px-2 h-8 w-full text-sm font-medium border transition-all duration-200 ${
               selectedCapacity === cap
-                ? 'bg-white border-white hover:border-white'
-                : 'bg-transparent border-[#3B3E4A] hover:border-white hover:text-white'
+                ? 'capacity-color-active bg-white border-white hover:border-white'
+                : 'capacity-color bg-transparent border-[#3B3E4A] hover:border-white hover:text-white'
             }`}
             onClick={() => onMemoryClick(cap)}
           />

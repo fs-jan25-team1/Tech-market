@@ -177,7 +177,7 @@ export const ProductCard = ({
       </Link>
 
       <div className="flex items-center justify-between gap-1 sm:gap-2 w-full mt-auto">
-        <div className="flex-grow">
+        <div className="flex-grow" id="button-cart-item">
           <Button
             content={
               isInCart
@@ -186,6 +186,7 @@ export const ProductCard = ({
             }
             variant={ButtonTypes.primary}
             width={'100%'}
+            // bgColor={html.dark ? red : blue}
             isInCart={isInCart}
             onClick={handleAddToCartClick}
           />
